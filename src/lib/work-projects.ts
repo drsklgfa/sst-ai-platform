@@ -34,7 +34,7 @@ export async function createWorkProjectFromDefinition(input: {
         definition: toPrismaJson(definition),
       },
     });
-    return tx.workProject.create({
+    const project = await tx.workProject.create({
       data: {
         tenantId: input.tenantId,
         companyId: input.companyId,
@@ -51,25 +51,36 @@ export async function createWorkProjectFromDefinition(input: {
           workflowVersion: definition.version,
           ...(input.metadata ?? {}),
         }),
-        steps: {
-          create: definition.steps.map((step, index) => ({
-            code: step.code,
-            title: step.title,
-            description: step.description,
-            position: index + 1,
-            required: step.required !== false,
-            requirements: {
-              create: step.requirements.map((item) => ({
-                code: item.code,
-                title: item.title,
-                description: item.description,
-                required: item.required !== false,
-              })),
-            },
-          })),
-        },
       },
     });
+
+    for (const [index, step] of definition.steps.entries()) {
+      const workflowStep = await tx.workflowStep.create({
+        data: {
+          workProjectId: project.id,
+          code: step.code,
+          title: step.title,
+          description: step.description,
+          position: index + 1,
+          required: step.required !== false,
+        },
+      });
+
+      if (step.requirements.length) {
+        await tx.workflowRequirement.createMany({
+          data: step.requirements.map((item) => ({
+            workProjectId: project.id,
+            workflowStepId: workflowStep.id,
+            code: item.code,
+            title: item.title,
+            description: item.description,
+            required: item.required !== false,
+          })),
+        });
+      }
+    }
+
+    return project;
   });
 }
 

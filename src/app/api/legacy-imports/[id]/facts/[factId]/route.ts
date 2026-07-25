@@ -5,7 +5,7 @@ import { audit } from '@/lib/audit';
 import { db } from '@/lib/db';
 import { env } from '@/lib/env';
 import { publicAppUrl } from '@/lib/public-url';
-import { toPrismaJson } from '@/lib/prisma-json';
+import { toPrismaJson, toPrismaNullableJson } from '@/lib/prisma-json';
 import { refreshLegacyImportConflicts } from '@/lib/legacy-imports';
 
 const statuses = new Set<LegacyFactStatus>(['NEEDS_REVIEW', 'APPROVED', 'REJECTED']);
@@ -31,7 +31,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     data: {
       status,
       value: toPrismaJson(value),
-      normalizedValue: edited ? undefined : before.normalizedValue,
+      normalizedValue: edited ? undefined : toPrismaNullableJson(before.normalizedValue),
       verifiedById: user.id,
       verifiedAt: new Date(),
     },

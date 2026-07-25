@@ -1,4 +1,5 @@
-import https, { type IncomingHttpHeaders } from 'node:https';
+import https from 'node:https';
+import type { IncomingHttpHeaders } from 'node:http';
 import type { EsocialEnvironment } from '@prisma/client';
 import { env } from '@/lib/env';
 import { parseEsocialTransportResponse, validateSignedEsocialBatchXml } from '@/domain/integrations/esocial-transport';

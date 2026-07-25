@@ -16,7 +16,7 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
   const execution = changeSet.toolExecutions[0];
   const redirectPath = execution?.aiThreadId ? `/copilot/${execution.aiThreadId}` : changeSet.workProjectId ? `/work-projects/${changeSet.workProjectId}` : '/copilot';
   try {
-    await revertChangeSet(id, { tenantId: tenant.id, userId: user.id, role: membership.role, permissionOverrides: membership.permissions, autonomy: 'SUPERVISED_AUTONOMY', dataPolicy: 'PROFESSIONAL', aiThreadId: execution?.aiThreadId, workProjectId: changeSet.workProjectId });
+    await revertChangeSet(id, { tenantId: tenant.id, userId: user.id, role: membership.role, permissionOverrides: membership.permissions, autonomy: 'SUPERVISED_AUTONOMY', dataPolicy: 'PROFESSIONAL', aiThreadId: execution?.aiThreadId ?? undefined, workProjectId: changeSet.workProjectId ?? undefined });
     return NextResponse.redirect(publicAppUrl(redirectPath), 303);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
