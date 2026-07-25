@@ -37,7 +37,7 @@ test('CI mantém typecheck real e testa Web e Worker dentro da imagem Docker', (
 
 test('framework usa patches mantidos das linhas Next 15 e React 19.1', () => {
   const packageJson = JSON.parse(read('package.json'));
-  assert.equal(packageJson.dependencies.next, '15.5.20');
+  assert.equal(packageJson.dependencies.next, '15.5.21');
   assert.equal(packageJson.dependencies.react, '19.1.8');
   assert.equal(packageJson.dependencies['react-dom'], '19.1.8');
 });
