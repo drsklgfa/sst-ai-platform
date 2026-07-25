@@ -2058,7 +2058,6 @@ model WorkProject {
   aiThreads         AIThread[]
   aiToolExecutions  AIToolExecution[]
   aiUsageRecords    AIUsageRecord[]
-  legacyImports     LegacyImportBatch[]
   fieldVisits       FieldVisit[]
   fieldCaptures     FieldCapture[]
   pgrProgram        PgrProgram?
