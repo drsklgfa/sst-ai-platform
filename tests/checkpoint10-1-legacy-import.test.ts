@@ -19,7 +19,7 @@ test('schema preserva lote, documento, fato, conflito e proveniência', () => {
   for (const field of ['sourcePage', 'sourceLocator', 'sourceExcerpt', 'confidence', 'normalizedValue', 'appliedEntityId']) {
     assert.match(schema, new RegExp(`\\b${field}\\b`));
   }
-  assert.match(schema, /legacyImportBatchId String\?/);
+  assert.match(schema, /legacyImportBatchId\s+String\?/);
 });
 
 test('importação fica atrás de feature flag e permissão', () => {
