@@ -1,0 +1,29 @@
+{
+  "name": "sst-saas-platform",
+  "version": "1.2.0-checkpoint.10.11",
+  "checkpoint": "10.11",
+  "scope": "release-candidate-homologacao-comercial",
+  "tests_passed": 283,
+  "release_candidate": true,
+  "production_ready": false,
+  "external_homologation_required": [
+    "github-actions-com-dependencias-reais",
+    "railway-staging-com-copia-do-banco",
+    "sandbox-do-gateway-escolhido",
+    "ambiente-restrito-do-esocial-quando-habilitado",
+    "backup-e-restauracao-reais"
+  ],
+  "feature_flags_default": "disabled",
+  "database_strategy": {
+    "baseline": "20260723000000_existing_schema_baseline",
+    "first_boot": "bootstrap",
+    "production_after_baseline": "migrate",
+    "worker": "none"
+  },
+  "integrations": {
+    "asaas": "adapter-and-provider-specific-webhook-ready-for-sandbox",
+    "mercado_pago": "adapter-and-hmac-webhook-ready-for-sandbox",
+    "esocial": "external-signed-xml-mtls-transport-ready-for-restricted-environment"
+  },
+  "description": "Release candidate comercial com baseline de migrations, gates de produção, painel de prontidão, checkout e webhooks específicos, filas assíncronas, transporte eSocial de XML previamente assinado, E2E, SBOM e runbooks. Não é declarado production_ready sem executar homologações externas com credenciais e ambientes reais."
+}

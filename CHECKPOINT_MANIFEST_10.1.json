@@ -1,0 +1,251 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.1",
+  "version": "1.2.0-checkpoint.10.1",
+  "created_on": "2026-07-22",
+  "scope": "legacy-import-migration-provenance-conflicts",
+  "base_checkpoint": "10.0",
+  "file_count": 292,
+  "changed_file_count": 38,
+  "prisma_models": 77,
+  "prisma_enums": 38,
+  "tests_passed": 123,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed",
+    "unit_and_regression_tests": "123/123 passed",
+    "official_prisma_next_docker_validation": "pending GitHub Actions/staging because dependencies are not installed in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1351,
+      "sha256": "1ca3fd008e3d8cc503a5191319b28662e8c60597e99b7a299bb479396e27397f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 20894,
+      "sha256": "184c3725d751b089fd093ad907fac649797d01b18d6eb8e87ee441f14da784d9"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "INSTRUCOES.txt",
+      "bytes": 858,
+      "sha256": "6a7f1080258799de55b743c6d28cf35d232ff89883283de2f3f2805c6baeb354"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 6300,
+      "sha256": "d335c36c3fba3ff48e6e6d14424891e71144d2cd027a3bf4c6210755f35b555a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 2857,
+      "sha256": "14973bf4445974571fa3822ed34b1930cf56a49b449e8ae4c347d491a1f2b348"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 625,
+      "sha256": "c6cb983aea8486fc9eae51ce017f3329198e50f3dd0a9bc7fb3219fd6b5c1931"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 4511,
+      "sha256": "47a40754cf555a9e7336200cd304edb1a900ff40d55a1266047ca0eeb1b795cc"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_1_DEPLOYMENT.md",
+      "bytes": 1851,
+      "sha256": "f53a9b7ca2ac70ee81d5f3629c5b506b72c2dc2d74f11fce1cfe2332e6c51f75"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/V10_DEPLOYMENT.md",
+      "bytes": 1740,
+      "sha256": "49f2b9ab791325c0a4d4fc306754125fe0a13a6d212d94de7c7313a747a06f35"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_LEGACY_IMPORTS.md",
+      "bytes": 3582,
+      "sha256": "305373151d026efad5336848b583d87b78f21d04c1600a4863a2c77b2d40c7e7"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "9a2415fe7044c48224923152cfc69b1f761646106b9cd27dc86a0480ec78dc36"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 58133,
+      "sha256": "fb2deb700715224490531f8caad6378e5605675c277ad6a73331c6aad259f4ca"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/legacy-imports/[id]/page.tsx",
+      "bytes": 9531,
+      "sha256": "4482108e455eb61fb1293f63cdd76814b8f1eaf17e350f7f8772db49e89ff53a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/legacy-imports/new/page.tsx",
+      "bytes": 3709,
+      "sha256": "581981729db1fff03d0e88ac7275a3e549eb7f6456f457d64029e24054d8e680"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/legacy-imports/page.tsx",
+      "bytes": 2775,
+      "sha256": "b51864d4416601bc92193c1ba78b2ecf7e6fbc3d584a0098cae8fbb20eaf3d42"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/[id]/approve-high-confidence/route.ts",
+      "bytes": 1560,
+      "sha256": "9f1ca6844396b8e9f140fcf4adb3f9699acbf9dce7f3f97432005dd5db9f13b8"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/[id]/commit/route.ts",
+      "bytes": 1041,
+      "sha256": "a84705f6f011089b389601e1ba34dd71db908a0cf4ecd521580de8744c9c8676"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/[id]/conflicts/[conflictId]/route.ts",
+      "bytes": 2568,
+      "sha256": "ca5beee002cc8d9613e590df8179d774001220cbbea22d502dd28444c885cd14"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/[id]/documents/[documentId]/retry/route.ts",
+      "bytes": 1262,
+      "sha256": "914969b0a1666820edc4f11147a6989e1a00fd9769c02a097491973e28a9db17"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/[id]/facts/[factId]/route.ts",
+      "bytes": 2201,
+      "sha256": "6dfbc1818d74ca306321036621c3a844a63b2ec65aafbc8d0ac7d1a6c4f66dfd"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/legacy-imports/route.ts",
+      "bytes": 4046,
+      "sha256": "c2d09791de32e855b6246577c47b9561296ce44c41752455134b560d1ba4ceb6"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/work-projects/route.ts",
+      "bytes": 2324,
+      "sha256": "fdb57f6aa3055f7643edb4714c3b6ed584351e38522849477845832472c29b2e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/components/app-shell.tsx",
+      "bytes": 3140,
+      "sha256": "2b73364d90b03e62fb856f2be6045c52beac9b7be3268fb9f6428ce9e0bfbeee"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/legacy-import/catalog.ts",
+      "bytes": 2715,
+      "sha256": "a3c7a21fa4a1f55d595576cb7d891354b51545dc1118f9869aae57eaef047b52"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/legacy-import/consolidation.ts",
+      "bytes": 2384,
+      "sha256": "41ed7b810cab78996a7dc6733e94c9e83d87deddf49c413def9ca461f948ece2"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/legacy-import/local-text.ts",
+      "bytes": 2010,
+      "sha256": "e55e7ed54bf2c8abf9c9ab90aa31959e952d31bb2e035a19627f061344ae6552"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/legacy-import/prompt.ts",
+      "bytes": 3899,
+      "sha256": "ae66cd050ca61627a46918e078bc2cd50289eb3b132e397d0abff8b471130eeb"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/legacy-import/schema.ts",
+      "bytes": 1652,
+      "sha256": "13854fba7a17a5ec412126a6f41734bd25544194a9b7660085b769237a51062e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 3320,
+      "sha256": "39b9435cd936426fcdbecbff29885f9dcc977a81ed662e30b36a40cb1203a7a7"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/integrations/ai.ts",
+      "bytes": 8168,
+      "sha256": "267035ee240360e4a026fc7b33ad2eed41cbac33fdfd135c1645ae2608b02cda"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/legacy-imports.ts",
+      "bytes": 23177,
+      "sha256": "2ad5d19419abf69624ac901b7cdff039a8f7c91dd34d4f58d62b0b66ab7fed0d"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/work-projects.ts",
+      "bytes": 4339,
+      "sha256": "8dc0192fecb192d3118409840c14b7f53634a3eb7d741ac87183270b5de350d4"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/worker/processors.ts",
+      "bytes": 4516,
+      "sha256": "1bd6acab32d316bca4f46efe7263ad394b705c5b5fcbd1523178842b24ed2133"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-1-legacy-import.test.ts",
+      "bytes": 2822,
+      "sha256": "78b92c84dcd6eb43498df84389df3e7ed03070a92fcd5921f52b0bfceffbfb06"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/legacy-import-consolidation.test.ts",
+      "bytes": 1552,
+      "sha256": "0dfa7ee9d4e227993cadc999f5aa5414117d21b60d0b233801ed2f72251b9784"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 20586,
+      "sha256": "d9e873ed1dd69d7402bdeef15e7c8978d3835fb93ec638acecf0d402bb3f7f56"
+    }
+  ],
+  "functional_changed_file_count": 36,
+  "generated_checkpoint_metadata": [
+    "CHANGED_FILES_10.1.txt",
+    "CHECKPOINT_MANIFEST_10.1.json"
+  ]
+}

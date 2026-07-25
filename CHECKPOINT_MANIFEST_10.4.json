@@ -1,0 +1,229 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.4",
+  "version": "1.2.0-checkpoint.10.4",
+  "created_on": "2026-07-22",
+  "scope": "gro-pgr-complete-psychosocial-risk-management",
+  "base_checkpoint": "10.3",
+  "file_count": 341,
+  "changed_file_count": 32,
+  "prisma_models": 86,
+  "prisma_enums": 50,
+  "tests_passed": 154,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed",
+    "unit_and_regression_tests": "154/154 passed",
+    "security_scan": "passed",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database and API credentials are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1626,
+      "sha256": "22f0dac5adfd964d438cbd671f6230790355561db90da06fcb0645d5dd03ef9b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 24899,
+      "sha256": "019556ec977910fb5bbd4ae3bf0d064f1d8a9a5e77970e1061eab5119f2207bc"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 7467,
+      "sha256": "101afba7990b96c85a099f4c99e0344a11e9e341748fcd3617e3a927dc9aab1a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3525,
+      "sha256": "3152f600eacb9640ea83a913c98419dbf3f92b09b599d5dd270d32995f33ee4a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 782,
+      "sha256": "d6ce5f0499bb8f44a3e2c82d98283514bd87cdb17287384265603a17ed6f2ad6"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 5082,
+      "sha256": "5e7960508fc03fc9289550277175cbd74be64ab981203ffa566af4da01f300ec"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_4_DEPLOYMENT.md",
+      "bytes": 2279,
+      "sha256": "c2f065770708b787e9cdfbc1baa11d5183b0b63f4cd1e670c5ca4dc44308c9e8"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_4_PGR_GRO_PSYCHOSOCIAL.md",
+      "bytes": 3696,
+      "sha256": "5346129810ffb40c03a66a27c4efa366b9419e124236c8187e83716a635013d6"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "80e47509440f46b8ae09ecd5a30dc4001c886014aff6a1d328b5c5438f0637ef"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 71449,
+      "sha256": "fae9bfc12590c783b2c094b71fb1f12cc1412644c7ab4e2b6fecf8337cb905fd"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/pgr/[id]/page.tsx",
+      "bytes": 14673,
+      "sha256": "6b415f2b7dfdd1dcf69390020c454a8509e280429c548f945343c01bc2fe3f12"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 7766,
+      "sha256": "95f6cdeae880d9d46e0709fdf0d244987389175384433e44435da20a46583142"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/action-plan/route.ts",
+      "bytes": 1202,
+      "sha256": "626d7ee86a642052f202065ade34692922b19eda18e99904a3560008931567ba"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/audit/route.ts",
+      "bytes": 1144,
+      "sha256": "8cef673ef96fbe3753589cda9b5cd554cfd0d1b4b2ae1a06088934cac077036c"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/bootstrap/route.ts",
+      "bytes": 1163,
+      "sha256": "fdfbe4c7be22585239d74571366929970a5b3ca30f6e106c3ddbca6dd74a1ad3"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/participation/route.ts",
+      "bytes": 2011,
+      "sha256": "46cc20bff67f8301be0b1585b764294ed9f54ac630426616a6a0512db8afc804"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/psychosocial/[assessmentId]/approve/route.ts",
+      "bytes": 1274,
+      "sha256": "3009f7f4763157a033a26ee0ae1626f649d3accb10b24d7ec497c9619b456655"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/psychosocial/route.ts",
+      "bytes": 1386,
+      "sha256": "bc1850ace158bd13a22bcaf3c0b62b9240d9ea141cd2f65bc55a4c8e9a930f98"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pgr/[id]/risks/route.ts",
+      "bytes": 2897,
+      "sha256": "97d18ef443999df7a63ab385fee33783d9e877c6bc74924d18b19e54d42889ce"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 9638,
+      "sha256": "d36688fd31b0539d9c02287e4955ce7f0deb4214628ffb98726ec5cc0eec7d63"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 5875,
+      "sha256": "1171087386dc4b5e5602a9d0a8c3c195b05b467ac8a4d10ef7d2d49020b2fc49"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pgr/audit.ts",
+      "bytes": 3487,
+      "sha256": "f5cde582d62a8349cb570f82650374c9c4fa7e113f667b80d355502bf16422af"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pgr/catalog.ts",
+      "bytes": 1322,
+      "sha256": "9de0027bd96dac07b7dc459d4d8d47529169ef2409bbbfa02547d1fa46381915"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pgr/psychosocial.ts",
+      "bytes": 2794,
+      "sha256": "79fbc2824fc12408ae0346c272358357882cb8a051cc4f39c96f9ed7794681cc"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pgr/risk.ts",
+      "bytes": 3187,
+      "sha256": "2852707e52e33b2f4c77c7d3546721fd0251fe6fb7ce9ee42a42fd29c1847daa"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 14794,
+      "sha256": "a9d115bba820b3ba95dfd55769e44ce0f2c251ed9e7f4581ec13a1283df4839c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 34658,
+      "sha256": "b845a5990d79940a5e86ed5950c5475dc8d5a0f28a63bc2f88660e384024003b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 3681,
+      "sha256": "5ab19bcb226ecb5fbf4312e58bfb75a67869450df57ee3608760b074bf395c36"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/pgr.ts",
+      "bytes": 20965,
+      "sha256": "c446b01776bd30cc4fc8b221de3e553ca421203d54592abf2e49a5400dbc2a35"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-4-pgr-psychosocial.test.ts",
+      "bytes": 7582,
+      "sha256": "4e7878d3514121dc4847614256d8ea63875cd4938b25a405ac3b72b38e584bf1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "tsconfig.json",
+      "bytes": 741,
+      "sha256": "c5d2f87f2e88233cec86ca57b9b5c499d06e18f3ce1edb17c39b4704d09b0df6"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 25210,
+      "sha256": "44522efaf4b75669ca95dca2b27973cd8d887b3ccbd866554d4f52eb28128e97"
+    }
+  ]
+}

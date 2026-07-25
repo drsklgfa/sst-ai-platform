@@ -1,0 +1,38 @@
+{
+  "checkpoint": "10.0",
+  "version": "1.2.0-checkpoint.10.0",
+  "created_at": "2026-07-22",
+  "base_checkpoint": "9.11",
+  "file_count": 270,
+  "tests_passed": 113,
+  "schema_models": 73,
+  "schema_enums": 33,
+  "features": [
+    "work-projects",
+    "versioned-workflows",
+    "requirements",
+    "approvals",
+    "changesets",
+    "ai-audit",
+    "openai",
+    "gemini",
+    "encrypted-provider-secrets",
+    "feature-flags"
+  ],
+  "validation": [
+    "validate:source",
+    "validate:schema",
+    "typecheck:offline",
+    "preflight",
+    "preflight:seed",
+    "npm test"
+  ],
+  "pending_external_validation": [
+    "npm install/package-lock",
+    "prisma format/validate/generate",
+    "next build",
+    "docker build",
+    "GitHub Actions",
+    "Railway staging"
+  ]
+}

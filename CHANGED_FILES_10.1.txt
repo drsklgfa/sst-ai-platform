@@ -1,0 +1,40 @@
+CHECKPOINT 10.1 — ARQUIVOS ALTERADOS EM RELAÇÃO AO 10.0
+
+Observação: esta lista cobre os 36 arquivos funcionais e documentais comparados; ela própria e o manifesto do checkpoint são metadados adicionais do pacote.
+
+MODIFIED .env.example
+MODIFIED CHANGELOG.md
+MODIFIED INSTRUCOES.txt
+MODIFIED README.md
+MODIFIED VALIDATION_REPORT.md
+MODIFIED checkpoint.json
+MODIFIED docs/MASTER_BLUEPRINT_V10.md
+ADDED    docs/V10_1_DEPLOYMENT.md
+MODIFIED docs/V10_DEPLOYMENT.md
+ADDED    docs/V10_LEGACY_IMPORTS.md
+MODIFIED package.json
+MODIFIED prisma/schema.prisma
+ADDED    src/app/(app)/legacy-imports/[id]/page.tsx
+ADDED    src/app/(app)/legacy-imports/new/page.tsx
+ADDED    src/app/(app)/legacy-imports/page.tsx
+ADDED    src/app/api/legacy-imports/[id]/approve-high-confidence/route.ts
+ADDED    src/app/api/legacy-imports/[id]/commit/route.ts
+ADDED    src/app/api/legacy-imports/[id]/conflicts/[conflictId]/route.ts
+ADDED    src/app/api/legacy-imports/[id]/documents/[documentId]/retry/route.ts
+ADDED    src/app/api/legacy-imports/[id]/facts/[factId]/route.ts
+ADDED    src/app/api/legacy-imports/route.ts
+MODIFIED src/app/api/work-projects/route.ts
+MODIFIED src/components/app-shell.tsx
+ADDED    src/domain/legacy-import/catalog.ts
+ADDED    src/domain/legacy-import/consolidation.ts
+ADDED    src/domain/legacy-import/local-text.ts
+ADDED    src/domain/legacy-import/prompt.ts
+ADDED    src/domain/legacy-import/schema.ts
+MODIFIED src/lib/env.ts
+MODIFIED src/lib/integrations/ai.ts
+ADDED    src/lib/legacy-imports.ts
+MODIFIED src/lib/work-projects.ts
+MODIFIED src/worker/processors.ts
+ADDED    tests/checkpoint10-1-legacy-import.test.ts
+ADDED    tests/legacy-import-consolidation.test.ts
+MODIFIED types/offline-prisma.d.ts

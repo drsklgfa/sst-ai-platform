@@ -1,0 +1,41 @@
+{
+  "checkpoint": "10.11",
+  "version": "1.2.0-checkpoint.10.11",
+  "classification": "commercial-release-candidate",
+  "base_checkpoint": "10.10",
+  "files_in_package": 532,
+  "files_new": 22,
+  "files_modified": 26,
+  "files_removed": 0,
+  "prisma_models": 169,
+  "prisma_enums": 137,
+  "tests_passed": 283,
+  "offline_validation": {
+    "source": "passed",
+    "schema": "passed",
+    "typecheck_offline": "passed",
+    "preflight": "passed",
+    "seed_preflight": "passed",
+    "release_preflight": "passed_with_package_lock_warning",
+    "backup_restore_drill": "passed",
+    "tests": "passed"
+  },
+  "production_ready": false,
+  "release_candidate": true,
+  "blocking_external_gates": [
+    "package-lock committed",
+    "GitHub Actions real build",
+    "Railway staging migration/drift",
+    "gateway sandbox",
+    "eSocial restricted environment when enabled",
+    "real database and bucket restore drill"
+  ],
+  "key_files": [
+    "docs/V10_11_DEPLOYMENT.md",
+    "docs/COMMERCIAL_GO_LIVE_CHECKLIST.md",
+    "docs/BACKUP_RESTORE_RUNBOOK.md",
+    "docs/INCIDENT_RESPONSE_RUNBOOK.md",
+    "VALIDATION_REPORT.md",
+    "checkpoint.json"
+  ]
+}

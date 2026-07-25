@@ -1,0 +1,291 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.6",
+  "version": "1.2.0-checkpoint.10.6",
+  "created_on": "2026-07-22",
+  "scope": "ltcat-ppp-s2240-insalubridade-periculosidade",
+  "base_checkpoint": "10.5",
+  "file_count": 392,
+  "changed_file_count": 41,
+  "prisma_models": 111,
+  "prisma_enums": 79,
+  "tests_passed": 183,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO",
+    "FEATURE_PCMSO",
+    "FEATURE_MEDICAL_AREA",
+    "FEATURE_ESOCIAL_S2220",
+    "FEATURE_EXPOSURE_CORE",
+    "FEATURE_LTCAT_PPP",
+    "FEATURE_INSALUBRIDADE",
+    "FEATURE_PERICULOSIDADE",
+    "FEATURE_ESOCIAL_S2240"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed with safe test values",
+    "unit_and_regression_tests": "183/183 passed",
+    "security_scan": "passed",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database, external credentials, technical approval workflow and official eSocial transmission are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1912,
+      "sha256": "be68eb00c75acfdd21615e56210767ba6c341c558169d77eece98c77d6901dab"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 28254,
+      "sha256": "8536ae79d45a92d45fdef03fb3324d88a43371fda70bc2354698071a05358b4e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 8219,
+      "sha256": "7dd3cf372abddd83135bfdc9f9c7234f5a8c7754546493f8dca3b0aff0a0d858"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3410,
+      "sha256": "ba77e72e186a8f2d00841e6a534c0dd0207d646efcaeb9f244e71f9030b65064"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 954,
+      "sha256": "78fbfb1ebf8e26ae0aed2757ea8d7119b4f998cab78cfc902a3a53d9d753c1ec"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 6300,
+      "sha256": "811d4475d8e1e9eac145e7b008deb884949ca5f8fe9f8551d9b758c4dbf016c2"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_6_DEPLOYMENT.md",
+      "bytes": 3600,
+      "sha256": "3ef636354a1112336269c05951d02a021be3f3c09abdbb0afc2362739dc5ce06"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_6_LTCAT_PPP_LI_LP.md",
+      "bytes": 6085,
+      "sha256": "481301b737428b02940c48df4a95b378e5a8ec6ba4cc0e948efa53c1ca480864"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "7d3350346fbca4f59255320a9fd80737f6abeae4497c5a5155f8dabdc5b1095b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 103197,
+      "sha256": "11922c1b17872108c116f776b34540f811eb460d2e7cfcac97982752e7cd3dcb"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/exposures/[id]/page.tsx",
+      "bytes": 25364,
+      "sha256": "74776521f96bb02845b4c9445761f51c4d23f754015e53c352dadb4e1bab017c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 8297,
+      "sha256": "4b64e32df02269bf87d82b57c468bf050b3e33899fc2dea33bdd526a58d1458a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/agents/route.ts",
+      "bytes": 2257,
+      "sha256": "18f82693f83413d68b3027fbbd07d2e7a01ec652367fd8fe325e12760bb9efe4"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/audit/route.ts",
+      "bytes": 994,
+      "sha256": "c2092b9c36233e4ee0b51ce3e9c9753971572e5867323e6fe7eb20d492364542"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/bootstrap/route.ts",
+      "bytes": 1160,
+      "sha256": "52d7b9e9ff6cfceda06107d5753676afc0b82ad56178ef1def9a25df09ea8d75"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/controls/route.ts",
+      "bytes": 2020,
+      "sha256": "de02cb028d5127a5ab381714e0702bba863dfd55cf57bb83aef310a2c3d21f96"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/esocial/[periodId]/route.ts",
+      "bytes": 1096,
+      "sha256": "a9bde06158d30ce6cf970fc0ce1aed8152d6ea7ea10274e79f997f802270808f"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/insalubrity/route.ts",
+      "bytes": 1717,
+      "sha256": "0ee303bef2486afca67bc5942150e8a1ed77fce40685e6ed0046060fe824f535"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/ltcat-conclusions/route.ts",
+      "bytes": 1444,
+      "sha256": "3bd8f7e84bfd0eb5e55954264f6b1d681a5b08ab15c04577e05cd994ed327d21"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/measurements/route.ts",
+      "bytes": 2475,
+      "sha256": "37793bdd914ee3ad6fa897d40e0e0926b546ffeb8d319dc2fad02a0405ca4de4"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/periculosidade/route.ts",
+      "bytes": 1746,
+      "sha256": "d58bdb1494dcf128b8b8904d55f28ec631a84f65376d990e4cb3e933818b996c"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/periods/route.ts",
+      "bytes": 2106,
+      "sha256": "6cd202f60bea56d240ad02d2f4304ac01a160515d71e1d358b73ceff892ff98b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/ppp/[workerId]/route.ts",
+      "bytes": 1019,
+      "sha256": "16df29b7d8b3f193c94060512553e8e28e0d94ab7ae2bbbe34ce5e85b2bf4996"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/professionals/route.ts",
+      "bytes": 1372,
+      "sha256": "568fbaafda71a9d44bac2f924d5b22ef5133644812d271f048610cfbb046e9ee"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/exposures/[id]/responsible/route.ts",
+      "bytes": 1180,
+      "sha256": "b54edf13b497fe15d93306bd93f8383025e33ad32fd32d8a98452174d992216c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/components/app-shell.tsx",
+      "bytes": 3825,
+      "sha256": "a82c301a96c1d176b1dcd524c4c326ded806ad478f84ba9142ce5f3e27c2a0ed"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 11490,
+      "sha256": "08b05496f26b6340540a27c45e4055886567ddf505705b3295be2c61d1c9873b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 9305,
+      "sha256": "f783e889878c375192b986285c2286deb11613fb04ba15ab676074a5037d9a95"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/audit.ts",
+      "bytes": 3429,
+      "sha256": "72b22bfa915baf7f5bd516c473b135a452a57d1cd54506e8f8837c2a419c2253"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/catalog.ts",
+      "bytes": 1977,
+      "sha256": "1a4732e039edc8abb177e2779630a61c0be1689964dba8795733f891908a8014"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/effectiveness.ts",
+      "bytes": 2233,
+      "sha256": "0cf9b69a37a31207871bb7833da8ed9acb2ad7a7ad81014cfedf37799176b6fd"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/esocial-s2240.ts",
+      "bytes": 6640,
+      "sha256": "30492049603ec897a06846c6e9e24e62fb6fa108277cf766a5eed115d741f2cb"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/periods.ts",
+      "bytes": 1996,
+      "sha256": "c436b076645aa64ef975c2f2b67dc93669dc2dd4e94d34bee50d0c0639f2613d"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/exposures/ppp.ts",
+      "bytes": 3383,
+      "sha256": "e1bef72d7f6d901c6f87e06749490d3a38728681bdd333bf58d782486f66306b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 19997,
+      "sha256": "fe249cdd74caca7f17c059e8b449d11ee5da176c4cc94008c8a67aba06d4da17"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 37748,
+      "sha256": "ca9a7f7cfcbe551d789cc8c6684d81d8159bc397300ae9beeff4d04b6cd4db33"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 4157,
+      "sha256": "ea52bb6c08da5ea5f67152f1465fb8fdbf81aab2b59d80076939cd0c96dd8a14"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/exposures.ts",
+      "bytes": 33712,
+      "sha256": "00cf754aaeed08ea22ce8288a1b360de9efa66f44646b9efe4c7805a65ce530f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/rbac.ts",
+      "bytes": 6029,
+      "sha256": "cb0b85928eb2e47e92dfd869c1162dc3bd40e7f562464580bb8d35b4552df3eb"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-6-ltcat-ppp-li-lp.test.ts",
+      "bytes": 14105,
+      "sha256": "f54759dec29ec7756b5a3ca47c004ec6cb302a623694a0912e7fa4a61c62fdb1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 36751,
+      "sha256": "6b5fdcece1e73832a69b043399f1a30677a935c9beb4cb2f3d305df3b983265c"
+    }
+  ]
+}

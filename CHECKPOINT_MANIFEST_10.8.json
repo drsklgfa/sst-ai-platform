@@ -1,0 +1,252 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.8",
+  "version": "1.2.0-checkpoint.10.8",
+  "created_on": "2026-07-23",
+  "scope": "higiene-ocupacional-e-gestao-de-equipamentos",
+  "base_checkpoint": "10.7",
+  "file_count": 432,
+  "changed_file_count": 34,
+  "prisma_models": 126,
+  "prisma_enums": 99,
+  "tests_passed": 213,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO",
+    "FEATURE_PCMSO",
+    "FEATURE_MEDICAL_AREA",
+    "FEATURE_ESOCIAL_S2220",
+    "FEATURE_EXPOSURE_CORE",
+    "FEATURE_LTCAT_PPP",
+    "FEATURE_INSALUBRIDADE",
+    "FEATURE_PERICULOSIDADE",
+    "FEATURE_ESOCIAL_S2240",
+    "FEATURE_ERGONOMICS",
+    "FEATURE_OCCUPATIONAL_HYGIENE",
+    "FEATURE_INSTRUMENT_MANAGEMENT"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed with safe test values",
+    "unit_and_regression_tests": "213/213 passed",
+    "security_scan": "passed: no .env, private keys, provider credentials, local databases, node_modules or .next artifacts found",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database, instruments, calibration certificates, external credentials and professional hygiene validation are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 2010,
+      "sha256": "4d5a3aba339d7fce9a2b4e824ec6938a8a8bcf3dbd83de4103753dc758aa71dd"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 30885,
+      "sha256": "d51690167ce925bd5ebfd33ce13ce011341ecbd9ce700048c76b6de7ae333f79"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "INSTRUCOES.txt",
+      "bytes": 1309,
+      "sha256": "5c29dfe1681c5047679c65aa4e31c626503ba4f24ab39a3381868848249e5bcd"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 9496,
+      "sha256": "3eb81c9bbc80d8819faa445cedb6552abbb60c4b7f03ac3cf55df6ace891d960"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3970,
+      "sha256": "bd716007fe4bf6a01591faad64822628e84b00a83e19ece91a1b05bbdb23f6c7"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 1138,
+      "sha256": "161f56b497233a17a11a37eb757ad3e609e06409e18e2385578a7bfd0f656ff4"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 7813,
+      "sha256": "3c11369311e7592dd662b9dcf7f041e6f9b1f45fefdaef15c440e9c68bd18c1b"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_8_DEPLOYMENT.md",
+      "bytes": 3887,
+      "sha256": "0093a576cdd0749445b415443d82b498e9b6d8afa5afd2b3c639d08b678c502d"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_8_HYGIENE_INSTRUMENTS.md",
+      "bytes": 7580,
+      "sha256": "564000da2a80e8a6de1bce90d2501da0766c601c63f49e697986a8a92cb4fac1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "270df250312f84c8e276588dd79c68329e67d1a6e709d33d5146e5e7470aa648"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 125643,
+      "sha256": "1e41316102dc3ec80986e736cbcf90091b304ec2bd1743317dae4e23bc17233b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/hygiene/[id]/page.tsx",
+      "bytes": 14687,
+      "sha256": "132fb07a4d94bc796ddc9e2ee1756c27e2d9407ffcb5ecadc3df37915e8bb640"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 8784,
+      "sha256": "d331e79947d0f46c4d2315678f16ab7769191ae839fa29027df6498b156dd3e7"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/audit/route.ts",
+      "bytes": 992,
+      "sha256": "a4da3e4b08aab18e2b6dc8403d57a9e71b423690da8c8d04927873b2306f930e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/bootstrap/route.ts",
+      "bytes": 998,
+      "sha256": "5efa9da62533aac1e07fac7c718501af984f06001e79f9bc7838d4580d92a7ae"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/instruments/[instrumentId]/calibrations/route.ts",
+      "bytes": 1271,
+      "sha256": "2c93e884db5ad23663963b12695cbee1ff87b8cbc81982d46ffeabe09d9a99d8"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/instruments/[instrumentId]/events/route.ts",
+      "bytes": 1320,
+      "sha256": "7b917d4fc141be58f8998d3aac330adebe1b833f20055876227cd13980295926"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/instruments/route.ts",
+      "bytes": 1370,
+      "sha256": "09e4637873886ee9da24da9d4508f691d8f854bb61fd85358483afccfa4cea9e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/measurements/[measurementId]/review/route.ts",
+      "bytes": 1142,
+      "sha256": "0251904a43676b581a6a499e9e831a14e8fdd1d3316f1450048bfe8d8a383339"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/measurements/route.ts",
+      "bytes": 1883,
+      "sha256": "a2af0d738ed40a0f2ab9b3c56e4da0f551196a692e3358f79f4b6156f339e7ab"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/hygiene/[id]/sampling-plans/route.ts",
+      "bytes": 1861,
+      "sha256": "dfafd6ac2e3ebe6ac7838b788158554904954da0c8c9755782baea1d69b49112"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 13283,
+      "sha256": "35c0798b78ad68f99d46d3291c21932fcc7e9437609049021634fdad121c22ce"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 12411,
+      "sha256": "cd0a9c11093719cceb0cd4398132890acddf0ba71f81a636878acb1ac791f82b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/hygiene/audit.ts",
+      "bytes": 3755,
+      "sha256": "fd56fa4756e260f3bba47a51abe9ec7968961f5afe9fb8794c6ed1f6057c583e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/hygiene/calculations.ts",
+      "bytes": 4411,
+      "sha256": "98538d558d21845e81ab4ef1467ab06bc910ef9ee6e04ea830ccf994fd715e5b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/hygiene/catalog.ts",
+      "bytes": 4270,
+      "sha256": "3da2e420054b12661cdb289d40f85b2b076a2737a59954265bcb90478248b452"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/hygiene/instruments.ts",
+      "bytes": 1795,
+      "sha256": "0c09a09dd08143d46c302cbbc9a77ba05147ae67c84daa36238e89322be8021c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 24075,
+      "sha256": "f9d4e78db0b5880fc4d916d922d3c9f9f8b2eaa6f27904aca436247fc1f22de0"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 40823,
+      "sha256": "d6309e2be438498de541083c5c029ab4cd5f20f0e33f6e5531abc94552d82064"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 4352,
+      "sha256": "c07341609b521941f92107df5145b8a0c310a28380c5deb49ca4c817ddefcce1"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/hygiene.ts",
+      "bytes": 26084,
+      "sha256": "e7c09580cd4aadd44e86975c5b6c080480d9e6cb52fa427b0d1c4c61ac32791c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/rbac.ts",
+      "bytes": 6704,
+      "sha256": "046b0977d884071d79ec7a8b387c638e691d351a7df47e8ff4d43a96cc95818b"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-8-hygiene.test.ts",
+      "bytes": 10225,
+      "sha256": "903c3d629fd3a479bde84330e22e64437fb49ced0a163b888e9fa047147cbe39"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 45840,
+      "sha256": "a09396fcab2f27a8d1f1543d4b8f4f4ca4d1c169471f92fd8de084caa82ce248"
+    }
+  ]
+}

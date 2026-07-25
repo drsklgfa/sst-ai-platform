@@ -1,0 +1,346 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.5",
+  "version": "1.2.0-checkpoint.10.5",
+  "created_on": "2026-07-22",
+  "scope": "pcmso-occupational-health-medical-area-s2220",
+  "base_checkpoint": "10.4",
+  "file_count": 366,
+  "changed_file_count": 51,
+  "prisma_models": 99,
+  "prisma_enums": 64,
+  "tests_passed": 168,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO",
+    "FEATURE_PCMSO",
+    "FEATURE_MEDICAL_AREA",
+    "FEATURE_ESOCIAL_S2220"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed with safe test values",
+    "unit_and_regression_tests": "168/168 passed",
+    "security_scan": "passed",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database, medical workflow validation and external credentials are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1701,
+      "sha256": "a06ff5f212ed0c59abadcd8a1aa0a721f2d852d400d1e39d7bf439449f2e4cb7"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 26613,
+      "sha256": "cf244a98563d68cabe2c9c683b9bd7547f19db8dc37e3334481fd42d18aa87d0"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 7961,
+      "sha256": "88658e724741f8136807b051533a9dae84ea9b3839ba82e31789cc7246fdbac5"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3594,
+      "sha256": "8d71deafe5ddc8211381663099466cf1eeced6d0df8aaefa148f52ae8d069c61"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 861,
+      "sha256": "946fe3040f89ed0003d7d4700e9eba171d0b19ce621ff976887b3235d44b7715"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 5699,
+      "sha256": "150380e3be75b9d86c479c4ce1320c95f021ae27c4f6833d33acb37f361bc42b"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_5_DEPLOYMENT.md",
+      "bytes": 3436,
+      "sha256": "256fa4bf48a558878f20aea9b4ac7f1f1899c8519361e8960f7d092107945e61"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_5_PCMSO_OCCUPATIONAL_HEALTH.md",
+      "bytes": 6204,
+      "sha256": "6b27bb225e511367ac9c126f0dee553073589db194da382ec995e306ac7cfee1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "23520865954d8f4f985286ae990abdf1a60050ac6a6d92a78cc0ca2c56690305"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 87390,
+      "sha256": "89904ad6644cc6875db091dd1a9fa4b1dd4df3515b9835aa518e079a7c23e856"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/pcmso/[id]/page.tsx",
+      "bytes": 23099,
+      "sha256": "dd64b3e2f560f38b66cc03546b1782864304003f73225d254058b4613d59f3ea"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/settings/users/page.tsx",
+      "bytes": 3719,
+      "sha256": "166620aa3995cbead5007f69eb32b5adda8c91006d5ce0cfe224c80dedc258ee"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 7992,
+      "sha256": "167b721c6057f7655e38faef11b7b3768a411e6702c582f8ce61cad297d9b36f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/companies/[id]/profile/route.ts",
+      "bytes": 2844,
+      "sha256": "ace6a9d3a2c65fb7f52a8fe0c20417b0a9bc0080c69cc781ac39eadf079e4471"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/companies/[id]/structure/[entityId]/route.ts",
+      "bytes": 4771,
+      "sha256": "35c0de97ebd59445472b52d6ce9d0d3ea57d56ac3aadae28c6ae6f72995aa638"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/companies/[id]/structure/route.ts",
+      "bytes": 4915,
+      "sha256": "2d33f68ca3495cbe3a12b99fb78ac8442d03950e4d968ff8ecd1f7fe7fd40c85"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/companies/route.ts",
+      "bytes": 1962,
+      "sha256": "3d27a130d7776cb513f0c117977f2c36c3831ded2b2aaa8e03b04b97b6b42f53"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/analytical-report/route.ts",
+      "bytes": 1326,
+      "sha256": "0c1c23d163421388d9a39c891dd0b997b07b0791c13be6eb563eadc5fcbd8eda"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/asos/route.ts",
+      "bytes": 1881,
+      "sha256": "43a51c9e756b83957ddb85f1345c60ae68a5c430cb3619024c543f5d8998d5ff"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/audit/route.ts",
+      "bytes": 973,
+      "sha256": "a45ac55ff806caf1207f5962161bf94d5c151641b4288dc3b0ed165b78b614f9"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/bootstrap/route.ts",
+      "bytes": 1102,
+      "sha256": "1f46a33e9bace19886670bf8d5b70e516e8f1a8045a6141852ef482134e8f65b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/callups/route.ts",
+      "bytes": 988,
+      "sha256": "fc666119b623f8c2544e1e318f756ed226f5bc3e8983c8c4dd3cda3bc1ba1a81"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/esocial/[asoId]/route.ts",
+      "bytes": 1081,
+      "sha256": "af46318927d06f991eae6aeba0366cdc12f5ba9e360421bf11a12e608da50ff2"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/exam-catalog/route.ts",
+      "bytes": 1318,
+      "sha256": "dd91af3694145803e0d3de6a16ee7e3542c73c1b9db12f056ea6f21f12fe60c3"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/matrix/route.ts",
+      "bytes": 1626,
+      "sha256": "0f7d3ad0fc5ccf8a0ec6fcc9f0e0f93696674106a880edc4a82f73fb00230227"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/professionals/route.ts",
+      "bytes": 1457,
+      "sha256": "5447a460941a06523d29798fd7b407746cc31faa2dc69a235ae58c27e890e8c9"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/providers/route.ts",
+      "bytes": 1308,
+      "sha256": "204057e15391b928e390856d47ee5af5f232f7d0261a27a3bc1ff9b81200797f"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/responsible/route.ts",
+      "bytes": 1106,
+      "sha256": "fe5327fb1c260029b28a27fbf38df15d7f369dd13f6aa07b8898a3e0fcf24fe7"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/pcmso/[id]/workers/route.ts",
+      "bytes": 1690,
+      "sha256": "7824d1e681fcba56e3b7cd2c301a660616583461699599a277a81cf10fb9002b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/settings/users/route.ts",
+      "bytes": 4638,
+      "sha256": "af9dd9d9fc364f20a909d6ef6bad68751bd2f13a1d9fdaf97b3f2123b1d16071"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/components/app-shell.tsx",
+      "bytes": 3582,
+      "sha256": "8583ec4cc23e47f6ddb7a65e9288b9376baa3b36663aa795c06c0c6db521361b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 10554,
+      "sha256": "26c450a63421ec34e22139c4a137848718589c749c05850ae518edb63657164b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/company/cnpj.ts",
+      "bytes": 496,
+      "sha256": "13b56b5f508b68f19d5e115520987e5d007ff3070fdda8908e607525d3b61416"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/audit.ts",
+      "bytes": 5467,
+      "sha256": "6a9a6a4d9642acd403f3e4e9cfb95eead437b92c4f0b182bc9ac667bfb3729bd"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 7028,
+      "sha256": "f618428e005f43007df65b21dbba40ce5ae39d9664d3451838c13eedab4aa055"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/legacy-import/consolidation.ts",
+      "bytes": 2398,
+      "sha256": "d2b9afdad1636eafee106a368919543403891fff6237f7bdb78f5719f29470c8"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pcmso/audit.ts",
+      "bytes": 3460,
+      "sha256": "1215598b5f9e237a438bcf7b260625b3ef60d7f8f4bec15fa7527a1878e8bfb9"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pcmso/catalog.ts",
+      "bytes": 1138,
+      "sha256": "f2107dd9bd2961268162fcbeb849993a808c70934fa7c590a3549a7130750a62"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pcmso/esocial-s2220.ts",
+      "bytes": 5225,
+      "sha256": "1078071b80f2143f525ba25bafd53de3bb257b6638f5389b40201b34c90c44f4"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pcmso/identity.ts",
+      "bytes": 972,
+      "sha256": "cbd33b3050b13faefaa1a9e24f96203b2c5d9316fdba8d38cc0893a627f9fb21"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/pcmso/matrix.ts",
+      "bytes": 2785,
+      "sha256": "01f24a48fe965379fdd79bcce723f247d4f96747f95772321950b170cf625cab"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 16425,
+      "sha256": "b8e4a8cbe9c60cfdd58d7ff493b54baddd413596750e2cdddfe28ea5ea486996"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 36148,
+      "sha256": "abba745b1c0cac7f68993e68477e6d8dbc9e55185767b42d0e6e1a6cd2ff2785"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 3855,
+      "sha256": "3d96472528b478324c1d17066edc7fbbc1fda860294dac56901f85896dae1f9b"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/pcmso.ts",
+      "bytes": 31187,
+      "sha256": "3c442a5d8b925a3c1d5349eace01963cb01feef30a66212f30a3ab2c50229a04"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/rbac.ts",
+      "bytes": 5679,
+      "sha256": "4fa01cb24edd4e8d5092bd403dee452d01179cf2d795f60896c62e4cb75af5d1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/secrets.ts",
+      "bytes": 1693,
+      "sha256": "ab1ebd8cc17012a5087748400bb7e96dfbc7bc3d8c67c192ec1adec07d8e8caa"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-5-pcmso.test.ts",
+      "bytes": 10727,
+      "sha256": "e8f2b79b2af951bfe706638ae675633dd0fd568cae6b51e302dc38c0c14d847f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "tests/legacy-import-consolidation.test.ts",
+      "bytes": 1689,
+      "sha256": "3144e78f8148414dd8cf4a06e0f080696293f04e613bd0c49e819edc762c2c0f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-deps.d.ts",
+      "bytes": 5874,
+      "sha256": "435b72f445bc7caca2d2f325f7d2f01a66a1c0e56afac48663b25fb682f9ade0"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 30658,
+      "sha256": "5b41d7c722a9bd5e870353b3314fdb89136a2bf036a8ab7d40f26a5bcbae5f99"
+    }
+  ]
+}

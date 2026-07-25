@@ -1,0 +1,20 @@
+CHECKPOINT 10.11 — RELEASE CANDIDATE COMERCIAL
+
+1. Preserve este ZIP e seu SHA-256.
+2. Gere e versione package-lock.json no primeiro ambiente com acesso ao npm.
+3. Envie o código para uma branch/tag 10.11 no GitHub.
+4. Exija GitHub Actions totalmente verde.
+5. Duplique a produção para staging e faça backups do PostgreSQL e Bucket.
+6. No primeiro boot do Web em staging use DB_SCHEMA_MODE=bootstrap; no Worker use none.
+7. Depois da baseline, altere o Web para DB_SCHEMA_MODE=migrate.
+8. Execute docs/COMMERCIAL_GO_LIVE_CHECKLIST.md.
+9. Homologue Asaas ou Mercado Pago em sandbox antes de produção.
+10. Ative eSocial somente com XML assinado, PFX e ambiente restrito aprovados.
+11. Execute restauração real antes de cadastrar clientes pagantes.
+
+Documentos principais:
+- docs/V10_11_DEPLOYMENT.md
+- docs/COMMERCIAL_GO_LIVE_CHECKLIST.md
+- docs/BACKUP_RESTORE_RUNBOOK.md
+- docs/INCIDENT_RESPONSE_RUNBOOK.md
+- VALIDATION_REPORT.md

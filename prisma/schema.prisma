@@ -1,0 +1,4985 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  RESPONSIBLE_TECH
+  OCCUPATIONAL_PHYSICIAN
+  MEDICAL_ASSISTANT
+  CONSULTANT
+  ASSISTANT
+  REVIEWER
+  COMMERCIAL
+  FINANCE
+  READER
+}
+
+enum CompanyUserRole {
+  RH_ADMIN
+  SST
+  MANAGER
+  ACTION_OWNER
+  DIRECTOR
+  READER
+  AUDITOR
+}
+
+enum CompanyStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  ACTIVE
+  PAUSED
+  CLOSED
+  REOPENED
+  ARCHIVED
+  CANCELLED
+}
+
+enum QuestionType {
+  YES_NO
+  SINGLE_CHOICE
+  MULTI_CHOICE
+  LIKERT
+  NUMBER
+  TEXT
+  LONG_TEXT
+  DATE
+  BODY_MAP
+  MATRIX
+  FILE
+}
+
+enum ResponseStatus {
+  STARTED
+  SUBMITTED
+  INVALIDATED
+}
+
+enum InspectionStatus {
+  DRAFT
+  IN_PROGRESS
+  COMPLETED
+  REVIEWED
+}
+
+enum RiskLevel {
+  VERY_LOW
+  LOW
+  MODERATE
+  HIGH
+  CRITICAL
+}
+
+enum InspectionEvidenceKind {
+  PHOTO
+  DOCUMENT
+  MEASUREMENT
+  OTHER
+}
+
+enum ActionStatus {
+  DRAFT
+  PENDING_APPROVAL
+  NOT_STARTED
+  IN_PROGRESS
+  WAITING_EVIDENCE
+  WAITING_VALIDATION
+  COMPLETED
+  PARTIAL
+  REJECTED
+  CANCELLED
+  OVERDUE
+  EFFECTIVENESS_VERIFIED
+}
+
+enum DocumentStatus {
+  DRAFT
+  REVIEW
+  PREVIEW
+  WAITING_DOCUMENTS
+  WAITING_SIGNATURE
+  ISSUED_UNSIGNED
+  ISSUED_SIGNED
+  REPLACED
+  CANCELLED
+  ARCHIVED
+}
+
+enum SignatureMethod {
+  INTERNAL
+  EXTERNAL_UPLOAD
+  PROVIDER
+  CERTIFICATE
+  NONE
+}
+
+enum ConversationStatus {
+  NEW
+  IN_PROGRESS
+  WAITING_COMPANY
+  WAITING_CONSULTANT
+  RESOLVED
+  ARCHIVED
+  REOPENED
+}
+
+enum MessageChannel {
+  PORTAL
+  EMAIL
+  WHATSAPP
+  SYSTEM
+}
+
+enum NotificationType {
+  MESSAGE
+  EVIDENCE
+  REPORT
+  ACTION
+  CAMPAIGN
+  BACKUP
+  ACCESS
+  JOB
+  SYSTEM
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum FileVisibility {
+  PRIVATE
+  COMPANY
+  PUBLIC_VERIFICATION
+}
+
+enum BackupType {
+  COMPANY_FULL
+  COMPANY_DATA
+  PLATFORM_FULL
+  PLATFORM_DATA
+  DOCUMENTS_ONLY
+}
+
+enum IntegrationProvider {
+  DISABLED
+  SMTP
+  RESEND
+  OPENAI
+  GEMINI
+  WHATSAPP_CLOUD
+  CUSTOM
+}
+
+enum ServiceStatus {
+  PROPOSAL
+  CONTRACTED
+  IN_PROGRESS
+  WAITING_CLIENT
+  DELIVERED
+  COMPLETED
+  SUSPENDED
+  CANCELLED
+  EXPIRED
+}
+
+enum IncidentSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum IncidentStatus {
+  OPEN
+  INVESTIGATING
+  CONTAINED
+  RESOLVED
+  CLOSED
+}
+
+enum RecoveryTestStatus {
+  QUEUED
+  RUNNING
+  PASSED
+  FAILED
+}
+
+enum WorkProjectStatus {
+  DRAFT
+  ACTIVE
+  WAITING_INPUT
+  WAITING_APPROVAL
+  IN_REVIEW
+  COMPLETED
+  CANCELLED
+  ARCHIVED
+}
+
+enum WorkflowStepStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  BLOCKED
+  COMPLETED
+  NOT_APPLICABLE
+}
+
+enum WorkRequirementStatus {
+  PENDING
+  SATISFIED
+  WAIVED
+  BLOCKED
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  EXPIRED
+}
+
+enum ChangeSetStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPLIED
+  REVERTED
+  REJECTED
+  FAILED
+}
+
+enum AIThreadStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  ARCHIVED
+}
+
+enum AIMessageRole {
+  SYSTEM
+  USER
+  ASSISTANT
+  TOOL
+}
+
+enum AIToolExecutionStatus {
+  PLANNED
+  WAITING_APPROVAL
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum AIAutonomyMode {
+  ASSISTANT
+  COPILOT
+  SUPERVISED_AUTONOMY
+}
+
+enum AIRiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum LegacyImportStatus {
+  DRAFT
+  QUEUED
+  ANALYZING
+  REVIEW
+  READY
+  IMPORTING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum LegacyDocumentStatus {
+  UPLOADED
+  QUEUED
+  ANALYZING
+  REVIEW
+  APPROVED
+  REJECTED
+  FAILED
+}
+
+enum LegacyDocumentKind {
+  UNKNOWN
+  PGR
+  PCMSO
+  LTCAT
+  INSALUBRIDADE
+  PERICULOSIDADE
+  AET
+  AEP
+  HIGIENE_OCUPACIONAL
+  INVENTARIO_RISCOS
+  PLANO_ACAO
+  ASO
+  PPP
+  ORDEM_SERVICO
+  TREINAMENTO
+  OUTRO
+}
+
+enum LegacyFactStatus {
+  EXTRACTED
+  NEEDS_REVIEW
+  APPROVED
+  REJECTED
+  APPLIED
+}
+
+enum LegacyConflictStatus {
+  OPEN
+  RESOLVED
+  IGNORED
+}
+
+enum FieldVisitStatus {
+  DRAFT
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  REVIEWED
+  CANCELLED
+}
+
+enum FieldCaptureKind {
+  PHOTO
+  VIDEO
+  AUDIO
+  DOCUMENT
+  NOTE
+  MEASUREMENT
+}
+
+enum FieldCaptureStatus {
+  CAPTURED
+  QUEUED
+  ANALYZING
+  REVIEW
+  READY
+  FAILED
+  REJECTED
+}
+
+enum AIAttachmentKind {
+  IMAGE
+  AUDIO
+  DOCUMENT
+  SPREADSHEET
+  TEXT
+  OTHER
+}
+
+enum AIAttachmentStatus {
+  UPLOADED
+  ANALYZING
+  READY
+  FAILED
+}
+
+enum ExposureProgramStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum ExposurePurpose {
+  LTCAT
+  INSALUBRIDADE
+  PERICULOSIDADE
+  HIGIENE_OCUPACIONAL
+}
+
+enum ExposurePeriodStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+  SUPERSEDED
+  ARCHIVED
+}
+
+enum ExposureAgentCategory {
+  PHYSICAL
+  CHEMICAL
+  BIOLOGICAL
+  ERGONOMIC
+  PSYCHOSOCIAL
+  ACCIDENT
+  DANGEROUS_CONDITION
+  OTHER
+}
+
+enum ExposureAssessmentMethod {
+  QUALITATIVE
+  QUANTITATIVE
+  MIXED
+}
+
+enum ExposurePattern {
+  PERMANENT
+  INTERMITTENT
+  OCCASIONAL
+  EVENTUAL
+  UNKNOWN
+}
+
+enum ExposureControlType {
+  EPC
+  EPI
+  ADMINISTRATIVE
+  COLLECTIVE_ORGANIZATIONAL
+}
+
+enum ControlEffectiveness {
+  UNKNOWN
+  EFFECTIVE
+  PARTIAL
+  INEFFECTIVE
+  NOT_APPLICABLE
+}
+
+enum TechnicalConclusionStatus {
+  DRAFT
+  REVIEW
+  APPROVED
+  REJECTED
+  ARCHIVED
+}
+
+enum LtcatExposureConclusion {
+  NO_SPECIAL_EXPOSURE
+  SPECIAL_EXPOSURE_15_YEARS
+  SPECIAL_EXPOSURE_20_YEARS
+  SPECIAL_EXPOSURE_25_YEARS
+  NEEDS_REVIEW
+}
+
+enum InsalubrityDegree {
+  NONE
+  MINIMUM
+  MEDIUM
+  MAXIMUM
+  NEEDS_REVIEW
+}
+
+enum DangerousConditionCategory {
+  EXPLOSIVES
+  FLAMMABLES
+  ROBBERY_VIOLENCE
+  ELECTRICITY
+  MOTORCYCLE
+  IONIZING_RADIATION
+  TRAFFIC_AGENT
+  OTHER
+}
+
+enum DangerousConclusion {
+  NOT_CHARACTERIZED
+  CHARACTERIZED
+  NEEDS_REVIEW
+}
+
+enum PppDraftStatus {
+  DRAFT
+  REVIEW
+  READY
+  ISSUED
+  ARCHIVED
+}
+
+enum ExposureAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+
+enum HygieneProgramStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum HygieneAgentCategory {
+  NOISE
+  HEAT
+  WHOLE_BODY_VIBRATION
+  HAND_ARM_VIBRATION
+  ILLUMINANCE
+  CHEMICAL
+  PARTICULATE
+  BIOLOGICAL
+  COLD
+  HUMIDITY
+  RADIATION
+  OTHER
+}
+
+enum HygieneSamplingStrategy {
+  PERSONAL
+  AREA
+  TASK
+  SCREENING
+  CONFIRMATORY
+  DIRECT_READING
+  INTEGRATED_SAMPLE
+  OTHER
+}
+
+enum HygieneSamplingPlanStatus {
+  DRAFT
+  PLANNED
+  IN_FIELD
+  PROCESSING
+  REVIEW
+  APPROVED
+  CANCELLED
+}
+
+enum HygieneMeasurementStatus {
+  DRAFT
+  COLLECTED
+  CALCULATED
+  REVIEW
+  APPROVED
+  REJECTED
+  INVALID
+}
+
+enum HygieneResultInterpretation {
+  BELOW_ACTION_LEVEL
+  BETWEEN_ACTION_AND_LIMIT
+  ABOVE_LIMIT
+  INCONCLUSIVE
+  NOT_APPLICABLE
+}
+
+enum MeasurementInstrumentType {
+  DOSIMETER
+  SOUND_LEVEL_METER
+  ACOUSTIC_CALIBRATOR
+  HEAT_STRESS_METER
+  VIBRATION_METER
+  SAMPLING_PUMP
+  FLOW_CALIBRATOR
+  LUX_METER
+  GAS_DETECTOR
+  THERMOMETER
+  HYGROMETER
+  OTHER
+}
+
+enum MeasurementInstrumentStatus {
+  AVAILABLE
+  RESERVED
+  IN_USE
+  CALIBRATION
+  MAINTENANCE
+  BLOCKED
+  RETIRED
+}
+
+enum InstrumentCalibrationStatus {
+  VALID
+  EXPIRING
+  EXPIRED
+  REJECTED
+  PENDING
+}
+
+enum InstrumentEventType {
+  ACQUIRED
+  RESERVED
+  CHECKED_OUT
+  RETURNED
+  CALIBRATED
+  MAINTENANCE
+  TRANSFERRED
+  BLOCKED
+  RETIRED
+}
+
+enum HygieneAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+enum ErgonomicsProgramStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum ErgonomicAssessmentStage {
+  AEP
+  AET
+}
+
+enum ErgonomicDemandSource {
+  WORKER
+  CIPA
+  HEALTH_SURVEILLANCE
+  ACCIDENT_OR_INCIDENT
+  PROCESS_CHANGE
+  LEGAL_REQUIREMENT
+  PGR
+  MANAGEMENT
+  OTHER
+}
+
+enum ErgonomicWorkDimension {
+  PHYSICAL
+  COGNITIVE
+  ORGANIZATIONAL
+  PSYCHOSOCIAL
+  ENVIRONMENTAL
+  ACCESSIBILITY
+  OTHER
+}
+
+enum ErgonomicMethodType {
+  RULA
+  REBA
+  NIOSH
+  STRAIN_INDEX
+  OCRA_CHECKLIST
+  ROSA
+  QEC
+  SNOOK_CIRIELLO
+  MANUAL
+  CUSTOM
+}
+
+enum ErgonomicAssessmentStatus {
+  DRAFT
+  CALCULATED
+  REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum AepConclusion {
+  NO_FURTHER_ACTION
+  IMPROVEMENT_ACTIONS
+  AET_REQUIRED
+  INCONCLUSIVE
+}
+
+enum ErgonomicFindingStatus {
+  IDENTIFIED
+  VALIDATED
+  DISMISSED
+  ACTION_PLANNED
+  CONTROLLED
+  ARCHIVED
+}
+
+enum ErgonomicsAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+enum PgrProgramStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum PgrRiskStatus {
+  IDENTIFIED
+  ASSESSED
+  TREATMENT_PLANNED
+  CONTROLLED
+  MONITORING
+  ARCHIVED
+}
+
+enum PgrHazardCategory {
+  PHYSICAL
+  CHEMICAL
+  BIOLOGICAL
+  ERGONOMIC
+  PSYCHOSOCIAL
+  ACCIDENT
+  OTHER
+}
+
+enum WorkerParticipationKind {
+  INTERVIEW
+  WORKSHOP
+  CIPA
+  CONSULTATION
+  CAMPAIGN
+  OBSERVATION
+  FOCUS_GROUP
+  OTHER
+}
+
+enum PsychosocialAssessmentStatus {
+  DRAFT
+  COLLECTING
+  CONSOLIDATING
+  REVIEW
+  APPROVED
+  CANCELLED
+}
+
+enum PgrFindingStatus {
+  IDENTIFIED
+  VALIDATED
+  DISMISSED
+  TREATMENT_PLANNED
+}
+
+enum PgrAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+enum PcmsoProgramStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum OccupationalWorkerStatus {
+  ACTIVE
+  LEAVE
+  TERMINATED
+  ARCHIVED
+}
+
+enum MedicalProviderKind {
+  CLINIC
+  LABORATORY
+  INTERNAL_SERVICE
+  PARTNER
+  OTHER
+}
+
+enum MedicalProfessionalRole {
+  RESPONSIBLE_PHYSICIAN
+  EXAMINING_PHYSICIAN
+  OCCUPATIONAL_NURSE
+  MEDICAL_ASSISTANT
+}
+
+enum OccupationalExamType {
+  ADMISSION
+  PERIODIC
+  RETURN_TO_WORK
+  RISK_CHANGE
+  POINT_MONITORING
+  TERMINATION
+}
+
+enum MedicalExamKind {
+  CLINICAL
+  COMPLEMENTARY
+}
+
+enum PcmsoCallStatus {
+  DRAFT
+  SCHEDULED
+  NOTIFIED
+  CONFIRMED
+  COMPLETED
+  NO_SHOW
+  CANCELLED
+}
+
+enum AsoStatus {
+  DRAFT
+  REVIEW
+  ISSUED
+  CANCELLED
+  ARCHIVED
+}
+
+enum AsoFitnessResult {
+  PENDING
+  FIT
+  FIT_WITH_RESTRICTIONS
+  UNFIT
+}
+
+enum AsoExamResultStatus {
+  PENDING
+  COMPLETED
+  ALTERED
+  NOT_APPLICABLE
+}
+
+enum PcmsoReportStatus {
+  DRAFT
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum EsocialEventStatus {
+  DRAFT
+  READY
+  VALIDATED
+  SENT
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+enum MedicalAccessAction {
+  VIEW
+  CREATE
+  UPDATE
+  ISSUE
+  EXPORT
+  PREPARE_ESOCIAL
+}
+
+enum PcmsoAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+model Tenant {
+  id                String                @id @default(uuid())
+  name              String
+  slug              String                @unique
+  logoFileId        String?
+  settings          Json                  @default("{}")
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  memberships       Membership[]
+  companies         Company[]
+  questionnaires    Questionnaire[]
+  methodologies     Methodology[]
+  documentTypes     DocumentType[]
+  documentTemplates DocumentTemplate[]
+  conversations     Conversation[]
+  comments          EntityComment[]
+  files             FileObject[]
+  jobs              Job[]
+  auditLogs         AuditLog[]
+  integrations      IntegrationConfig[]
+  backups           BackupExport[]
+  securityPolicy    TenantSecurityPolicy?
+  securityIncidents SecurityIncident[]
+  recoveryTests     RecoveryTest[]
+  workflowTemplates WorkflowTemplate[]
+  workProjects      WorkProject[]
+  aiThreads         AIThread[]
+  aiToolExecutions  AIToolExecution[]
+  aiUsageRecords    AIUsageRecord[]
+  legacyImports     LegacyImportBatch[]
+  fieldVisits       FieldVisit[]
+  pgrPrograms       PgrProgram[]
+  pcmsoPrograms     PcmsoProgram[]
+  exposurePrograms  OccupationalExposureProgram[]
+  ergonomicsPrograms ErgonomicsProgram[]
+  hygienePrograms OccupationalHygieneProgram[]
+  measurementInstruments MeasurementInstrument[]
+  technicalProfessionals OccupationalTechnicalProfessional[]
+  occupationalWorkers OccupationalWorker[]
+  medicalProviders  MedicalProvider[]
+  medicalProfessionals MedicalProfessional[]
+  medicalExamCatalog PcmsoExamCatalog[]
+  medicalAccessLogs MedicalDataAccessLog[]
+  trainingPrograms TrainingProgram[]
+  trainingCourses TrainingCourse[]
+  trainingPaths TrainingPath[]
+  trainingRequirementRules TrainingRequirementRule[]
+  trainingEnrollments TrainingEnrollment[]
+  trainingSessions TrainingSession[]
+  trainingCertificates TrainingCertificate[]
+  competencyDefinitions CompetencyDefinition[]
+  workerCompetencies WorkerCompetency[]
+}
+
+model User {
+  id                       String                    @id @default(uuid())
+  name                     String
+  email                    String                    @unique
+  passwordHash             String?
+  active                   Boolean                   @default(true)
+  lastLoginAt              DateTime?
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+  memberships              Membership[]
+  companyAccesses          CompanyAccess[]
+  sessions                 Session[]
+  notifications            Notification[]
+  messages                 Message[]
+  conversationParticipants ConversationParticipant[]
+  comments                 EntityComment[]
+  invites                  UserInvite[]
+  ownedSecurityIncidents   SecurityIncident[]        @relation("IncidentOwner")
+  createdRecoveryTests     RecoveryTest[]            @relation("RecoveryTestCreator")
+}
+
+model Membership {
+  id          String         @id @default(uuid())
+  tenantId    String
+  userId      String
+  role        MembershipRole
+  permissions Json           @default("[]")
+  active      Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  tenant      Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([tenantId, userId])
+  @@index([tenantId, role])
+}
+
+model UserInvite {
+  id          String    @id @default(uuid())
+  userId      String
+  companyId   String?
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdById String?
+  createdAt   DateTime  @default(now())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company     Company?  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  @@index([userId, expiresAt])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, expiresAt])
+}
+
+model Company {
+  id             String            @id @default(uuid())
+  tenantId       String
+  legalName      String
+  tradeName      String?
+  cnpj           String?
+  primaryCnae    String?
+  riskGrade      Int?
+  employeeCount  Int               @default(0)
+  managerName    String?
+  logoFileId     String?
+  status         CompanyStatus     @default(ACTIVE)
+  settings       Json              @default("{}")
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  tenant         Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  contacts       CompanyContact[]
+  establishments Establishment[]
+  accesses       CompanyAccess[]
+  campaigns      Campaign[]
+  inspections    Inspection[]
+  risks          Risk[]
+  actionPlans    ActionPlan[]
+  documents      Document[]
+  conversations  Conversation[]
+  comments       EntityComment[]
+  files          FileObject[]
+  backups        BackupExport[]
+  invites        UserInvite[]
+  services       ServiceContract[]
+  workProjects   WorkProject[]
+  aiThreads      AIThread[]
+  legacyImports  LegacyImportBatch[]
+  fieldVisits    FieldVisit[]
+  pgrPrograms    PgrProgram[]
+  pcmsoPrograms  PcmsoProgram[]
+  exposurePrograms OccupationalExposureProgram[]
+  ergonomicsPrograms ErgonomicsProgram[]
+  hygienePrograms OccupationalHygieneProgram[]
+  measurementInstruments MeasurementInstrument[]
+  occupationalWorkers OccupationalWorker[]
+  trainingPrograms TrainingProgram[]
+  trainingCourses TrainingCourse[]
+  trainingPaths TrainingPath[]
+  trainingRequirementRules TrainingRequirementRule[]
+  trainingEnrollments TrainingEnrollment[]
+  trainingSessions TrainingSession[]
+  trainingCertificates TrainingCertificate[]
+  competencyDefinitions CompetencyDefinition[]
+  workerCompetencies WorkerCompetency[]
+  @@index([tenantId, status])
+  @@unique([tenantId, cnpj])
+}
+
+model CompanyContact {
+  id               String   @id @default(uuid())
+  companyId        String
+  name             String
+  role             String?
+  email            String?
+  phoneDisplay     String?
+  phoneE164        String?
+  hasWhatsapp      Boolean  @default(false)
+  preferredChannel String?
+  isPrimary        Boolean  @default(false)
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  company          Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  @@index([companyId, isPrimary])
+}
+
+model CompanyAccess {
+  id          String          @id @default(uuid())
+  companyId   String
+  userId      String
+  role        CompanyUserRole
+  permissions Json            @default("[]")
+  active      Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  company     Company         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([companyId, userId])
+}
+
+model Establishment {
+  id            String   @id @default(uuid())
+  companyId     String
+  name          String
+  cnpj          String?
+  addressLine   String?
+  number        String?
+  district      String?
+  city          String?
+  state         String?
+  zipCode       String?
+  employeeCount Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  company       Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  sectors       Sector[]
+  occupationalWorkers OccupationalWorker[]
+  exposurePeriods OccupationalExposurePeriod[]
+  @@index([companyId])
+}
+
+model Sector {
+  id              String        @id @default(uuid())
+  establishmentId String
+  name            String
+  description     String?
+  employeeCount   Int           @default(0)
+  active          Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  establishment   Establishment @relation(fields: [establishmentId], references: [id], onDelete: Cascade)
+  ghes            GHE[]
+  fieldCaptures   FieldCapture[]
+  exposurePeriods OccupationalExposurePeriod[]
+  @@index([establishmentId])
+}
+
+model GHE {
+  id               String            @id @default(uuid())
+  sectorId         String
+  code             String?
+  name             String
+  description      String?
+  employeeCount    Int               @default(0)
+  shift            String?
+  workday          String?
+  metadata         Json              @default("{}")
+  active           Boolean           @default(true)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  sector           Sector            @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+  functions        JobFunction[]
+  workstations     Workstation[]
+  targets          CampaignTarget[]
+  responseSessions ResponseSession[]
+  inspections      Inspection[]
+  risks            Risk[]
+  fieldCaptures    FieldCapture[]
+  pgrAssessments   PgrRiskAssessment[]
+  occupationalWorkers OccupationalWorker[]
+  pcmsoExamRequirements PcmsoExamRequirement[]
+  exposurePeriods OccupationalExposurePeriod[]
+  trainingRequirementRules TrainingRequirementRule[]
+  competencyRequirements CompetencyRequirement[]
+  @@index([sectorId])
+}
+
+model JobFunction {
+  id            String   @id @default(uuid())
+  gheId         String
+  name          String
+  cbo           String?
+  description   String?
+  employeeCount Int      @default(0)
+  activities    Json     @default("[]")
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  ghe           GHE      @relation(fields: [gheId], references: [id], onDelete: Cascade)
+  fieldCaptures FieldCapture[]
+  occupationalWorkers OccupationalWorker[]
+  pcmsoExamRequirements PcmsoExamRequirement[]
+  exposurePeriods OccupationalExposurePeriod[]
+  trainingRequirementRules TrainingRequirementRule[]
+  competencyRequirements CompetencyRequirement[]
+  @@index([gheId])
+}
+
+model Workstation {
+  id          String   @id @default(uuid())
+  gheId       String
+  name        String
+  description String?
+  metadata    Json     @default("{}")
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ghe         GHE      @relation(fields: [gheId], references: [id], onDelete: Cascade)
+  fieldCaptures FieldCapture[]
+}
+
+model ServiceContract {
+  id                String        @id @default(uuid())
+  companyId         String
+  code              String
+  name              String
+  category          String?
+  description       String?
+  status            ServiceStatus @default(PROPOSAL)
+  contractedValue   Decimal?      @db.Decimal(14, 2)
+  contractedAt      DateTime?
+  startsAt          DateTime?
+  dueAt             DateTime?
+  deliveredAt       DateTime?
+  renewalAt         DateTime?
+  renewalNoticeDays Int           @default(30)
+  responsibleName   String?
+  purchaseOrder     String?
+  notes             String?
+  active            Boolean       @default(true)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  company           Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  @@unique([companyId, code])
+  @@index([companyId, status, dueAt])
+  @@index([companyId, renewalAt])
+}
+
+model Questionnaire {
+  id          String                 @id @default(uuid())
+  tenantId    String
+  name        String
+  category    String
+  description String?
+  active      Boolean                @default(true)
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+  tenant      Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  versions    QuestionnaireVersion[]
+  @@index([tenantId, category])
+}
+
+model QuestionnaireVersion {
+  id              String                  @id @default(uuid())
+  questionnaireId String
+  version         Int
+  title           String
+  instructions    String?
+  scoringConfig   Json                    @default("{}")
+  publishedAt     DateTime?
+  createdAt       DateTime                @default(now())
+  questionnaire   Questionnaire           @relation(fields: [questionnaireId], references: [id], onDelete: Cascade)
+  questions       Question[]
+  campaignLinks   CampaignQuestionnaire[]
+  @@unique([questionnaireId, version])
+}
+
+model Question {
+  id                     String               @id @default(uuid())
+  questionnaireVersionId String
+  code                   String
+  text                   String
+  helpText               String?
+  type                   QuestionType
+  required               Boolean              @default(true)
+  position               Int
+  dimension              String?
+  reverseScore           Boolean              @default(false)
+  minValue               Float?
+  maxValue               Float?
+  conditions             Json                 @default("[]")
+  metadata               Json                 @default("{}")
+  questionnaireVersion   QuestionnaireVersion @relation(fields: [questionnaireVersionId], references: [id], onDelete: Cascade)
+  options                QuestionOption[]
+  answers                Answer[]
+  @@unique([questionnaireVersionId, code])
+  @@index([questionnaireVersionId, position])
+}
+
+model QuestionOption {
+  id         String   @id @default(uuid())
+  questionId String
+  value      String
+  label      String
+  score      Float?
+  position   Int
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  @@unique([questionId, value])
+}
+
+model Campaign {
+  id                    String                  @id @default(uuid())
+  companyId             String
+  name                  String
+  publicToken           String                  @unique
+  status                CampaignStatus          @default(DRAFT)
+  startsAt              DateTime?
+  endsAt                DateTime?
+  expectedResponses     Int                     @default(0)
+  minimumGroupSize      Int                     @default(5)
+  detailedGroupSize     Int                     @default(10)
+  anonymousCodesEnabled Boolean                 @default(false)
+  settings              Json                    @default("{}")
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  company               Company                 @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  targets               CampaignTarget[]
+  questionnaires        CampaignQuestionnaire[]
+  codes                 AnonymousCode[]
+  responseSessions      ResponseSession[]
+  psychosocialAssessments PsychosocialAssessment[]
+  @@index([companyId, status])
+}
+
+model CampaignTarget {
+  id                String   @id @default(uuid())
+  campaignId        String
+  gheId             String
+  expectedResponses Int      @default(0)
+  token             String   @unique
+  campaign          Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  ghe               GHE      @relation(fields: [gheId], references: [id], onDelete: Cascade)
+  @@unique([campaignId, gheId])
+}
+
+model CampaignQuestionnaire {
+  id                     String               @id @default(uuid())
+  campaignId             String
+  questionnaireVersionId String
+  position               Int
+  campaign               Campaign             @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  questionnaireVersion   QuestionnaireVersion @relation(fields: [questionnaireVersionId], references: [id], onDelete: Restrict)
+  @@unique([campaignId, questionnaireVersionId])
+}
+
+model AnonymousCode {
+  id         String    @id @default(uuid())
+  campaignId String
+  codeHash   String    @unique
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+  campaign   Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+}
+
+model ResponseSession {
+  id                      String         @id @default(uuid())
+  campaignId              String
+  gheId                   String?
+  status                  ResponseStatus @default(STARTED)
+  anonymousFingerprint    String?
+  startedAt               DateTime       @default(now())
+  submittedAt             DateTime?
+  durationSeconds         Int?
+  qualityFlags            Json           @default("[]")
+  moderation              Json           @default("{}")
+  includedInConsolidation Boolean        @default(true)
+  campaign                Campaign       @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  ghe                     GHE?           @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  answers                 Answer[]
+  bodyPains               BodyPain[]
+  @@index([campaignId, status])
+  @@unique([campaignId, anonymousFingerprint])
+  @@index([gheId])
+}
+
+model Answer {
+  id                String          @id @default(uuid())
+  responseSessionId String
+  questionId        String
+  value             Json
+  numericValue      Float?
+  createdAt         DateTime        @default(now())
+  responseSession   ResponseSession @relation(fields: [responseSessionId], references: [id], onDelete: Cascade)
+  question          Question        @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  @@unique([responseSessionId, questionId])
+}
+
+model BodyPain {
+  id                String          @id @default(uuid())
+  responseSessionId String
+  regionCode        String
+  side              String?
+  intensity         Int
+  frequency         String?
+  notes             String?
+  responseSession   ResponseSession @relation(fields: [responseSessionId], references: [id], onDelete: Cascade)
+  @@index([responseSessionId, regionCode])
+}
+
+model Inspection {
+  id            String               @id @default(uuid())
+  companyId     String
+  gheId         String?
+  title         String
+  status        InspectionStatus     @default(DRAFT)
+  performedAt   DateTime?
+  performedById String?
+  notes         String?
+  metadata      Json                 @default("{}")
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  company       Company              @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  ghe           GHE?                 @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  items         InspectionItem[]
+  calculations  Calculation[]
+  evidences     InspectionEvidence[]
+  risks         Risk[]
+  fieldVisits   FieldVisit[]
+  pgrAssessments PgrRiskAssessment[]
+  @@index([companyId, status])
+}
+
+model InspectionItem {
+  id           String     @id @default(uuid())
+  inspectionId String
+  category     String
+  code         String
+  label        String
+  value        Json
+  position     Int
+  inspection   Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  @@unique([inspectionId, code])
+}
+
+model InspectionEvidence {
+  id           String                 @id @default(uuid())
+  inspectionId String
+  fileId       String
+  kind         InspectionEvidenceKind @default(PHOTO)
+  caption      String?
+  position     Int                    @default(0)
+  createdById  String?
+  createdAt    DateTime               @default(now())
+  inspection   Inspection             @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  file         FileObject             @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  @@index([inspectionId, kind, position])
+}
+
+model Methodology {
+  id           String        @id @default(uuid())
+  tenantId     String
+  code         String
+  name         String
+  version      String
+  category     String
+  description  String?
+  config       Json          @default("{}")
+  active       Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  tenant       Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  calculations Calculation[]
+  @@unique([tenantId, code, version])
+}
+
+model Calculation {
+  id             String      @id @default(uuid())
+  inspectionId   String?
+  methodologyId  String
+  inputs         Json
+  outputs        Json
+  score          Float?
+  classification String?
+  engineVersion  String
+  performedById  String?
+  createdAt      DateTime    @default(now())
+  inspection     Inspection? @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  methodology    Methodology @relation(fields: [methodologyId], references: [id], onDelete: Restrict)
+  @@index([inspectionId])
+}
+
+model Risk {
+  id                   String       @id @default(uuid())
+  companyId            String
+  gheId                String?
+  inspectionId         String?
+  code                 String
+  category             String
+  hazard               String
+  source               String?
+  possibleHarm         String?
+  frequency            String?
+  duration             String?
+  methodology          String?
+  legalReferences      Json         @default("[]")
+  controlEffectiveness Int?
+  exposedCount         Int          @default(0)
+  severity             Int
+  probability          Int
+  exposure             Int          @default(1)
+  initialScore         Float
+  initialLevel         RiskLevel
+  residualScore        Float?
+  residualLevel        RiskLevel?
+  existingControls     Json         @default("[]")
+  assessmentBasis      Json         @default("{}")
+  status               String       @default("ACTIVE")
+  lastReviewedAt       DateTime?
+  reviewDueAt          DateTime?
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  company              Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  ghe                  GHE?         @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  inspection           Inspection?  @relation(fields: [inspectionId], references: [id], onDelete: SetNull)
+  actions              ActionItem[]
+  pgrAssessments       PgrRiskAssessment[]
+  @@unique([companyId, code])
+  @@index([companyId, initialLevel])
+}
+
+model ActionPlan {
+  id             String       @id @default(uuid())
+  companyId      String
+  name           String
+  year           Int?
+  status         String       @default("ACTIVE")
+  lastReviewedAt DateTime?
+  reviewDueAt    DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  company        Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  items          ActionItem[]
+}
+
+model ActionItem {
+  id                  String           @id @default(uuid())
+  actionPlanId        String
+  riskId              String?
+  code                String
+  action              String
+  responsible         String?
+  verifier            String?
+  dueDate             DateTime?
+  location            String?
+  reason              String?
+  method              String?
+  estimatedCost       Decimal?         @db.Decimal(14, 2)
+  actualCost          Decimal?         @db.Decimal(14, 2)
+  priority            String?
+  status              ActionStatus     @default(NOT_STARTED)
+  progress            Int              @default(0)
+  completedAt         DateTime?
+  verifiedAt          DateTime?
+  effectivenessStatus String?
+  effectivenessNotes  String?
+  residualScore       Float?
+  residualLevel       RiskLevel?
+  delayReason         String?
+  nextReviewAt        DateTime?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  actionPlan          ActionPlan       @relation(fields: [actionPlanId], references: [id], onDelete: Cascade)
+  risk                Risk?            @relation(fields: [riskId], references: [id], onDelete: SetNull)
+  evidences           ActionEvidence[]
+  @@unique([actionPlanId, code])
+  @@index([actionPlanId, status, dueDate])
+}
+
+model ActionEvidence {
+  id            String      @id @default(uuid())
+  actionItemId  String
+  fileId        String?
+  description   String?
+  status        String      @default("PENDING")
+  submittedById String?
+  reviewedById  String?
+  reviewedAt    DateTime?
+  reviewNotes   String?
+  createdAt     DateTime    @default(now())
+  actionItem    ActionItem  @relation(fields: [actionItemId], references: [id], onDelete: Cascade)
+  file          FileObject? @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  @@index([actionItemId, status])
+}
+
+model DocumentType {
+  id          String             @id @default(uuid())
+  tenantId    String
+  code        String
+  name        String
+  category    String
+  description String?
+  active      Boolean            @default(true)
+  createdAt   DateTime           @default(now())
+  tenant      Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  templates   DocumentTemplate[]
+  documents   Document[]
+  @@unique([tenantId, code])
+}
+
+model DocumentTemplate {
+  id             String                    @id @default(uuid())
+  tenantId       String
+  documentTypeId String
+  name           String
+  description    String?
+  active         Boolean                   @default(true)
+  createdAt      DateTime                  @default(now())
+  tenant         Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  documentType   DocumentType              @relation(fields: [documentTypeId], references: [id], onDelete: Cascade)
+  versions       DocumentTemplateVersion[]
+}
+
+model DocumentTemplateVersion {
+  id                String           @id @default(uuid())
+  templateId        String
+  version           Int
+  schema            Json
+  styles            Json             @default("{}")
+  variables         Json             @default("[]")
+  regulatoryPackage Json             @default("{}")
+  publishedAt       DateTime?
+  createdAt         DateTime         @default(now())
+  template          DocumentTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  documents         Document[]
+  @@unique([templateId, version])
+}
+
+model Document {
+  id                String                   @id @default(uuid())
+  companyId         String
+  documentTypeId    String
+  templateVersionId String?
+  title             String
+  referenceYear     Int?
+  status            DocumentStatus           @default(DRAFT)
+  currentVersion    Int                      @default(1)
+  releasedVersion   Int?
+  verificationCode  String                   @unique @default(cuid())
+  releasedToCompany Boolean                  @default(false)
+  releasedAt        DateTime?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+  company           Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  documentType      DocumentType             @relation(fields: [documentTypeId], references: [id], onDelete: Restrict)
+  templateVersion   DocumentTemplateVersion? @relation(fields: [templateVersionId], references: [id], onDelete: SetNull)
+  versions          DocumentVersion[]
+  files             DocumentFile[]
+  signatures        Signature[]
+  @@index([companyId, status])
+  @@index([companyId, releasedToCompany, releasedAt])
+}
+
+model DocumentVersion {
+  id            String             @id @default(uuid())
+  documentId    String
+  version       Int
+  status        DocumentStatus
+  content       Json
+  warnings      Json               @default("[]")
+  justification String?
+  snapshotId    String?            @unique
+  generatedAt   DateTime?
+  lockedAt      DateTime?
+  issuedAt      DateTime?
+  releasedAt    DateTime?
+  createdById   String?
+  createdAt     DateTime           @default(now())
+  document      Document           @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  snapshot      DocumentSnapshot?  @relation(fields: [snapshotId], references: [id], onDelete: SetNull)
+  sections      DocumentSection[]
+  files         DocumentFile[]
+  signatures    Signature[]
+  auditRuns     DocumentAuditRun[]
+  @@unique([documentId, version])
+  @@index([documentId, status])
+}
+
+model DocumentSnapshot {
+  id        String           @id @default(uuid())
+  data      Json
+  dataHash  String
+  createdAt DateTime         @default(now())
+  version   DocumentVersion?
+}
+
+model DocumentSection {
+  id                String          @id @default(uuid())
+  documentVersionId String
+  code              String
+  title             String
+  position          Int
+  enabled           Boolean         @default(true)
+  content           Json
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+  @@unique([documentVersionId, code])
+}
+
+model DocumentFile {
+  id                String          @id @default(uuid())
+  documentId        String
+  documentVersionId String
+  versionNumber     Int
+  fileObjectId      String
+  format            String
+  official          Boolean         @default(false)
+  snapshotHash      String
+  signatureCount    Int             @default(0)
+  metadata          Json            @default("{}")
+  createdAt         DateTime        @default(now())
+  document          Document        @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+  fileObject        FileObject      @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  @@index([documentId, versionNumber])
+  @@index([documentVersionId, format, official])
+}
+
+model Signature {
+  id                 String          @id @default(uuid())
+  documentId         String
+  documentVersionId  String
+  versionNumber      Int
+  method             SignatureMethod
+  signerName         String
+  signerRegistration String?
+  signatureRole      String          @default("RESPONSIBLE_TECH")
+  signedById         String?
+  signedAt           DateTime?
+  ipHash             String?
+  documentHash       String?
+  metadata           Json            @default("{}")
+  createdAt          DateTime        @default(now())
+  document           Document        @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentVersion    DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+  @@index([documentId, versionNumber])
+  @@index([documentVersionId, signedAt])
+}
+
+model DocumentAuditRun {
+  id                String          @id @default(uuid())
+  documentVersionId String
+  status            String
+  results           Json
+  warningCount      Int             @default(0)
+  errorCount        Int             @default(0)
+  createdById       String?
+  createdAt         DateTime        @default(now())
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+  @@index([documentVersionId, createdAt])
+}
+
+model Conversation {
+  id            String                    @id @default(uuid())
+  tenantId      String
+  companyId     String?
+  subject       String
+  category      String?
+  status        ConversationStatus        @default(NEW)
+  priority      String                    @default("NORMAL")
+  relatedType   String?
+  relatedId     String?
+  assignedToId  String?
+  resolvedAt    DateTime?
+  archivedAt    DateTime?
+  lastMessageAt DateTime                  @default(now())
+  createdAt     DateTime                  @default(now())
+  tenant        Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company       Company?                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  participants  ConversationParticipant[]
+  messages      Message[]
+  @@index([tenantId, status, lastMessageAt])
+  @@index([companyId])
+}
+
+model ConversationParticipant {
+  id             String       @id @default(uuid())
+  conversationId String
+  userId         String
+  lastReadAt     DateTime?
+  muted          Boolean      @default(false)
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([conversationId, userId])
+}
+
+model Message {
+  id                String              @id @default(uuid())
+  conversationId    String
+  userId            String?
+  channel           MessageChannel      @default(PORTAL)
+  body              String
+  internal          Boolean             @default(false)
+  externalMessageId String?             @unique
+  metadata          Json                @default("{}")
+  createdAt         DateTime            @default(now())
+  conversation      Conversation        @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user              User?               @relation(fields: [userId], references: [id], onDelete: SetNull)
+  attachments       MessageAttachment[]
+  @@index([conversationId, createdAt])
+}
+
+model MessageAttachment {
+  id        String     @id @default(uuid())
+  messageId String
+  fileId    String
+  createdAt DateTime   @default(now())
+  message   Message    @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  file      FileObject @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  @@unique([messageId, fileId])
+  @@index([messageId])
+}
+
+model EntityComment {
+  id          String              @id @default(uuid())
+  tenantId    String
+  companyId   String
+  userId      String?
+  entityType  String
+  entityId    String
+  body        String
+  internal    Boolean             @default(false)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  tenant      Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company     Company             @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user        User?               @relation(fields: [userId], references: [id], onDelete: SetNull)
+  attachments CommentAttachment[]
+  @@index([companyId, entityType, entityId, createdAt])
+}
+
+model CommentAttachment {
+  id        String        @id @default(uuid())
+  commentId String
+  fileId    String
+  createdAt DateTime      @default(now())
+  comment   EntityComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  file      FileObject    @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  @@unique([commentId, fileId])
+}
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String
+  type      NotificationType
+  title     String
+  body      String?
+  href      String?
+  companyId String?
+  metadata  Json             @default("{}")
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, readAt, createdAt])
+}
+
+model FileObject {
+  id                  String               @id @default(uuid())
+  tenantId            String
+  companyId           String?
+  storageKey          String               @unique
+  originalName        String
+  mimeType            String
+  sizeBytes           BigInt
+  sha256              String
+  visibility          FileVisibility       @default(PRIVATE)
+  encrypted           Boolean              @default(false)
+  metadata            Json                 @default("{}")
+  createdById         String?
+  createdAt           DateTime             @default(now())
+  tenant              Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company             Company?             @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  inspectionEvidences InspectionEvidence[]
+  actionEvidences     ActionEvidence[]
+  documentFiles       DocumentFile[]
+  messageAttachments  MessageAttachment[]
+  commentAttachments  CommentAttachment[]
+  legacyDocuments     LegacyImportDocument[]
+  fieldCaptures       FieldCapture[]
+  aiMessageAttachments AIMessageAttachment[]
+  pgrParticipationRecords PgrParticipationRecord[]
+  occupationalAsoFiles OccupationalAso[]
+  instrumentCalibrationFiles InstrumentCalibration[]
+  pcmsoAnalyticalReports PcmsoAnalyticalReport[]
+  trainingLessonFiles TrainingLesson[]
+  trainingPracticalEvidence TrainingPracticalEvaluation[]
+  trainingCertificateFiles TrainingCertificate[]
+  @@index([tenantId, companyId])
+}
+
+model BackupExport {
+  id            String         @id @default(uuid())
+  tenantId      String
+  companyId     String?
+  type          BackupType
+  status        JobStatus      @default(QUEUED)
+  fileObjectId  String?
+  manifest      Json           @default("{}")
+  encrypted     Boolean        @default(false)
+  expiresAt     DateTime?
+  createdById   String?
+  createdAt     DateTime       @default(now())
+  completedAt   DateTime?
+  tenant        Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company       Company?       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  recoveryTests RecoveryTest[]
+  @@index([tenantId, createdAt])
+}
+
+model ImportRun {
+  id          String    @id @default(uuid())
+  tenantId    String
+  sourceName  String
+  status      JobStatus @default(QUEUED)
+  mode        String
+  preview     Json      @default("{}")
+  result      Json      @default("{}")
+  error       String?
+  createdById String?
+  createdAt   DateTime  @default(now())
+  completedAt DateTime?
+  @@index([tenantId, status])
+}
+
+model Job {
+  id          String    @id @default(uuid())
+  tenantId    String
+  type        String
+  status      JobStatus @default(QUEUED)
+  payload     Json
+  attempts    Int       @default(0)
+  maxAttempts Int       @default(3)
+  runAt       DateTime  @default(now())
+  lockedAt    DateTime?
+  lockedBy    String?
+  error       String?
+  result      Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  tenant      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  @@index([status, runAt])
+}
+
+model TenantSecurityPolicy {
+  id                          String    @id @default(uuid())
+  tenantId                    String    @unique
+  legalHold                   Boolean   @default(false)
+  auditDeletionEnabled        Boolean   @default(false)
+  auditRetentionDays          Int       @default(3650)
+  notificationRetentionDays   Int       @default(365)
+  jobRetentionDays            Int       @default(90)
+  expiredSessionRetentionDays Int       @default(30)
+  inviteRetentionDays         Int       @default(30)
+  backupReviewDays            Int       @default(7)
+  lastRetentionRunAt          DateTime?
+  createdAt                   DateTime  @default(now())
+  updatedAt                   DateTime  @updatedAt
+  tenant                      Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+}
+
+model SecurityIncident {
+  id          String           @id @default(uuid())
+  tenantId    String
+  title       String
+  description String
+  severity    IncidentSeverity @default(MEDIUM)
+  status      IncidentStatus   @default(OPEN)
+  ownerId     String?
+  detectedAt  DateTime         @default(now())
+  containedAt DateTime?
+  resolvedAt  DateTime?
+  closedAt    DateTime?
+  actions     Json             @default("[]")
+  metadata    Json             @default("{}")
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  tenant      Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  owner       User?            @relation("IncidentOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  @@index([tenantId, status, severity])
+  @@index([tenantId, detectedAt])
+}
+
+model RecoveryTest {
+  id             String             @id @default(uuid())
+  tenantId       String
+  backupExportId String
+  status         RecoveryTestStatus @default(QUEUED)
+  createdById    String?
+  checks         Json               @default("{}")
+  error          String?
+  startedAt      DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime           @default(now())
+  tenant         Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  backupExport   BackupExport       @relation(fields: [backupExportId], references: [id], onDelete: Cascade)
+  createdBy      User?              @relation("RecoveryTestCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  @@index([tenantId, status, createdAt])
+  @@index([backupExportId, createdAt])
+}
+
+model ServiceHeartbeat {
+  id         String   @id @default(uuid())
+  service    String
+  instanceId String
+  status     String   @default("HEALTHY")
+  lastSeenAt DateTime @default(now())
+  metadata   Json     @default("{}")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([service, instanceId])
+  @@index([service, lastSeenAt])
+}
+
+model IntegrationConfig {
+  id              String              @id @default(uuid())
+  tenantId        String
+  provider        IntegrationProvider
+  enabled         Boolean             @default(false)
+  configEncrypted String?
+  settings        Json                @default("{}")
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  tenant          Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  @@unique([tenantId, provider])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  tenantId   String
+  userId     String?
+  companyId  String?
+  action     String
+  entityType String
+  entityId   String?
+  before     Json?
+  after      Json?
+  metadata   Json     @default("{}")
+  createdAt  DateTime @default(now())
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  @@index([tenantId, createdAt])
+  @@index([entityType, entityId])
+}
+
+model WorkflowTemplate {
+  id          String        @id @default(uuid())
+  tenantId    String
+  code        String
+  name        String
+  serviceType String
+  version     Int           @default(1)
+  description String?
+  active      Boolean       @default(true)
+  definition  Json          @default("{}")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  tenant      Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  workProjects WorkProject[]
+  @@unique([tenantId, code, version])
+  @@index([tenantId, serviceType, active])
+}
+
+model WorkProject {
+  id                String            @id @default(uuid())
+  tenantId          String
+  companyId         String
+  workflowTemplateId String?
+  legacyImportBatchId String?
+  serviceType       String
+  title             String
+  status            WorkProjectStatus @default(DRAFT)
+  progress          Int               @default(0)
+  responsibleUserId String?
+  dueAt             DateTime?
+  startedAt         DateTime?
+  completedAt       DateTime?
+  metadata          Json              @default("{}")
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  tenant            Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company           Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workflowTemplate  WorkflowTemplate? @relation(fields: [workflowTemplateId], references: [id], onDelete: SetNull)
+  legacyImportBatch LegacyImportBatch? @relation("LegacyImportProjects", fields: [legacyImportBatchId], references: [id], onDelete: SetNull)
+  primaryForLegacyImports LegacyImportBatch[] @relation("LegacyImportPrimaryProject")
+  steps             WorkflowStep[]
+  requirements      WorkflowRequirement[]
+  artifacts         WorkflowArtifact[]
+  decisions         WorkflowDecision[]
+  approvals         ApprovalRequest[]
+  changeSets        ChangeSet[]
+  aiThreads         AIThread[]
+  aiToolExecutions  AIToolExecution[]
+  aiUsageRecords    AIUsageRecord[]
+  legacyImports     LegacyImportBatch[]
+  fieldVisits       FieldVisit[]
+  fieldCaptures     FieldCapture[]
+  pgrProgram        PgrProgram?
+  pcmsoProgram      PcmsoProgram?
+  exposureProgram   OccupationalExposureProgram?
+  ergonomicsProgram ErgonomicsProgram?
+  hygieneProgram OccupationalHygieneProgram?
+  trainingProgram TrainingProgram?
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, serviceType, status])
+  @@index([responsibleUserId, status])
+  @@index([legacyImportBatchId, serviceType])
+}
+
+model WorkflowStep {
+  id                  String             @id @default(uuid())
+  workProjectId       String
+  code                String
+  title               String
+  description         String?
+  position            Int
+  status              WorkflowStepStatus @default(NOT_STARTED)
+  required            Boolean            @default(true)
+  completionPercent   Int                @default(0)
+  notApplicableReason String?
+  metadata            Json               @default("{}")
+  startedAt           DateTime?
+  completedAt         DateTime?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  workProject         WorkProject        @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  requirements        WorkflowRequirement[]
+  artifacts           WorkflowArtifact[]
+  decisions           WorkflowDecision[]
+  fieldCaptures       FieldCapture[]
+  @@unique([workProjectId, code])
+  @@index([workProjectId, position])
+  @@index([workProjectId, status])
+}
+
+model WorkflowRequirement {
+  id            String                @id @default(uuid())
+  workProjectId String
+  workflowStepId String?
+  code          String
+  title         String
+  description   String?
+  status        WorkRequirementStatus @default(PENDING)
+  required      Boolean               @default(true)
+  sourceType    String?
+  sourceId      String?
+  justification String?
+  metadata      Json                  @default("{}")
+  satisfiedAt   DateTime?
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  workProject   WorkProject           @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  workflowStep  WorkflowStep?         @relation(fields: [workflowStepId], references: [id], onDelete: Cascade)
+  @@unique([workProjectId, code])
+  @@index([workProjectId, status])
+  @@index([workflowStepId, status])
+}
+
+model WorkflowArtifact {
+  id            String       @id @default(uuid())
+  workProjectId String
+  workflowStepId String?
+  kind          String
+  title         String
+  entityType    String?
+  entityId      String?
+  fileId        String?
+  metadata      Json         @default("{}")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  workProject   WorkProject  @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  workflowStep  WorkflowStep? @relation(fields: [workflowStepId], references: [id], onDelete: SetNull)
+  @@index([workProjectId, kind])
+  @@index([entityType, entityId])
+  @@index([fileId])
+}
+
+model WorkflowDecision {
+  id            String       @id @default(uuid())
+  workProjectId String
+  workflowStepId String?
+  kind          String
+  summary       String
+  rationale     String?
+  source        String       @default("HUMAN")
+  createdById   String?
+  confidence    Int?
+  metadata      Json         @default("{}")
+  createdAt     DateTime     @default(now())
+  workProject   WorkProject  @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  workflowStep  WorkflowStep? @relation(fields: [workflowStepId], references: [id], onDelete: SetNull)
+  @@index([workProjectId, createdAt])
+  @@index([workflowStepId, createdAt])
+}
+
+model ChangeSet {
+  id            String          @id @default(uuid())
+  workProjectId String?
+  status        ChangeSetStatus @default(DRAFT)
+  summary       String
+  operations    Json            @default("[]")
+  beforeSnapshot Json?
+  afterSnapshot  Json?
+  requestedById String?
+  appliedById   String?
+  revertedById  String?
+  appliedAt     DateTime?
+  revertedAt    DateTime?
+  metadata      Json            @default("{}")
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  workProject   WorkProject?    @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  approvals     ApprovalRequest[]
+  toolExecutions AIToolExecution[]
+  @@index([workProjectId, status, createdAt])
+}
+
+model ApprovalRequest {
+  id            String         @id @default(uuid())
+  workProjectId String?
+  changeSetId   String?
+  action        String
+  summary       String
+  riskLevel     AIRiskLevel    @default(MEDIUM)
+  status        ApprovalStatus @default(PENDING)
+  payload       Json           @default("{}")
+  requestedById String?
+  reviewedById  String?
+  decisionNote  String?
+  expiresAt     DateTime?
+  decidedAt     DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  workProject   WorkProject?   @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  changeSet     ChangeSet?     @relation(fields: [changeSetId], references: [id], onDelete: SetNull)
+  toolExecutions AIToolExecution[]
+  @@index([workProjectId, status, createdAt])
+  @@index([changeSetId])
+}
+
+
+model LegacyImportBatch {
+  id                String             @id @default(uuid())
+  tenantId          String
+  companyId         String?
+  workProjectId     String?
+  title             String
+  status            LegacyImportStatus @default(DRAFT)
+  targetServices    Json               @default("[]")
+  autoCreateCompany Boolean            @default(true)
+  createdById       String?
+  startedAt         DateTime?
+  completedAt       DateTime?
+  error             String?
+  metadata          Json               @default("{}")
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  tenant            Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company           Company?           @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  workProject       WorkProject?       @relation("LegacyImportPrimaryProject", fields: [workProjectId], references: [id], onDelete: SetNull)
+  documents         LegacyImportDocument[]
+  facts             LegacyExtractedFact[]
+  conflicts         LegacyImportConflict[]
+  createdProjects   WorkProject[]      @relation("LegacyImportProjects")
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, status])
+  @@index([workProjectId])
+}
+
+model LegacyImportDocument {
+  id                String               @id @default(uuid())
+  batchId           String
+  fileObjectId      String
+  status            LegacyDocumentStatus @default(UPLOADED)
+  detectedKind      LegacyDocumentKind    @default(UNKNOWN)
+  referenceYear     Int?
+  pageCount         Int?
+  language          String?
+  provider          String?
+  model             String?
+  summary           String?
+  extractionVersion Int                  @default(1)
+  rawExtraction     Json?
+  error             String?
+  analyzedAt        DateTime?
+  approvedAt        DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  batch             LegacyImportBatch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  file              FileObject           @relation(fields: [fileObjectId], references: [id], onDelete: Restrict)
+  facts             LegacyExtractedFact[]
+  @@unique([batchId, fileObjectId])
+  @@index([batchId, status])
+  @@index([detectedKind, referenceYear])
+}
+
+model LegacyExtractedFact {
+  id                String           @id @default(uuid())
+  batchId           String
+  documentId        String?
+  domain            String
+  entityType        String
+  entityKey         String?
+  parentEntityKey   String?
+  fieldPath         String
+  label             String
+  value             Json
+  normalizedValue   Json?
+  sourcePage        Int?
+  sourceLocator     String?
+  sourceExcerpt     String?
+  confidence        Int              @default(0)
+  status            LegacyFactStatus @default(EXTRACTED)
+  verifiedById      String?
+  verifiedAt        DateTime?
+  appliedEntityType String?
+  appliedEntityId   String?
+  metadata          Json             @default("{}")
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  batch             LegacyImportBatch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  document          LegacyImportDocument? @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  @@index([batchId, status, domain])
+  @@index([documentId, sourcePage])
+  @@index([entityType, entityKey, fieldPath])
+}
+
+model LegacyImportConflict {
+  id           String               @id @default(uuid())
+  batchId      String
+  kind         String
+  fieldPath    String
+  summary      String
+  factIds      Json                 @default("[]")
+  status       LegacyConflictStatus @default(OPEN)
+  resolution   Json?
+  resolvedById String?
+  resolvedAt   DateTime?
+  metadata     Json                 @default("{}")
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  batch        LegacyImportBatch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  @@index([batchId, status])
+  @@index([batchId, fieldPath])
+}
+
+
+model FieldVisit {
+  id              String           @id @default(uuid())
+  tenantId        String
+  companyId       String
+  workProjectId   String?
+  inspectionId    String?
+  aiThreadId      String?
+  title           String
+  status          FieldVisitStatus @default(DRAFT)
+  progress        Int              @default(0)
+  checklist       Json             @default("[]")
+  location        Json             @default("{}")
+  notes           String?
+  startedById     String?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  reviewedAt      DateTime?
+  metadata        Json             @default("{}")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  tenant          Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company         Company          @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject     WorkProject?     @relation(fields: [workProjectId], references: [id], onDelete: SetNull)
+  inspection      Inspection?      @relation(fields: [inspectionId], references: [id], onDelete: SetNull)
+  aiThread        AIThread?        @relation(fields: [aiThreadId], references: [id], onDelete: SetNull)
+  captures        FieldCapture[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, status, createdAt])
+  @@index([workProjectId, status])
+  @@index([inspectionId])
+}
+
+model FieldCapture {
+  id              String             @id @default(uuid())
+  fieldVisitId    String
+  workProjectId   String?
+  workflowStepId  String?
+  sectorId        String?
+  gheId           String?
+  jobFunctionId   String?
+  workstationId   String?
+  fileObjectId    String?
+  kind            FieldCaptureKind
+  status          FieldCaptureStatus @default(CAPTURED)
+  title           String
+  caption         String?
+  transcript      String?
+  textValue       String?
+  numericValue    Float?
+  unit            String?
+  aiAnalysis      Json               @default("{}")
+  confidence      Int?
+  position        Int                @default(0)
+  capturedById    String?
+  capturedAt      DateTime           @default(now())
+  analyzedAt      DateTime?
+  error           String?
+  metadata        Json               @default("{}")
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  fieldVisit      FieldVisit         @relation(fields: [fieldVisitId], references: [id], onDelete: Cascade)
+  workProject     WorkProject?       @relation(fields: [workProjectId], references: [id], onDelete: SetNull)
+  workflowStep    WorkflowStep?      @relation(fields: [workflowStepId], references: [id], onDelete: SetNull)
+  sector          Sector?            @relation(fields: [sectorId], references: [id], onDelete: SetNull)
+  ghe             GHE?               @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  jobFunction     JobFunction?       @relation(fields: [jobFunctionId], references: [id], onDelete: SetNull)
+  workstation     Workstation?       @relation(fields: [workstationId], references: [id], onDelete: SetNull)
+  file            FileObject?        @relation(fields: [fileObjectId], references: [id], onDelete: SetNull)
+  @@index([fieldVisitId, position, createdAt])
+  @@index([workProjectId, status])
+  @@index([workflowStepId, status])
+  @@index([fileObjectId])
+}
+
+model AIMessageAttachment {
+  id          String             @id @default(uuid())
+  aiMessageId String
+  fileObjectId String
+  kind        AIAttachmentKind
+  status      AIAttachmentStatus @default(UPLOADED)
+  caption     String?
+  extraction  Json               @default("{}")
+  error       String?
+  metadata    Json               @default("{}")
+  analyzedAt  DateTime?
+  createdAt   DateTime           @default(now())
+  aiMessage   AIMessage          @relation(fields: [aiMessageId], references: [id], onDelete: Cascade)
+  file        FileObject         @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  @@unique([aiMessageId, fileObjectId])
+  @@index([aiMessageId, status])
+  @@index([fileObjectId])
+}
+
+model PgrProgram {
+  id                    String           @id @default(uuid())
+  tenantId              String
+  companyId             String
+  workProjectId         String           @unique
+  status                PgrProgramStatus @default(DRAFT)
+  title                 String
+  scope                 String?
+  referenceDate         DateTime         @default(now())
+  nextReviewAt          DateTime?
+  reviewCycleMonths     Int              @default(24)
+  certifiedReviewMonths Int?
+  assessmentCriteria    Json             @default("{}")
+  legalReferences       Json             @default("[]")
+  assumptions           Json             @default("[]")
+  limitations           Json             @default("[]")
+  responsibleUserId     String?
+  approvedById          String?
+  approvedAt            DateTime?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  tenant                Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company               Company          @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject           WorkProject      @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  riskAssessments       PgrRiskAssessment[]
+  participationRecords  PgrParticipationRecord[]
+  psychosocialAssessments PsychosocialAssessment[]
+  audits                PgrAuditRun[]
+  pcmsoPrograms         PcmsoProgram[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, referenceDate])
+}
+
+model PgrRiskAssessment {
+  id                  String            @id @default(uuid())
+  pgrProgramId        String
+  riskId              String?
+  gheId               String?
+  inspectionId        String?
+  code                String
+  category            PgrHazardCategory
+  hazard              String
+  source              String?
+  circumstances       String?
+  possibleHarms       Json              @default("[]")
+  exposedGroups       Json              @default("[]")
+  exposedCount        Int               @default(0)
+  frequency           String?
+  duration            String?
+  existingControls    Json              @default("[]")
+  monitoringData      Json              @default("{}")
+  severity            Int
+  probability         Int
+  exposure            Int               @default(1)
+  initialScore        Float
+  initialLevel        RiskLevel
+  residualSeverity    Int?
+  residualProbability Int?
+  residualExposure    Int?
+  residualScore       Float?
+  residualLevel       RiskLevel?
+  treatmentDecision   String?
+  status              PgrRiskStatus     @default(IDENTIFIED)
+  sourceType          String?
+  sourceId            String?
+  sourcePage          Int?
+  confidence          Int?
+  reviewedById        String?
+  reviewedAt          DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  pgrProgram          PgrProgram        @relation(fields: [pgrProgramId], references: [id], onDelete: Cascade)
+  risk                Risk?             @relation(fields: [riskId], references: [id], onDelete: SetNull)
+  ghe                 GHE?              @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  inspection          Inspection?       @relation(fields: [inspectionId], references: [id], onDelete: SetNull)
+  pcmsoExamRequirements PcmsoExamRequirement[]
+  exposureAgents OccupationalExposureAgent[]
+  @@unique([pgrProgramId, code])
+  @@index([pgrProgramId, category, initialLevel])
+  @@index([gheId, status])
+  @@index([riskId])
+}
+
+model PgrParticipationRecord {
+  id               String                  @id @default(uuid())
+  pgrProgramId     String
+  kind             WorkerParticipationKind
+  title            String
+  occurredAt       DateTime                @default(now())
+  participantCount Int                     @default(0)
+  groups           Json                    @default("[]")
+  summary          String?
+  outcomes         Json                    @default("[]")
+  confidential     Boolean                 @default(false)
+  evidenceFileId   String?
+  createdById      String?
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  pgrProgram       PgrProgram              @relation(fields: [pgrProgramId], references: [id], onDelete: Cascade)
+  evidenceFile     FileObject?             @relation(fields: [evidenceFileId], references: [id], onDelete: SetNull)
+  @@index([pgrProgramId, occurredAt])
+  @@index([evidenceFileId])
+}
+
+model PsychosocialAssessment {
+  id                String                        @id @default(uuid())
+  pgrProgramId      String
+  campaignId        String?
+  status            PsychosocialAssessmentStatus @default(DRAFT)
+  methodology       String
+  scope             String?
+  population        Int                           @default(0)
+  validResponses    Int                           @default(0)
+  minimumGroupSize  Int                           @default(5)
+  detailedGroupSize Int                           @default(10)
+  dimensions        Json                          @default("[]")
+  summary           String?
+  limitations       Json                          @default("[]")
+  recommendations   Json                          @default("[]")
+  calculatedAt      DateTime?
+  reviewedById      String?
+  reviewedAt        DateTime?
+  createdAt         DateTime                      @default(now())
+  updatedAt         DateTime                      @updatedAt
+  pgrProgram        PgrProgram                    @relation(fields: [pgrProgramId], references: [id], onDelete: Cascade)
+  campaign          Campaign?                     @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  findings          PsychosocialFinding[]
+  @@index([pgrProgramId, status, updatedAt])
+  @@index([campaignId])
+}
+
+model PsychosocialFinding {
+  id                    String           @id @default(uuid())
+  psychosocialAssessmentId String
+  dimension             String
+  category              String?
+  factor                String
+  description           String?
+  exposedGroups         Json             @default("[]")
+  score                 Float?
+  level                 RiskLevel?
+  evidenceCount         Int              @default(0)
+  confidence            Int?
+  recommendation        String?
+  status                PgrFindingStatus @default(IDENTIFIED)
+  reviewedById          String?
+  reviewedAt            DateTime?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  psychosocialAssessment PsychosocialAssessment @relation(fields: [psychosocialAssessmentId], references: [id], onDelete: Cascade)
+  @@index([psychosocialAssessmentId, level])
+  @@index([dimension, status])
+}
+
+model PgrAuditRun {
+  id            String         @id @default(uuid())
+  pgrProgramId  String
+  status        PgrAuditStatus
+  score         Int
+  findings      Json           @default("[]")
+  snapshot      Json           @default("{}")
+  createdById   String?
+  createdAt     DateTime       @default(now())
+  pgrProgram    PgrProgram     @relation(fields: [pgrProgramId], references: [id], onDelete: Cascade)
+  @@index([pgrProgramId, createdAt])
+}
+
+model PcmsoProgram {
+  id                    String             @id @default(uuid())
+  tenantId              String
+  companyId             String
+  workProjectId         String             @unique
+  pgrProgramId          String?
+  responsiblePhysicianId String?
+  status                PcmsoProgramStatus @default(DRAFT)
+  title                 String
+  scope                 String?
+  referenceDate         DateTime           @default(now())
+  nextReviewAt          DateTime?
+  reviewCycleMonths     Int                @default(12)
+  medicalGuidelines     Json               @default("[]")
+  legalReferences       Json               @default("[]")
+  assumptions           Json               @default("[]")
+  limitations           Json               @default("[]")
+  approvedAt            DateTime?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  tenant                Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject           WorkProject        @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  pgrProgram            PgrProgram?        @relation(fields: [pgrProgramId], references: [id], onDelete: SetNull)
+  responsiblePhysician  MedicalProfessional? @relation("PcmsoResponsiblePhysician", fields: [responsiblePhysicianId], references: [id], onDelete: SetNull)
+  examRequirements      PcmsoExamRequirement[]
+  calls                 PcmsoCall[]
+  asos                  OccupationalAso[]
+  analyticalReports     PcmsoAnalyticalReport[]
+  audits                PcmsoAuditRun[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, referenceDate])
+  @@index([pgrProgramId])
+}
+
+model MedicalProvider {
+  id          String              @id @default(uuid())
+  tenantId    String
+  kind        MedicalProviderKind @default(CLINIC)
+  name        String
+  cnpj        String?
+  email       String?
+  phone       String?
+  address     String?
+  active      Boolean             @default(true)
+  metadata    Json                @default("{}")
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  tenant      Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  professionals MedicalProfessional[]
+  calls       PcmsoCall[]
+  @@unique([tenantId, cnpj])
+  @@index([tenantId, active, name])
+}
+
+model MedicalProfessional {
+  id          String                  @id @default(uuid())
+  tenantId    String
+  userId      String?
+  providerId  String?
+  role        MedicalProfessionalRole
+  name        String
+  cpfEncrypted String?
+  cpfHash     String?
+  councilType String                  @default("CRM")
+  councilNumber String
+  councilState String
+  specialty   String?
+  active      Boolean                 @default(true)
+  metadata    Json                    @default("{}")
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  tenant      Tenant                  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  provider    MedicalProvider?        @relation(fields: [providerId], references: [id], onDelete: SetNull)
+  responsiblePrograms PcmsoProgram[]  @relation("PcmsoResponsiblePhysician")
+  issuedAsos  OccupationalAso[]       @relation("AsoIssuingPhysician")
+  approvedReports PcmsoAnalyticalReport[] @relation("PcmsoReportApprover")
+  @@unique([tenantId, councilType, councilNumber, councilState])
+  @@index([tenantId, active, role])
+  @@index([userId])
+  @@index([cpfHash])
+}
+
+model OccupationalWorker {
+  id             String                   @id @default(uuid())
+  tenantId       String
+  companyId      String
+  establishmentId String?
+  gheId          String?
+  jobFunctionId  String?
+  fullName       String
+  socialName     String?
+  cpfEncrypted   String?
+  cpfHash        String?
+  birthDate      DateTime?
+  registration   String?
+  categoryCode   String?
+  admissionDate  DateTime?
+  terminationDate DateTime?
+  status         OccupationalWorkerStatus @default(ACTIVE)
+  metadata       Json                     @default("{}")
+  createdAt      DateTime                 @default(now())
+  updatedAt      DateTime                 @updatedAt
+  tenant         Tenant                   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company        Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  establishment  Establishment?           @relation(fields: [establishmentId], references: [id], onDelete: SetNull)
+  ghe            GHE?                     @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  jobFunction    JobFunction?             @relation(fields: [jobFunctionId], references: [id], onDelete: SetNull)
+  calls          PcmsoCall[]
+  asos           OccupationalAso[]
+  accessLogs     MedicalDataAccessLog[]
+  exposurePeriods OccupationalExposurePeriod[]
+  pppDrafts      PppDraft[]
+  s2240Drafts    EsocialS2240Draft[]
+  trainingEnrollments TrainingEnrollment[]
+  trainingAttendances TrainingAttendance[]
+  workerCompetencies WorkerCompetency[]
+  trainingCertificates TrainingCertificate[]
+  @@unique([companyId, registration])
+  @@unique([companyId, cpfHash])
+  @@index([tenantId, status, fullName])
+  @@index([companyId, gheId, jobFunctionId])
+}
+
+model PcmsoExamCatalog {
+  id                 String          @id @default(uuid())
+  tenantId           String
+  code               String
+  name               String
+  kind               MedicalExamKind
+  esocialProcedureCode String?
+  description        String?
+  active             Boolean         @default(true)
+  metadata           Json            @default("{}")
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  tenant             Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  requirements       PcmsoExamRequirement[]
+  asoExams           OccupationalAsoExam[]
+  @@unique([tenantId, code])
+  @@index([tenantId, active, kind])
+  @@index([esocialProcedureCode])
+}
+
+model PcmsoExamRequirement {
+  id                 String          @id @default(uuid())
+  pcmsoProgramId     String
+  examCatalogId      String
+  gheId              String?
+  jobFunctionId      String?
+  pgrRiskAssessmentId String?
+  occupationalExamTypes Json         @default("[]")
+  periodicityMonths  Int?
+  triggerDescription String?
+  mandatory          Boolean         @default(true)
+  medicalProtocol    String?
+  justification      String?
+  active             Boolean         @default(true)
+  createdById        String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  pcmsoProgram       PcmsoProgram    @relation(fields: [pcmsoProgramId], references: [id], onDelete: Cascade)
+  examCatalog        PcmsoExamCatalog @relation(fields: [examCatalogId], references: [id], onDelete: Restrict)
+  ghe                GHE?            @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  jobFunction        JobFunction?    @relation(fields: [jobFunctionId], references: [id], onDelete: SetNull)
+  pgrRiskAssessment  PgrRiskAssessment? @relation(fields: [pgrRiskAssessmentId], references: [id], onDelete: SetNull)
+  @@index([pcmsoProgramId, active])
+  @@index([gheId, jobFunctionId])
+  @@index([pgrRiskAssessmentId])
+}
+
+model PcmsoCall {
+  id                 String          @id @default(uuid())
+  pcmsoProgramId     String
+  workerId           String
+  providerId         String?
+  examType           OccupationalExamType
+  status             PcmsoCallStatus @default(DRAFT)
+  dueAt              DateTime
+  scheduledAt        DateTime?
+  notifiedAt         DateTime?
+  completedAt        DateTime?
+  notes              String?
+  sourceRequirementIds Json          @default("[]")
+  createdById        String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  pcmsoProgram       PcmsoProgram    @relation(fields: [pcmsoProgramId], references: [id], onDelete: Cascade)
+  worker             OccupationalWorker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  provider           MedicalProvider? @relation(fields: [providerId], references: [id], onDelete: SetNull)
+  aso                OccupationalAso?
+  @@index([pcmsoProgramId, status, dueAt])
+  @@index([workerId, examType, dueAt])
+}
+
+model OccupationalAso {
+  id                 String           @id @default(uuid())
+  pcmsoProgramId     String
+  workerId           String
+  callId             String?          @unique
+  issuingPhysicianId String
+  fileId             String?
+  examType           OccupationalExamType
+  status             AsoStatus        @default(DRAFT)
+  asoDate            DateTime
+  fitnessResult      AsoFitnessResult @default(PENDING)
+  restrictionsEncrypted String?
+  riskDescriptions   Json             @default("[]")
+  physicianNotesEncrypted String?
+  verificationCode   String           @unique
+  issuedAt           DateTime?
+  cancelledAt        DateTime?
+  cancellationReason String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  pcmsoProgram       PcmsoProgram     @relation(fields: [pcmsoProgramId], references: [id], onDelete: Cascade)
+  worker             OccupationalWorker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  call               PcmsoCall?       @relation(fields: [callId], references: [id], onDelete: SetNull)
+  issuingPhysician   MedicalProfessional @relation("AsoIssuingPhysician", fields: [issuingPhysicianId], references: [id], onDelete: Restrict)
+  file               FileObject?      @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  exams              OccupationalAsoExam[]
+  esocialDrafts      EsocialS2220Draft[]
+  @@index([pcmsoProgramId, asoDate, status])
+  @@index([workerId, asoDate])
+  @@index([issuingPhysicianId])
+}
+
+model OccupationalAsoExam {
+  id                 String              @id @default(uuid())
+  asoId              String
+  examCatalogId      String
+  performedAt        DateTime
+  resultStatus       AsoExamResultStatus @default(COMPLETED)
+  resultEncrypted    String?
+  procedureCode      String?
+  orderIndex         Int                 @default(0)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  aso                OccupationalAso      @relation(fields: [asoId], references: [id], onDelete: Cascade)
+  examCatalog        PcmsoExamCatalog     @relation(fields: [examCatalogId], references: [id], onDelete: Restrict)
+  @@unique([asoId, examCatalogId, performedAt])
+  @@index([asoId, orderIndex])
+}
+
+model PcmsoAnalyticalReport {
+  id                 String            @id @default(uuid())
+  pcmsoProgramId     String
+  periodStart        DateTime
+  periodEnd          DateTime
+  status             PcmsoReportStatus @default(DRAFT)
+  populationCount    Int               @default(0)
+  examCount          Int               @default(0)
+  abnormalExamCount  Int               @default(0)
+  incidentIndicators Json              @default("{}")
+  aggregatedResults  Json              @default("{}")
+  analysis           String?
+  recommendations    Json              @default("[]")
+  limitations        Json              @default("[]")
+  approvedById       String?
+  approvedAt         DateTime?
+  documentFileId     String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  pcmsoProgram       PcmsoProgram      @relation(fields: [pcmsoProgramId], references: [id], onDelete: Cascade)
+  approvedBy         MedicalProfessional? @relation("PcmsoReportApprover", fields: [approvedById], references: [id], onDelete: SetNull)
+  documentFile       FileObject?       @relation(fields: [documentFileId], references: [id], onDelete: SetNull)
+  @@unique([pcmsoProgramId, periodStart, periodEnd])
+  @@index([pcmsoProgramId, status, periodEnd])
+}
+
+model EsocialS2220Draft {
+  id                 String             @id @default(uuid())
+  asoId              String
+  version             String             @default("S-1.3")
+  revision            Int                @default(1)
+  status              EsocialEventStatus @default(DRAFT)
+  payload             Json               @default("{}")
+  validationFindings  Json               @default("[]")
+  receipt             String?
+  generatedById       String?
+  generatedAt         DateTime            @default(now())
+  validatedAt         DateTime?
+  sentAt              DateTime?
+  acceptedAt          DateTime?
+  updatedAt           DateTime            @updatedAt
+  aso                 OccupationalAso     @relation(fields: [asoId], references: [id], onDelete: Cascade)
+  @@unique([asoId, version, revision])
+  @@index([status, generatedAt])
+}
+
+model MedicalDataAccessLog {
+  id                 String              @id @default(uuid())
+  tenantId           String
+  workerId           String?
+  userId             String
+  action             MedicalAccessAction
+  entityType         String
+  entityId           String
+  purpose            String
+  metadata           Json                @default("{}")
+  createdAt          DateTime            @default(now())
+  tenant             Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  worker             OccupationalWorker? @relation(fields: [workerId], references: [id], onDelete: SetNull)
+  @@index([tenantId, userId, createdAt])
+  @@index([workerId, createdAt])
+  @@index([entityType, entityId])
+}
+
+model PcmsoAuditRun {
+  id                 String           @id @default(uuid())
+  pcmsoProgramId     String
+  status             PcmsoAuditStatus
+  score              Int
+  findings           Json             @default("[]")
+  snapshot           Json             @default("{}")
+  createdById        String?
+  createdAt          DateTime         @default(now())
+  pcmsoProgram       PcmsoProgram     @relation(fields: [pcmsoProgramId], references: [id], onDelete: Cascade)
+  @@index([pcmsoProgramId, createdAt])
+}
+
+
+model OccupationalTechnicalProfessional {
+  id            String   @id @default(uuid())
+  tenantId      String
+  userId        String?
+  name          String
+  cpfEncrypted  String?
+  cpfHash       String?
+  profession    String
+  councilType   String
+  councilNumber String
+  councilState  String?
+  active        Boolean  @default(true)
+  metadata      Json     @default("{}")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  tenant        Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  exposurePrograms OccupationalExposureProgram[]
+  ltcatConclusions LtcatTechnicalConclusion[]
+  insalubrityAssessments InsalubrityAssessment[]
+  dangerousAssessments DangerousConditionAssessment[]
+  hygienePrograms OccupationalHygieneProgram[]
+  @@unique([tenantId, councilType, councilNumber, councilState])
+  @@index([tenantId, active, profession])
+  @@index([cpfHash])
+}
+
+model OccupationalExposureProgram {
+  id                  String                @id @default(uuid())
+  tenantId            String
+  companyId           String
+  workProjectId       String                @unique
+  responsibleProfessionalId String?
+  purpose             ExposurePurpose
+  status              ExposureProgramStatus @default(DRAFT)
+  title               String
+  scope               String?
+  referenceDate       DateTime              @default(now())
+  nextReviewAt        DateTime?
+  legalReferences     Json                  @default("[]")
+  assumptions         Json                  @default("[]")
+  limitations         Json                  @default("[]")
+  approvedAt          DateTime?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  tenant              Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company             Company               @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject         WorkProject           @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  responsibleProfessional OccupationalTechnicalProfessional? @relation(fields: [responsibleProfessionalId], references: [id], onDelete: SetNull)
+  periods             OccupationalExposurePeriod[]
+  ltcatConclusions    LtcatTechnicalConclusion[]
+  insalubrityAssessments InsalubrityAssessment[]
+  dangerousAssessments DangerousConditionAssessment[]
+  pppDrafts           PppDraft[]
+  s2240Drafts         EsocialS2240Draft[]
+  audits              ExposureAuditRun[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, purpose, referenceDate])
+  @@index([responsibleProfessionalId])
+}
+
+model OccupationalExposurePeriod {
+  id              String               @id @default(uuid())
+  exposureProgramId String
+  workerId        String?
+  establishmentId String?
+  sectorId        String?
+  gheId           String?
+  jobFunctionId   String?
+  status          ExposurePeriodStatus @default(DRAFT)
+  startsAt        DateTime
+  endsAt          DateTime?
+  environmentCode String?
+  environmentDescription String?
+  activities      Json                 @default("[]")
+  shift           String?
+  workday         String?
+  sourceType      String?
+  sourceId        String?
+  metadata        Json                 @default("{}")
+  createdById     String?
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  exposureProgram OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  worker          OccupationalWorker?  @relation(fields: [workerId], references: [id], onDelete: SetNull)
+  establishment   Establishment?       @relation(fields: [establishmentId], references: [id], onDelete: SetNull)
+  sector          Sector?              @relation(fields: [sectorId], references: [id], onDelete: SetNull)
+  ghe             GHE?                 @relation(fields: [gheId], references: [id], onDelete: SetNull)
+  jobFunction     JobFunction?         @relation(fields: [jobFunctionId], references: [id], onDelete: SetNull)
+  agents          OccupationalExposureAgent[]
+  ltcatConclusions LtcatTechnicalConclusion[]
+  insalubrityAssessments InsalubrityAssessment[]
+  dangerousAssessments DangerousConditionAssessment[]
+  s2240Drafts     EsocialS2240Draft[]
+  @@index([exposureProgramId, status, startsAt])
+  @@index([workerId, startsAt, endsAt])
+  @@index([gheId, jobFunctionId])
+}
+
+model OccupationalExposureAgent {
+  id                  String                    @id @default(uuid())
+  exposurePeriodId    String
+  pgrRiskAssessmentId String?
+  code                String
+  category            ExposureAgentCategory
+  name                String
+  description         String?
+  esocialCode         String?
+  assessmentMethod    ExposureAssessmentMethod
+  exposurePattern     ExposurePattern          @default(UNKNOWN)
+  intensity           Decimal?                 @db.Decimal(18, 6)
+  unit                String?
+  toleranceLimit      Decimal?                 @db.Decimal(18, 6)
+  measurementTechnique String?
+  legalBasis          String?
+  specialRetirementYears Int?
+  sourceType          String?
+  sourceId            String?
+  metadata            Json                     @default("{}")
+  createdAt           DateTime                 @default(now())
+  updatedAt           DateTime                 @updatedAt
+  exposurePeriod      OccupationalExposurePeriod @relation(fields: [exposurePeriodId], references: [id], onDelete: Cascade)
+  pgrRiskAssessment   PgrRiskAssessment?       @relation(fields: [pgrRiskAssessmentId], references: [id], onDelete: SetNull)
+  measurements        OccupationalExposureMeasurement[]
+  controls            OccupationalExposureControl[]
+  hygieneMeasurements HygieneMeasurement[]
+  @@unique([exposurePeriodId, code])
+  @@index([exposurePeriodId, category])
+  @@index([pgrRiskAssessmentId])
+  @@index([esocialCode])
+}
+
+model OccupationalExposureMeasurement {
+  id                  String   @id @default(uuid())
+  exposureAgentId     String
+  measuredAt          DateTime
+  result              Decimal  @db.Decimal(18, 6)
+  unit                String
+  methodology         String
+  technique           String?
+  equipmentName       String?
+  equipmentModel      String?
+  equipmentSerial     String?
+  calibrationCertificate String?
+  calibrationValidUntil DateTime?
+  laboratory          String?
+  uncertainty         Decimal? @db.Decimal(18, 6)
+  samplingDurationMinutes Int?
+  rawData             Json     @default("{}")
+  notes               String?
+  createdById         String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  exposureAgent       OccupationalExposureAgent @relation(fields: [exposureAgentId], references: [id], onDelete: Cascade)
+  @@index([exposureAgentId, measuredAt])
+  @@index([calibrationValidUntil])
+}
+
+model OccupationalExposureControl {
+  id                  String               @id @default(uuid())
+  exposureAgentId     String
+  type                ExposureControlType
+  description         String
+  ca                  String?
+  effectiveness       ControlEffectiveness @default(UNKNOWN)
+  validFrom           DateTime?
+  validUntil          DateTime?
+  continuousUse       Boolean?
+  trainingRecorded    Boolean?
+  maintenanceRecorded Boolean?
+  evidence            Json                 @default("[]")
+  notes               String?
+  createdById         String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  exposureAgent       OccupationalExposureAgent @relation(fields: [exposureAgentId], references: [id], onDelete: Cascade)
+  @@index([exposureAgentId, type, effectiveness])
+  @@index([ca])
+}
+
+model LtcatTechnicalConclusion {
+  id                    String                    @id @default(uuid())
+  exposureProgramId     String
+  exposurePeriodId      String?
+  approvedById          String?
+  status                TechnicalConclusionStatus @default(DRAFT)
+  conclusion            LtcatExposureConclusion  @default(NEEDS_REVIEW)
+  rationale             String?
+  effectiveFrom         DateTime?
+  effectiveUntil        DateTime?
+  approvedAt            DateTime?
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  exposurePeriod        OccupationalExposurePeriod? @relation(fields: [exposurePeriodId], references: [id], onDelete: SetNull)
+  approvedBy            OccupationalTechnicalProfessional? @relation(fields: [approvedById], references: [id], onDelete: SetNull)
+  @@index([exposureProgramId, status])
+  @@index([exposurePeriodId])
+}
+
+model InsalubrityAssessment {
+  id                    String                    @id @default(uuid())
+  exposureProgramId     String
+  exposurePeriodId      String?
+  approvedById          String?
+  status                TechnicalConclusionStatus @default(DRAFT)
+  nr15Annex             String
+  assessmentMethod      ExposureAssessmentMethod
+  degree                InsalubrityDegree         @default(NEEDS_REVIEW)
+  characterized         Boolean?
+  neutralized           Boolean?
+  rationale             String?
+  approvedAt            DateTime?
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  exposurePeriod        OccupationalExposurePeriod? @relation(fields: [exposurePeriodId], references: [id], onDelete: SetNull)
+  approvedBy            OccupationalTechnicalProfessional? @relation(fields: [approvedById], references: [id], onDelete: SetNull)
+  @@index([exposureProgramId, status, degree])
+  @@index([exposurePeriodId])
+}
+
+model DangerousConditionAssessment {
+  id                    String                    @id @default(uuid())
+  exposureProgramId     String
+  exposurePeriodId      String?
+  approvedById          String?
+  status                TechnicalConclusionStatus @default(DRAFT)
+  category              DangerousConditionCategory
+  nr16Annex             String?
+  riskArea              String?
+  exposurePattern       ExposurePattern          @default(UNKNOWN)
+  conclusion            DangerousConclusion      @default(NEEDS_REVIEW)
+  rationale             String?
+  approvedAt            DateTime?
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  exposurePeriod        OccupationalExposurePeriod? @relation(fields: [exposurePeriodId], references: [id], onDelete: SetNull)
+  approvedBy            OccupationalTechnicalProfessional? @relation(fields: [approvedById], references: [id], onDelete: SetNull)
+  @@index([exposureProgramId, status, category])
+  @@index([exposurePeriodId])
+}
+
+model PppDraft {
+  id                    String         @id @default(uuid())
+  exposureProgramId     String
+  workerId              String
+  status                PppDraftStatus @default(DRAFT)
+  revision              Int            @default(1)
+  payload               Json           @default("{}")
+  validationFindings    Json           @default("[]")
+  verificationCode      String         @unique
+  generatedById         String?
+  generatedAt           DateTime       @default(now())
+  reviewedAt            DateTime?
+  issuedAt              DateTime?
+  updatedAt             DateTime       @updatedAt
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  worker                OccupationalWorker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  @@unique([exposureProgramId, workerId, revision])
+  @@index([workerId, status, generatedAt])
+}
+
+model EsocialS2240Draft {
+  id                    String             @id @default(uuid())
+  exposureProgramId     String
+  exposurePeriodId      String
+  workerId              String
+  version               String             @default("S-1.3")
+  revision              Int                @default(1)
+  status                EsocialEventStatus @default(DRAFT)
+  payload               Json               @default("{}")
+  validationFindings    Json               @default("[]")
+  receipt               String?
+  generatedById         String?
+  generatedAt           DateTime           @default(now())
+  validatedAt           DateTime?
+  sentAt                DateTime?
+  acceptedAt            DateTime?
+  updatedAt             DateTime           @updatedAt
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  exposurePeriod        OccupationalExposurePeriod @relation(fields: [exposurePeriodId], references: [id], onDelete: Cascade)
+  worker                OccupationalWorker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  @@unique([exposurePeriodId, workerId, version, revision])
+  @@index([exposureProgramId, status, generatedAt])
+  @@index([workerId, generatedAt])
+}
+
+model ExposureAuditRun {
+  id                    String              @id @default(uuid())
+  exposureProgramId     String
+  status                ExposureAuditStatus
+  score                 Int
+  findings              Json                @default("[]")
+  snapshot              Json                @default("{}")
+  createdById           String?
+  createdAt             DateTime            @default(now())
+  exposureProgram       OccupationalExposureProgram @relation(fields: [exposureProgramId], references: [id], onDelete: Cascade)
+  @@index([exposureProgramId, createdAt])
+}
+
+
+model OccupationalHygieneProgram {
+  id                         String               @id @default(uuid())
+  tenantId                   String
+  companyId                  String
+  workProjectId              String               @unique
+  responsibleProfessionalId  String?
+  title                      String
+  status                     HygieneProgramStatus @default(DRAFT)
+  scope                      String?
+  methodology                Json                 @default("{}")
+  legalReferences            Json                 @default("[]")
+  limitations                Json                 @default("[]")
+  referenceDate              DateTime             @default(now())
+  nextReviewAt               DateTime?
+  approvedAt                 DateTime?
+  createdAt                  DateTime             @default(now())
+  updatedAt                  DateTime             @updatedAt
+  tenant                     Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company              @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject                WorkProject          @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  responsibleProfessional    OccupationalTechnicalProfessional? @relation(fields: [responsibleProfessionalId], references: [id], onDelete: SetNull)
+  samplingPlans              HygieneSamplingPlan[]
+  audits                     HygieneAuditRun[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, referenceDate])
+  @@index([responsibleProfessionalId])
+}
+
+model HygieneSamplingPlan {
+  id                         String                    @id @default(uuid())
+  hygieneProgramId           String
+  code                       String
+  title                      String
+  agentCategory              HygieneAgentCategory
+  strategy                   HygieneSamplingStrategy
+  status                     HygieneSamplingPlanStatus @default(DRAFT)
+  objective                  String
+  assessmentType             ExposureAssessmentMethod
+  gheId                      String?
+  jobFunctionId              String?
+  workstationId              String?
+  representativeWorkerId     String?
+  scheduledAt                DateTime?
+  startedAt                  DateTime?
+  completedAt                DateTime?
+  minimumSamples             Int                       @default(1)
+  expectedDurationMinutes    Int?
+  methodCode                 String?
+  methodVersion              String?
+  technique                  String?
+  acceptanceCriteria         Json                      @default("{}")
+  environmentalConditions    Json                      @default("{}")
+  fieldChecklist             Json                      @default("[]")
+  notes                      String?
+  createdById                String?
+  createdAt                  DateTime                   @default(now())
+  updatedAt                  DateTime                   @updatedAt
+  hygieneProgram             OccupationalHygieneProgram @relation(fields: [hygieneProgramId], references: [id], onDelete: Cascade)
+  measurements               HygieneMeasurement[]
+  @@unique([hygieneProgramId, code])
+  @@index([hygieneProgramId, status, scheduledAt])
+  @@index([gheId, jobFunctionId])
+  @@index([representativeWorkerId])
+}
+
+model HygieneMeasurement {
+  id                         String                   @id @default(uuid())
+  samplingPlanId             String
+  exposureAgentId            String?
+  instrumentId               String?
+  calibrationId              String?
+  status                     HygieneMeasurementStatus @default(DRAFT)
+  measuredAt                 DateTime                 @default(now())
+  startedAt                  DateTime?
+  endedAt                    DateTime?
+  result                     Decimal?                 @db.Decimal(18, 6)
+  normalizedResult           Decimal?                 @db.Decimal(18, 6)
+  unit                       String?
+  actionLevel                Decimal?                 @db.Decimal(18, 6)
+  toleranceLimit             Decimal?                 @db.Decimal(18, 6)
+  interpretation             HygieneResultInterpretation @default(INCONCLUSIVE)
+  methodCode                 String
+  methodVersion              String?
+  technique                  String?
+  calculationMemory          Json                     @default("{}")
+  rawData                    Json                     @default("{}")
+  environmentalConditions    Json                     @default("{}")
+  uncertainty                Decimal?                 @db.Decimal(18, 6)
+  fieldCalibrationBefore     Json                     @default("{}")
+  fieldCalibrationAfter      Json                     @default("{}")
+  notes                      String?
+  reviewedById               String?
+  reviewedAt                 DateTime?
+  createdById                String?
+  createdAt                  DateTime                 @default(now())
+  updatedAt                  DateTime                 @updatedAt
+  samplingPlan               HygieneSamplingPlan      @relation(fields: [samplingPlanId], references: [id], onDelete: Cascade)
+  exposureAgent              OccupationalExposureAgent? @relation(fields: [exposureAgentId], references: [id], onDelete: SetNull)
+  instrument                 MeasurementInstrument?   @relation(fields: [instrumentId], references: [id], onDelete: SetNull)
+  calibration                InstrumentCalibration?   @relation(fields: [calibrationId], references: [id], onDelete: SetNull)
+  @@index([samplingPlanId, status, measuredAt])
+  @@index([exposureAgentId])
+  @@index([instrumentId, measuredAt])
+  @@index([calibrationId])
+}
+
+model MeasurementInstrument {
+  id                         String                      @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  code                       String
+  type                       MeasurementInstrumentType
+  status                     MeasurementInstrumentStatus @default(AVAILABLE)
+  manufacturer               String?
+  model                      String?
+  serialNumber               String?
+  patrimonyNumber            String?
+  measurementRange           String?
+  resolution                 String?
+  currentLocation            String?
+  currentHolder              String?
+  calibrationRequired        Boolean                     @default(true)
+  nextCalibrationAt          DateTime?
+  active                     Boolean                     @default(true)
+  metadata                   Json                        @default("{}")
+  createdAt                  DateTime                    @default(now())
+  updatedAt                  DateTime                    @updatedAt
+  tenant                     Tenant                      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?                    @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  calibrations               InstrumentCalibration[]
+  events                     InstrumentEvent[]
+  measurements               HygieneMeasurement[]
+  @@unique([tenantId, code])
+  @@unique([tenantId, serialNumber])
+  @@index([tenantId, type, status])
+  @@index([companyId, active])
+  @@index([nextCalibrationAt])
+}
+
+model InstrumentCalibration {
+  id                         String                      @id @default(uuid())
+  instrumentId               String
+  certificateFileId          String?
+  certificateNumber          String
+  laboratory                 String
+  accredited                 Boolean                     @default(false)
+  calibratedAt               DateTime
+  validUntil                 DateTime
+  status                     InstrumentCalibrationStatus @default(PENDING)
+  result                     String?
+  uncertainty                Decimal?                    @db.Decimal(18, 6)
+  conditions                 Json                        @default("{}")
+  notes                      String?
+  createdById                String?
+  createdAt                  DateTime                    @default(now())
+  updatedAt                  DateTime                    @updatedAt
+  instrument                 MeasurementInstrument       @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  certificateFile            FileObject?                 @relation(fields: [certificateFileId], references: [id], onDelete: SetNull)
+  measurements               HygieneMeasurement[]
+  @@unique([instrumentId, certificateNumber])
+  @@index([instrumentId, validUntil, status])
+  @@index([certificateFileId])
+}
+
+model InstrumentEvent {
+  id                         String              @id @default(uuid())
+  instrumentId               String
+  workProjectId              String?
+  type                       InstrumentEventType
+  occurredAt                 DateTime            @default(now())
+  dueAt                      DateTime?
+  fromLocation               String?
+  toLocation                 String?
+  fromHolder                 String?
+  toHolder                   String?
+  notes                      String?
+  evidence                   Json                @default("[]")
+  createdById                String?
+  createdAt                  DateTime            @default(now())
+  instrument                 MeasurementInstrument @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  @@index([instrumentId, occurredAt])
+  @@index([workProjectId, occurredAt])
+  @@index([type, dueAt])
+}
+
+model HygieneAuditRun {
+  id                         String             @id @default(uuid())
+  hygieneProgramId           String
+  status                     HygieneAuditStatus
+  score                      Int
+  findings                   Json               @default("[]")
+  snapshot                   Json               @default("{}")
+  createdById                String?
+  createdAt                  DateTime           @default(now())
+  hygieneProgram             OccupationalHygieneProgram @relation(fields: [hygieneProgramId], references: [id], onDelete: Cascade)
+  @@index([hygieneProgramId, createdAt])
+}
+
+model ErgonomicsProgram {
+  id                    String                   @id @default(uuid())
+  tenantId              String
+  companyId             String
+  workProjectId         String                   @unique
+  title                 String
+  status                ErgonomicsProgramStatus @default(DRAFT)
+  stage                 ErgonomicAssessmentStage @default(AEP)
+  scope                 String?
+  referenceDate         DateTime                 @default(now())
+  responsibleUserId     String?
+  methodology           Json                     @default("{}")
+  legalReferences       Json                     @default("[]")
+  limitations           Json                     @default("[]")
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  tenant                Tenant                   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company               Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject           WorkProject              @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  demands               ErgonomicDemand[]
+  workSituations        ErgonomicWorkSituation[]
+  participations        ErgonomicParticipation[]
+  assessments           ErgonomicAssessment[]
+  findings              ErgonomicFinding[]
+  preliminaryDecisions  ErgonomicPreliminaryDecision[]
+  audits                ErgonomicsAuditRun[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, status])
+}
+
+model ErgonomicDemand {
+  id                    String                @id @default(uuid())
+  ergonomicsProgramId   String
+  source                ErgonomicDemandSource
+  title                 String
+  description           String
+  triggerDate           DateTime?
+  sourceType            String?
+  sourceId              String?
+  sourcePage            Int?
+  confidence            Int?
+  status                String                @default("OPEN")
+  createdById           String?
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  ergonomicsProgram     ErgonomicsProgram     @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  @@index([ergonomicsProgramId, status, createdAt])
+}
+
+model ErgonomicWorkSituation {
+  id                    String                @id @default(uuid())
+  ergonomicsProgramId   String
+  establishmentId       String?
+  sectorId              String?
+  gheId                 String?
+  jobFunctionId         String?
+  workstationId         String?
+  inspectionId          String?
+  title                 String
+  prescribedWork        String?
+  actualWork            String?
+  activities            Json                  @default("[]")
+  variability           Json                  @default("[]")
+  strategies            Json                  @default("[]")
+  constraints           Json                  @default("[]")
+  workOrganization      Json                  @default("{}")
+  cognitiveDemands      Json                  @default("{}")
+  psychosocialFactors   Json                  @default("{}")
+  environmentalConditions Json                @default("{}")
+  population            Json                  @default("{}")
+  shift                  String?
+  taskDurationMinutes   Int?
+  cyclesPerHour         Float?
+  breaks                String?
+  notes                 String?
+  sourceType            String?
+  sourceId              String?
+  sourcePage            Int?
+  confidence            Int?
+  createdById           String?
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  ergonomicsProgram     ErgonomicsProgram     @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  assessments           ErgonomicAssessment[]
+  findings              ErgonomicFinding[]
+  participations        ErgonomicParticipation[]
+  @@index([ergonomicsProgramId, createdAt])
+  @@index([sectorId, gheId, jobFunctionId])
+  @@index([inspectionId])
+}
+
+model ErgonomicParticipation {
+  id                    String                  @id @default(uuid())
+  ergonomicsProgramId   String
+  workSituationId       String?
+  kind                  WorkerParticipationKind
+  title                 String
+  occurredAt            DateTime                @default(now())
+  participantCount      Int                     @default(0)
+  groups                Json                    @default("[]")
+  summary               String?
+  outcomes              Json                    @default("[]")
+  confidential          Boolean                 @default(false)
+  sourceType            String?
+  sourceId              String?
+  createdById           String?
+  createdAt             DateTime                @default(now())
+  ergonomicsProgram     ErgonomicsProgram       @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  workSituation         ErgonomicWorkSituation? @relation(fields: [workSituationId], references: [id], onDelete: SetNull)
+  @@index([ergonomicsProgramId, occurredAt])
+  @@index([workSituationId])
+}
+
+model ErgonomicAssessment {
+  id                    String                    @id @default(uuid())
+  ergonomicsProgramId   String
+  workSituationId       String
+  method                ErgonomicMethodType
+  stage                 ErgonomicAssessmentStage @default(AET)
+  status                ErgonomicAssessmentStatus @default(DRAFT)
+  applicability         String?
+  inputs                Json                      @default("{}")
+  outputs               Json                      @default("{}")
+  score                 Float?
+  classification        String?
+  engineVersion         String?
+  limitations           Json                      @default("[]")
+  sourceType            String?
+  sourceId              String?
+  sourcePage            Int?
+  confidence            Int?
+  reviewedById          String?
+  reviewedAt            DateTime?
+  createdById           String?
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+  ergonomicsProgram     ErgonomicsProgram         @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  workSituation         ErgonomicWorkSituation    @relation(fields: [workSituationId], references: [id], onDelete: Cascade)
+  findings              ErgonomicFinding[]
+  @@index([ergonomicsProgramId, method, status])
+  @@index([workSituationId, createdAt])
+}
+
+model ErgonomicFinding {
+  id                    String                   @id @default(uuid())
+  ergonomicsProgramId   String
+  workSituationId       String?
+  assessmentId          String?
+  dimension             ErgonomicWorkDimension
+  code                  String
+  title                 String
+  description           String
+  evidence              Json                     @default("[]")
+  severity              Int                      @default(1)
+  probability           Int                      @default(1)
+  score                 Float                    @default(1)
+  level                 RiskLevel                @default(VERY_LOW)
+  status                ErgonomicFindingStatus   @default(IDENTIFIED)
+  recommendation        String?
+  riskId                String?
+  actionItemId          String?
+  sourceType            String?
+  sourceId              String?
+  sourcePage            Int?
+  confidence            Int?
+  reviewedById          String?
+  reviewedAt            DateTime?
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  ergonomicsProgram     ErgonomicsProgram        @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  workSituation         ErgonomicWorkSituation?  @relation(fields: [workSituationId], references: [id], onDelete: SetNull)
+  assessment            ErgonomicAssessment?     @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
+  @@unique([ergonomicsProgramId, code])
+  @@index([ergonomicsProgramId, level, status])
+  @@index([workSituationId])
+}
+
+model ErgonomicPreliminaryDecision {
+  id                    String                    @id @default(uuid())
+  ergonomicsProgramId   String
+  conclusion            AepConclusion            @default(INCONCLUSIVE)
+  rationale             String
+  requiresAet           Boolean                  @default(false)
+  status                TechnicalConclusionStatus @default(DRAFT)
+  approvedById          String?
+  approvedAt            DateTime?
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+  ergonomicsProgram     ErgonomicsProgram         @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  @@index([ergonomicsProgramId, status, createdAt])
+}
+
+model ErgonomicsAuditRun {
+  id                    String                 @id @default(uuid())
+  ergonomicsProgramId   String
+  status                ErgonomicsAuditStatus
+  score                 Int
+  findings              Json                   @default("[]")
+  snapshot              Json                   @default("{}")
+  createdById           String?
+  createdAt             DateTime               @default(now())
+  ergonomicsProgram     ErgonomicsProgram      @relation(fields: [ergonomicsProgramId], references: [id], onDelete: Cascade)
+  @@index([ergonomicsProgramId, createdAt])
+}
+
+model AIThread {
+  id            String           @id @default(uuid())
+  tenantId      String
+  companyId     String?
+  workProjectId String?
+  createdById   String?
+  title         String
+  status        AIThreadStatus   @default(ACTIVE)
+  provider      String
+  model         String
+  autonomy      AIAutonomyMode   @default(ASSISTANT)
+  context       Json             @default("{}")
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  tenant        Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company       Company?         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject   WorkProject?     @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  messages      AIMessage[]
+  fieldVisits   FieldVisit[]
+  toolExecutions AIToolExecution[]
+  usageRecords  AIUsageRecord[]
+  @@index([tenantId, status, updatedAt])
+  @@index([workProjectId, updatedAt])
+  @@index([companyId, updatedAt])
+}
+
+model AIMessage {
+  id                String        @id @default(uuid())
+  aiThreadId        String
+  role              AIMessageRole
+  content           String
+  providerMessageId String?
+  toolName          String?
+  toolCallId        String?
+  inputTokens       Int           @default(0)
+  outputTokens      Int           @default(0)
+  estimatedCost     Decimal?      @db.Decimal(14, 6)
+  metadata          Json          @default("{}")
+  createdAt         DateTime      @default(now())
+  aiThread          AIThread      @relation(fields: [aiThreadId], references: [id], onDelete: Cascade)
+  attachments       AIMessageAttachment[]
+  @@index([aiThreadId, createdAt])
+  @@index([toolCallId])
+}
+
+model AIToolExecution {
+  id                String                @id @default(uuid())
+  tenantId          String
+  workProjectId     String?
+  aiThreadId        String?
+  approvalRequestId String?
+  changeSetId       String?
+  toolName          String
+  riskLevel         AIRiskLevel           @default(LOW)
+  status            AIToolExecutionStatus @default(PLANNED)
+  arguments         Json                  @default("{}")
+  result            Json?
+  error             String?
+  startedAt         DateTime?
+  completedAt       DateTime?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  tenant            Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  workProject       WorkProject?          @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  aiThread          AIThread?             @relation(fields: [aiThreadId], references: [id], onDelete: Cascade)
+  approvalRequest   ApprovalRequest?      @relation(fields: [approvalRequestId], references: [id], onDelete: SetNull)
+  changeSet          ChangeSet?            @relation(fields: [changeSetId], references: [id], onDelete: SetNull)
+  @@index([tenantId, status, createdAt])
+  @@index([workProjectId, status])
+  @@index([aiThreadId, createdAt])
+  @@index([changeSetId])
+}
+
+model AIUsageRecord {
+  id            String       @id @default(uuid())
+  tenantId      String
+  workProjectId String?
+  aiThreadId    String?
+  userId        String?
+  provider      String
+  model         String
+  purpose       String
+  inputTokens   Int          @default(0)
+  outputTokens  Int          @default(0)
+  estimatedCost Decimal?     @db.Decimal(14, 6)
+  metadata      Json         @default("{}")
+  createdAt     DateTime     @default(now())
+  tenant        Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  workProject   WorkProject? @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  aiThread      AIThread?    @relation(fields: [aiThreadId], references: [id], onDelete: Cascade)
+  @@index([tenantId, createdAt])
+  @@index([workProjectId, createdAt])
+  @@index([userId, createdAt])
+}
+
+
+
+enum TrainingProgramStatus {
+  DRAFT
+  ACTIVE
+  IN_REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum TrainingCourseStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TrainingModality {
+  PRESENTIAL
+  LIVE_ONLINE
+  E_LEARNING
+  BLENDED
+}
+
+enum TrainingContentKind {
+  TEXT
+  VIDEO
+  AUDIO
+  PDF
+  PRESENTATION
+  EXTERNAL_LINK
+  LIVE_SESSION
+  PRACTICAL_ACTIVITY
+}
+
+enum TrainingLessonStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  WAIVED
+}
+
+enum TrainingAssessmentType {
+  DIAGNOSTIC
+  THEORETICAL
+  PRACTICAL
+  RECERTIFICATION
+}
+
+enum TrainingQuestionType {
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  SHORT_TEXT
+}
+
+enum TrainingAttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  PENDING_MANUAL_REVIEW
+  PASSED
+  FAILED
+  CANCELLED
+}
+
+enum TrainingPathStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TrainingEnrollmentStatus {
+  ASSIGNED
+  NOT_STARTED
+  IN_PROGRESS
+  AWAITING_PRACTICAL
+  AWAITING_REVIEW
+  COMPLETED
+  FAILED
+  EXPIRED
+  CANCELLED
+}
+
+enum TrainingRequirementSource {
+  MANUAL
+  JOB_FUNCTION
+  GHE
+  RISK
+  EXPOSURE
+  EQUIPMENT
+  LEGAL_RULE
+  AI_SUGGESTION
+}
+
+enum TrainingSessionStatus {
+  DRAFT
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum TrainingPracticalStatus {
+  PENDING
+  IN_PROGRESS
+  APPROVED
+  REJECTED
+}
+
+enum TrainingCertificateStatus {
+  ISSUED
+  EXPIRED
+  REVOKED
+}
+
+enum TrainingAccessAction {
+  LOGIN
+  LESSON_OPENED
+  LESSON_HEARTBEAT
+  LESSON_COMPLETED
+  ASSESSMENT_STARTED
+  ASSESSMENT_SUBMITTED
+  LIVE_CHECK_IN
+  LIVE_CHECK_OUT
+  MATERIAL_DOWNLOADED
+}
+
+enum CompetencyStatus {
+  PENDING
+  VALID
+  EXPIRING
+  EXPIRED
+  SUSPENDED
+  REVOKED
+}
+
+enum TrainingAuditStatus {
+  PASSED
+  PASSED_WITH_WARNINGS
+  FAILED
+}
+
+model TrainingProgram {
+  id                         String                @id @default(uuid())
+  tenantId                   String
+  companyId                  String
+  workProjectId              String                @unique
+  title                      String
+  status                     TrainingProgramStatus @default(DRAFT)
+  scope                      String?
+  targetAudience             Json                  @default("[]")
+  pedagogicalProject         Json                  @default("{}")
+  modality                   TrainingModality      @default(BLENDED)
+  workloadMinutes            Int                   @default(0)
+  practicalWorkloadMinutes   Int                   @default(0)
+  validityDays               Int?
+  minimumScore               Decimal               @default(70) @db.Decimal(5, 2)
+  maxAttempts                Int                   @default(3)
+  logsRetentionDays          Int                   @default(1825)
+  instructorName             String?
+  technicalResponsibleName   String?
+  approvedAt                 DateTime?
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  tenant                     Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company               @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  workProject                WorkProject           @relation(fields: [workProjectId], references: [id], onDelete: Cascade)
+  courses                    TrainingProgramCourse[]
+  enrollments                TrainingEnrollment[]
+  sessions                   TrainingSession[]
+  audits                     TrainingAuditRun[]
+  @@index([tenantId, status, updatedAt])
+  @@index([companyId, status])
+}
+
+model TrainingCourse {
+  id                         String                @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  code                       String
+  title                      String
+  description                String?
+  version                    Int                   @default(1)
+  status                     TrainingCourseStatus  @default(DRAFT)
+  modality                   TrainingModality      @default(E_LEARNING)
+  workloadMinutes            Int
+  practicalWorkloadMinutes   Int                   @default(0)
+  validityDays               Int?
+  minimumScore               Decimal               @default(70) @db.Decimal(5, 2)
+  maxAttempts                Int                   @default(3)
+  requiresPractical          Boolean               @default(false)
+  objectives                 Json                  @default("[]")
+  prerequisites              Json                  @default("[]")
+  contentProgram             Json                  @default("[]")
+  legalReferences            Json                  @default("[]")
+  accessibility              Json                  @default("{}")
+  metadata                   Json                  @default("{}")
+  publishedAt                DateTime?
+  archivedAt                 DateTime?
+  createdById                String?
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  tenant                     Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?              @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  modules                    TrainingModule[]
+  assessments                TrainingAssessment[]
+  programLinks               TrainingProgramCourse[]
+  pathLinks                  TrainingPathCourse[]
+  requirementRules           TrainingRequirementRule[]
+  enrollments                TrainingEnrollment[]
+  sessions                   TrainingSession[]
+  competencyRequirements     CompetencyRequirement[]
+  @@unique([tenantId, code, version])
+  @@index([tenantId, status, title])
+  @@index([companyId, status])
+}
+
+model TrainingProgramCourse {
+  id                         String          @id @default(uuid())
+  trainingProgramId          String
+  courseId                   String
+  order                      Int             @default(0)
+  required                   Boolean         @default(true)
+  trainingProgram            TrainingProgram @relation(fields: [trainingProgramId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@unique([trainingProgramId, courseId])
+  @@index([trainingProgramId, order])
+}
+
+model TrainingModule {
+  id                         String           @id @default(uuid())
+  courseId                   String
+  code                       String
+  title                      String
+  description                String?
+  order                      Int              @default(0)
+  mandatory                  Boolean          @default(true)
+  estimatedMinutes           Int              @default(0)
+  course                     TrainingCourse   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons                    TrainingLesson[]
+  @@unique([courseId, code])
+  @@index([courseId, order])
+}
+
+model TrainingLesson {
+  id                         String              @id @default(uuid())
+  moduleId                   String
+  code                       String
+  title                      String
+  description                String?
+  order                      Int                 @default(0)
+  kind                       TrainingContentKind
+  estimatedMinutes           Int                 @default(0)
+  mandatory                  Boolean             @default(true)
+  content                    Json                @default("{}")
+  completionCriteria         Json                @default("{}")
+  fileId                     String?
+  externalUrl                String?
+  module                     TrainingModule      @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  file                       FileObject?          @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  progress                   TrainingLessonProgress[]
+  accessLogs                 TrainingAccessLog[]
+  @@unique([moduleId, code])
+  @@index([moduleId, order])
+}
+
+model TrainingAssessment {
+  id                         String                 @id @default(uuid())
+  courseId                   String
+  title                      String
+  type                       TrainingAssessmentType @default(THEORETICAL)
+  passingScore               Decimal                @default(70) @db.Decimal(5, 2)
+  maxAttempts                Int                    @default(3)
+  questionCount              Int?
+  randomizeQuestions         Boolean                @default(true)
+  randomizeOptions           Boolean                @default(true)
+  active                     Boolean                @default(true)
+  instructions               String?
+  course                     TrainingCourse         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  questions                  TrainingQuestion[]
+  attempts                   TrainingAssessmentAttempt[]
+  @@index([courseId, active])
+}
+
+model TrainingQuestion {
+  id                         String               @id @default(uuid())
+  assessmentId               String
+  code                       String
+  type                       TrainingQuestionType
+  prompt                     String
+  options                    Json                 @default("[]")
+  correctAnswer              Json                 @default("null")
+  explanation                String?
+  weight                     Decimal              @default(1) @db.Decimal(8, 3)
+  order                      Int                  @default(0)
+  active                     Boolean              @default(true)
+  assessment                 TrainingAssessment   @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  @@unique([assessmentId, code])
+  @@index([assessmentId, active, order])
+}
+
+model TrainingPath {
+  id                         String             @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  code                       String
+  title                      String
+  description                String?
+  status                     TrainingPathStatus @default(DRAFT)
+  validityDays               Int?
+  metadata                   Json               @default("{}")
+  createdAt                  DateTime           @default(now())
+  updatedAt                  DateTime           @updatedAt
+  tenant                     Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?           @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  courses                    TrainingPathCourse[]
+  requirementRules           TrainingRequirementRule[]
+  enrollments                TrainingEnrollment[]
+  @@unique([tenantId, code])
+  @@index([companyId, status])
+}
+
+model TrainingPathCourse {
+  id                         String         @id @default(uuid())
+  pathId                     String
+  courseId                   String
+  order                      Int            @default(0)
+  required                   Boolean        @default(true)
+  path                       TrainingPath   @relation(fields: [pathId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@unique([pathId, courseId])
+  @@index([pathId, order])
+}
+
+model TrainingRequirementRule {
+  id                         String                    @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  courseId                   String?
+  pathId                     String?
+  jobFunctionId              String?
+  gheId                      String?
+  exposureAgentId            String?
+  riskCategory               String?
+  source                     TrainingRequirementSource
+  mandatory                  Boolean                   @default(true)
+  recurrenceDays             Int?
+  legalBasis                 Json                      @default("[]")
+  conditions                 Json                      @default("{}")
+  active                     Boolean                   @default(true)
+  createdAt                  DateTime                  @default(now())
+  updatedAt                  DateTime                  @updatedAt
+  tenant                     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse?           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  path                       TrainingPath?             @relation(fields: [pathId], references: [id], onDelete: Cascade)
+  jobFunction                JobFunction?              @relation(fields: [jobFunctionId], references: [id], onDelete: Cascade)
+  ghe                        GHE?                      @relation(fields: [gheId], references: [id], onDelete: Cascade)
+  enrollments                TrainingEnrollment[]
+  @@index([tenantId, active, source])
+  @@index([companyId, active])
+  @@index([jobFunctionId, gheId])
+  @@index([courseId, pathId])
+}
+
+model TrainingEnrollment {
+  id                         String                   @id @default(uuid())
+  tenantId                   String
+  companyId                  String
+  trainingProgramId          String
+  workerId                   String
+  courseId                   String
+  pathId                     String?
+  requirementRuleId          String?
+  status                     TrainingEnrollmentStatus @default(ASSIGNED)
+  source                     TrainingRequirementSource @default(MANUAL)
+  assignedAt                 DateTime                 @default(now())
+  dueAt                      DateTime?
+  startedAt                  DateTime?
+  completedAt                DateTime?
+  expiresAt                  DateTime?
+  progress                   Int                      @default(0)
+  finalScore                 Decimal?                 @db.Decimal(5, 2)
+  assignedById               String?
+  accessTokenHash            String?                  @unique
+  accessTokenIssuedAt        DateTime?
+  accessTokenExpiresAt       DateTime?
+  lastAccessAt               DateTime?
+  metadata                   Json                     @default("{}")
+  createdAt                  DateTime                 @default(now())
+  updatedAt                  DateTime                 @updatedAt
+  tenant                     Tenant                   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company                  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  trainingProgram            TrainingProgram          @relation(fields: [trainingProgramId], references: [id], onDelete: Cascade)
+  worker                     OccupationalWorker       @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  path                       TrainingPath?            @relation(fields: [pathId], references: [id], onDelete: SetNull)
+  requirementRule            TrainingRequirementRule? @relation(fields: [requirementRuleId], references: [id], onDelete: SetNull)
+  lessonProgress             TrainingLessonProgress[]
+  attempts                   TrainingAssessmentAttempt[]
+  practicalEvaluations       TrainingPracticalEvaluation[]
+  attendances                TrainingAttendance[]
+  accessLogs                 TrainingAccessLog[]
+  certificate                TrainingCertificate?
+  @@index([tenantId, status, dueAt])
+  @@index([trainingProgramId, status, dueAt])
+  @@index([companyId, workerId, status])
+  @@index([courseId, status])
+  @@index([pathId, status])
+}
+
+model TrainingLessonProgress {
+  id                         String               @id @default(uuid())
+  enrollmentId               String
+  lessonId                   String
+  status                     TrainingLessonStatus @default(NOT_STARTED)
+  startedAt                  DateTime?
+  completedAt                DateTime?
+  activeSeconds              Int                  @default(0)
+  lastPositionSeconds        Int                  @default(0)
+  evidence                   Json                 @default("{}")
+  updatedAt                  DateTime             @updatedAt
+  enrollment                 TrainingEnrollment   @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lesson                     TrainingLesson       @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  @@unique([enrollmentId, lessonId])
+  @@index([lessonId, status])
+}
+
+model TrainingAssessmentAttempt {
+  id                         String                @id @default(uuid())
+  enrollmentId               String
+  assessmentId               String
+  attemptNumber              Int
+  status                     TrainingAttemptStatus @default(IN_PROGRESS)
+  answers                    Json                  @default("{}")
+  score                      Decimal?              @db.Decimal(5, 2)
+  passed                     Boolean?
+  manualReviewRequired       Boolean               @default(false)
+  startedAt                  DateTime              @default(now())
+  submittedAt                DateTime?
+  reviewedAt                 DateTime?
+  reviewedById               String?
+  feedback                   String?
+  enrollment                 TrainingEnrollment    @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  assessment                 TrainingAssessment    @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  @@unique([enrollmentId, assessmentId, attemptNumber])
+  @@index([assessmentId, status])
+  @@index([enrollmentId, submittedAt])
+}
+
+model TrainingPracticalEvaluation {
+  id                         String                  @id @default(uuid())
+  enrollmentId               String
+  title                      String
+  status                     TrainingPracticalStatus @default(PENDING)
+  score                      Decimal?                @db.Decimal(5, 2)
+  checklist                  Json                    @default("[]")
+  evidenceFileId             String?
+  evaluatorUserId            String?
+  evaluatedAt                DateTime?
+  approvedAt                 DateTime?
+  notes                      String?
+  enrollment                 TrainingEnrollment      @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  evidenceFile               FileObject?             @relation(fields: [evidenceFileId], references: [id], onDelete: SetNull)
+  @@index([enrollmentId, status])
+  @@index([evaluatorUserId, evaluatedAt])
+}
+
+model TrainingSession {
+  id                         String                @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  trainingProgramId          String
+  courseId                   String
+  title                      String
+  modality                   TrainingModality
+  status                     TrainingSessionStatus @default(DRAFT)
+  startsAt                   DateTime
+  endsAt                     DateTime
+  location                   String?
+  meetingUrl                 String?
+  instructorName             String?
+  capacity                   Int?
+  practicalPart              Boolean               @default(false)
+  materials                  Json                  @default("[]")
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  tenant                     Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?              @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  trainingProgram            TrainingProgram       @relation(fields: [trainingProgramId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  attendances                TrainingAttendance[]
+  @@index([tenantId, status, startsAt])
+  @@index([trainingProgramId, startsAt])
+  @@index([companyId, startsAt])
+}
+
+model TrainingAttendance {
+  id                         String             @id @default(uuid())
+  sessionId                  String
+  workerId                   String
+  enrollmentId               String?
+  checkInAt                  DateTime?
+  checkOutAt                 DateTime?
+  presenceMinutes            Int                @default(0)
+  present                    Boolean            @default(false)
+  signature                  Json               @default("{}")
+  session                    TrainingSession    @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  worker                     OccupationalWorker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  enrollment                 TrainingEnrollment? @relation(fields: [enrollmentId], references: [id], onDelete: SetNull)
+  @@unique([sessionId, workerId])
+  @@index([workerId, present])
+}
+
+model TrainingAccessLog {
+  id                         String               @id @default(uuid())
+  enrollmentId               String
+  lessonId                   String?
+  action                     TrainingAccessAction
+  durationSeconds            Int                  @default(0)
+  sessionTokenHash           String?
+  ipHash                     String?
+  deviceHash                 String?
+  metadata                   Json                 @default("{}")
+  occurredAt                 DateTime             @default(now())
+  enrollment                 TrainingEnrollment   @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lesson                     TrainingLesson?      @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  @@index([enrollmentId, occurredAt])
+  @@index([lessonId, action])
+}
+
+model TrainingCertificate {
+  id                         String                    @id @default(uuid())
+  tenantId                   String
+  companyId                  String
+  workerId                   String
+  enrollmentId               String                    @unique
+  code                       String                    @unique
+  verificationHash           String                    @unique
+  status                     TrainingCertificateStatus @default(ISSUED)
+  issuedAt                   DateTime                  @default(now())
+  expiresAt                  DateTime?
+  workloadMinutes            Int
+  practicalWorkloadMinutes   Int                       @default(0)
+  finalScore                 Decimal?                  @db.Decimal(5, 2)
+  courseTitle                String
+  courseVersion              Int
+  instructorName             String?
+  technicalResponsibleName   String?
+  fileId                     String?
+  qrPayload                  Json                      @default("{}")
+  revokedAt                  DateTime?
+  revokedReason              String?
+  issuedById                 String?
+  tenant                     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company                   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  worker                     OccupationalWorker        @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  enrollment                 TrainingEnrollment        @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  file                       FileObject?                @relation(fields: [fileId], references: [id], onDelete: SetNull)
+  workerCompetencies         WorkerCompetency[]
+  @@index([tenantId, status, expiresAt])
+  @@index([companyId, workerId])
+}
+
+model CompetencyDefinition {
+  id                         String                  @id @default(uuid())
+  tenantId                   String
+  companyId                  String?
+  code                       String
+  name                       String
+  category                   String
+  description                String?
+  validityDays               Int?
+  evidenceRequirements       Json                    @default("[]")
+  active                     Boolean                 @default(true)
+  createdAt                  DateTime                @default(now())
+  updatedAt                  DateTime                @updatedAt
+  tenant                     Tenant                  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company?                @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  requirements               CompetencyRequirement[]
+  workerCompetencies         WorkerCompetency[]
+  @@unique([tenantId, code])
+  @@index([companyId, active])
+}
+
+model CompetencyRequirement {
+  id                         String                @id @default(uuid())
+  competencyId               String
+  jobFunctionId              String?
+  gheId                      String?
+  courseId                   String?
+  mandatory                  Boolean               @default(true)
+  conditions                 Json                  @default("{}")
+  competency                 CompetencyDefinition  @relation(fields: [competencyId], references: [id], onDelete: Cascade)
+  jobFunction                JobFunction?          @relation(fields: [jobFunctionId], references: [id], onDelete: Cascade)
+  ghe                        GHE?                  @relation(fields: [gheId], references: [id], onDelete: Cascade)
+  course                     TrainingCourse?       @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  @@index([competencyId, mandatory])
+  @@index([jobFunctionId, gheId])
+}
+
+model WorkerCompetency {
+  id                         String                @id @default(uuid())
+  tenantId                   String
+  companyId                  String
+  workerId                   String
+  competencyId               String
+  certificateId              String?
+  status                     CompetencyStatus      @default(PENDING)
+  source                     String
+  validFrom                  DateTime?
+  validUntil                 DateTime?
+  verifiedById               String?
+  verifiedAt                 DateTime?
+  notes                      String?
+  metadata                   Json                  @default("{}")
+  createdAt                  DateTime              @default(now())
+  updatedAt                  DateTime              @updatedAt
+  tenant                     Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  company                    Company               @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  worker                     OccupationalWorker    @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  competency                 CompetencyDefinition  @relation(fields: [competencyId], references: [id], onDelete: Cascade)
+  certificate                TrainingCertificate?  @relation(fields: [certificateId], references: [id], onDelete: SetNull)
+  @@unique([workerId, competencyId])
+  @@index([tenantId, status, validUntil])
+  @@index([companyId, workerId])
+}
+
+model TrainingAuditRun {
+  id                         String              @id @default(uuid())
+  trainingProgramId          String
+  status                     TrainingAuditStatus
+  score                      Int
+  findings                   Json                @default("[]")
+  snapshot                   Json                @default("{}")
+  createdById                String?
+  createdAt                  DateTime            @default(now())
+  trainingProgram            TrainingProgram     @relation(fields: [trainingProgramId], references: [id], onDelete: Cascade)
+  @@index([trainingProgramId, createdAt])
+}
+
+enum OperationalProgramStatus {
+  DRAFT
+  ACTIVE
+  IN_REVIEW
+  COMPLETED
+  ARCHIVED
+}
+
+enum OperationalRecordStatus {
+  DRAFT
+  ACTIVE
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  CLOSED
+  CANCELLED
+  EXPIRED
+}
+
+enum PpeTransactionType {
+  ISSUE
+  RETURN
+  EXCHANGE
+  LOSS
+  DAMAGE
+  INSPECTION
+}
+
+enum SafetyIncidentKind {
+  ACCIDENT
+  OCCUPATIONAL_DISEASE
+  NEAR_MISS
+  UNSAFE_CONDITION
+  PROPERTY_DAMAGE
+  ENVIRONMENTAL
+}
+
+enum IncidentInvestigationMethod {
+  FIVE_WHYS
+  BARRIER_ANALYSIS
+  CAUSE_TREE
+  BOW_TIE
+  CUSTOM
+}
+
+enum WorkPermitType {
+  WORK_AT_HEIGHT
+  CONFINED_SPACE
+  ELECTRICAL
+  HOT_WORK
+  EXCAVATION
+  LIFTING
+  MAINTENANCE
+  CHEMICAL
+  LOCKOUT_TAGOUT
+  OTHER
+}
+
+enum WorkPermitStatus {
+  DRAFT
+  PENDING_APPROVAL
+  AUTHORIZED
+  ACTIVE
+  SUSPENDED
+  CLOSED
+  CANCELLED
+  EXPIRED
+}
+
+enum MachineAssetStatus {
+  ACTIVE
+  RESTRICTED
+  BLOCKED
+  MAINTENANCE
+  DECOMMISSIONED
+}
+
+enum EmergencyDrillStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum CipaCycleStatus {
+  PLANNING
+  ELECTION
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum ContractorComplianceStatus {
+  PENDING
+  COMPLIANT
+  PARTIAL
+  NON_COMPLIANT
+  BLOCKED
+  EXPIRED
+}
+
+enum ComplianceObligationStatus {
+  NOT_APPLICABLE
+  PENDING
+  IN_PROGRESS
+  COMPLIANT
+  NON_COMPLIANT
+  OVERDUE
+  WAIVED
+}
+
+enum EsocialEventType {
+  S2210
+  S2220
+  S2240
+}
+
+enum EsocialEnvironment {
+  RESTRICTED
+  PRODUCTION
+}
+
+enum EsocialQueueStatus {
+  DRAFT
+  VALIDATED
+  QUEUED
+  SENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+enum BillingInterval {
+  MONTHLY
+  YEARLY
+  ONE_TIME
+}
+
+enum SubscriptionStatus {
+  TRIAL
+  ACTIVE
+  PAST_DUE
+  SUSPENDED
+  CANCELLED
+  EXPIRED
+}
+
+enum BillingInvoiceStatus {
+  DRAFT
+  OPEN
+  PAID
+  VOID
+  OVERDUE
+  REFUNDED
+}
+
+enum BillingUsageMetric {
+  AI_REQUESTS
+  AI_TOKENS
+  STORAGE_BYTES
+  ACTIVE_COMPANIES
+  ACTIVE_USERS
+  DOCUMENTS
+  TRAINING_ENROLLMENTS
+}
+
+enum PaymentProvider {
+  MANUAL
+  ASAAS
+  MERCADO_PAGO
+  STRIPE
+  CUSTOM
+}
+
+enum PaymentEventStatus {
+  RECEIVED
+  PROCESSING
+  PROCESSED
+  FAILED
+  IGNORED
+}
+
+model OperationalSstProgram {
+  id                   String                   @id @default(uuid())
+  tenantId             String
+  companyId            String
+  workProjectId        String                   @unique
+  title                String
+  status               OperationalProgramStatus @default(ACTIVE)
+  scope                String?
+  responsibleUserId    String?
+  nextReviewAt         DateTime?
+  metadata             Json                     @default("{}")
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  @@index([tenantId, companyId, status])
+  @@index([nextReviewAt, status])
+}
+
+model PpeCatalogItem {
+  id                   String       @id @default(uuid())
+  tenantId             String
+  companyId            String?
+  code                 String
+  name                 String
+  category             String
+  manufacturer         String?
+  model                String?
+  caNumber             String?
+  caExpiresAt          DateTime?
+  sizes                Json         @default("[]")
+  stockQuantity        Int          @default(0)
+  minimumStock         Int          @default(0)
+  unitCostCents        Int?
+  active               Boolean      @default(true)
+  metadata             Json         @default("{}")
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  @@unique([tenantId, code])
+  @@index([companyId, active])
+  @@index([caExpiresAt, active])
+}
+
+model PpeTransaction {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  workerId             String
+  ppeItemId            String
+  type                 PpeTransactionType
+  quantity             Int                @default(1)
+  size                 String?
+  occurredAt           DateTime           @default(now())
+  dueReturnAt          DateTime?
+  trainingConfirmed    Boolean            @default(false)
+  fitConfirmed         Boolean            @default(false)
+  signatureFileId      String?
+  evidenceFileId       String?
+  notes                String?
+  performedById        String?
+  metadata             Json               @default("{}")
+  createdAt            DateTime           @default(now())
+  @@index([tenantId, companyId, workerId, occurredAt])
+  @@index([ppeItemId, type, occurredAt])
+  @@index([operationalProgramId, occurredAt])
+}
+
+model SafetyIncidentRecord {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  kind                 SafetyIncidentKind
+  title                String
+  description          String
+  occurredAt           DateTime
+  reportedAt           DateTime           @default(now())
+  location             String?
+  severity             IncidentSeverity
+  status               IncidentStatus     @default(OPEN)
+  workerId             String?
+  immediateActions     Json               @default("[]")
+  catRequired          Boolean            @default(false)
+  catIssuedAt          DateTime?
+  esocialEventId       String?
+  investigatorUserId   String?
+  metadata             Json               @default("{}")
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  @@index([tenantId, companyId, status, occurredAt])
+  @@index([workerId, occurredAt])
+  @@index([catRequired, catIssuedAt])
+}
+
+model IncidentInvestigation {
+  id                   String                       @id @default(uuid())
+  incidentId           String                       @unique
+  method               IncidentInvestigationMethod
+  timeline             Json                         @default("[]")
+  interviews           Json                         @default("[]")
+  evidence             Json                         @default("[]")
+  immediateCauses      Json                         @default("[]")
+  rootCauses           Json                         @default("[]")
+  failedBarriers       Json                         @default("[]")
+  conclusions          String?
+  status               OperationalRecordStatus      @default(DRAFT)
+  approvedById         String?
+  approvedAt           DateTime?
+  createdAt            DateTime                     @default(now())
+  updatedAt            DateTime                     @updatedAt
+  @@index([status, approvedAt])
+}
+
+model WorkPermit {
+  id                   String           @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  type                 WorkPermitType
+  title                String
+  location             String
+  startsAt             DateTime
+  endsAt               DateTime
+  status               WorkPermitStatus @default(DRAFT)
+  riskAssessment       Json             @default("{}")
+  checklist            Json             @default("[]")
+  controls             Json             @default("[]")
+  workers              Json             @default("[]")
+  measurements         Json             @default("[]")
+  issuerUserId         String?
+  approverUserId       String?
+  approvedAt           DateTime?
+  closedAt             DateTime?
+  closureNotes         String?
+  qrCode               String?          @unique
+  metadata             Json             @default("{}")
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+  @@index([tenantId, companyId, status, startsAt])
+  @@index([operationalProgramId, status])
+}
+
+model MachineAsset {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  code                 String
+  name                 String
+  manufacturer         String?
+  model                String?
+  serialNumber         String?
+  sectorId             String?
+  location             String?
+  status               MachineAssetStatus @default(ACTIVE)
+  riskLevel            RiskLevel?
+  protections          Json               @default("[]")
+  safetyDevices        Json               @default("[]")
+  manuals              Json               @default("[]")
+  maintenancePlan      Json               @default("{}")
+  lockoutProcedure     Json               @default("{}")
+  lastInspectionAt     DateTime?
+  nextInspectionAt     DateTime?
+  responsibleUserId    String?
+  metadata             Json               @default("{}")
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  @@unique([tenantId, code])
+  @@index([companyId, status, nextInspectionAt])
+  @@index([operationalProgramId, riskLevel])
+}
+
+model ChemicalProduct {
+  id                   String       @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  productCode          String
+  name                 String
+  manufacturer         String?
+  casNumbers           Json         @default("[]")
+  sdsRevision          String?
+  sdsFileId            String?
+  hazardClasses        Json         @default("[]")
+  pictograms           Json         @default("[]")
+  sectors              Json         @default("[]")
+  storageRules         Json         @default("[]")
+  incompatibilities    Json         @default("[]")
+  exposureControls     Json         @default("[]")
+  emergencyMeasures    Json         @default("[]")
+  substitutionStatus   String?
+  active               Boolean      @default(true)
+  metadata             Json         @default("{}")
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  @@unique([tenantId, productCode])
+  @@index([companyId, active])
+  @@index([operationalProgramId, active])
+}
+
+model EmergencyPlan {
+  id                   String                  @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  title                String
+  status               OperationalRecordStatus @default(DRAFT)
+  scenarios            Json                    @default("[]")
+  responseTeams        Json                    @default("[]")
+  evacuationRoutes     Json                    @default("[]")
+  meetingPoints        Json                    @default("[]")
+  emergencyContacts    Json                    @default("[]")
+  equipment            Json                    @default("[]")
+  communicationPlan    Json                    @default("{}")
+  nextDrillAt          DateTime?
+  approvedById         String?
+  approvedAt           DateTime?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  @@index([tenantId, companyId, status])
+  @@index([nextDrillAt, status])
+}
+
+model EmergencyDrill {
+  id                   String               @id @default(uuid())
+  emergencyPlanId      String
+  scenario             String
+  occurredAt           DateTime
+  status               EmergencyDrillStatus @default(PLANNED)
+  participants         Int                  @default(0)
+  startTime            DateTime?
+  endTime              DateTime?
+  responseTimes        Json                 @default("{}")
+  findings             Json                 @default("[]")
+  improvements         Json                 @default("[]")
+  approvedById         String?
+  approvedAt           DateTime?
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+  @@index([emergencyPlanId, occurredAt])
+  @@index([status, occurredAt])
+}
+
+model CipaCycle {
+  id                   String          @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  title                String
+  startAt              DateTime
+  endAt                DateTime
+  status               CipaCycleStatus @default(PLANNING)
+  dimensioning         Json            @default("{}")
+  election             Json            @default("{}")
+  members              Json            @default("[]")
+  meetings             Json            @default("[]")
+  annualPlan           Json            @default("[]")
+  sipat                Json            @default("{}")
+  harassmentActions    Json            @default("[]")
+  metadata             Json            @default("{}")
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  @@index([tenantId, companyId, status])
+  @@index([startAt, endAt])
+}
+
+model ContractorCompany {
+  id                   String                     @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  legalName            String
+  taxId                String?
+  contractStart        DateTime?
+  contractEnd          DateTime?
+  status               ContractorComplianceStatus @default(PENDING)
+  responsibleName      String?
+  responsibleEmail     String?
+  workers              Json                       @default("[]")
+  documentRequirements Json                       @default("[]")
+  riskSharing          Json                       @default("[]")
+  accessRules          Json                       @default("[]")
+  complianceScore      Int                        @default(0)
+  blockReason          String?
+  metadata             Json                       @default("{}")
+  createdAt            DateTime                   @default(now())
+  updatedAt            DateTime                   @updatedAt
+  @@index([tenantId, companyId, status])
+  @@index([contractEnd, status])
+}
+
+model ComplianceObligation {
+  id                   String                     @id @default(uuid())
+  tenantId             String
+  companyId            String
+  operationalProgramId String
+  code                 String
+  title                String
+  source               String
+  sourceVersion        String?
+  applicability        String
+  frequency            String?
+  dueAt                DateTime?
+  status               ComplianceObligationStatus @default(PENDING)
+  responsibleUserId    String?
+  evidence             Json                       @default("[]")
+  waiverReason         String?
+  completedAt          DateTime?
+  metadata             Json                       @default("{}")
+  createdAt            DateTime                   @default(now())
+  updatedAt            DateTime                   @updatedAt
+  @@unique([operationalProgramId, code])
+  @@index([tenantId, companyId, status, dueAt])
+}
+
+model OperationalAuditRun {
+  id                   String       @id @default(uuid())
+  operationalProgramId String
+  status               String
+  score                Int
+  findings             Json         @default("[]")
+  snapshot             Json         @default("{}")
+  createdById          String?
+  createdAt            DateTime     @default(now())
+  @@index([operationalProgramId, createdAt])
+}
+
+model EsocialEventQueue {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  companyId            String
+  workerId             String?
+  eventType            EsocialEventType
+  environment          EsocialEnvironment @default(RESTRICTED)
+  layoutVersion        String             @default("S-1.3")
+  status               EsocialQueueStatus @default(DRAFT)
+  payload              Json
+  validationErrors     Json               @default("[]")
+  relatedEntityType    String
+  relatedEntityId      String
+  idempotencyKey       String             @unique
+  receiptNumber        String?
+  responsePayload      Json?
+  attempts             Int                @default(0)
+  nextAttemptAt        DateTime?
+  sentAt               DateTime?
+  acceptedAt           DateTime?
+  lastError            String?
+  createdById          String?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  @@index([tenantId, companyId, status, createdAt])
+  @@index([eventType, environment, status])
+}
+
+model CompanyPortalRequest {
+  id                   String                  @id @default(uuid())
+  tenantId             String
+  companyId            String
+  category             String
+  title                String
+  description          String
+  status               OperationalRecordStatus @default(ACTIVE)
+  priority             RiskLevel               @default(MODERATE)
+  requestedById        String?
+  assignedUserId       String?
+  dueAt                DateTime?
+  attachments          Json                    @default("[]")
+  resolution           String?
+  resolvedAt           DateTime?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  @@index([tenantId, companyId, status, dueAt])
+}
+
+model SaasPlan {
+  id                   String          @id @default(uuid())
+  code                 String          @unique
+  name                 String
+  description          String?
+  active               Boolean         @default(true)
+  interval             BillingInterval
+  priceCents           Int
+  currency             String          @default("BRL")
+  trialDays            Int             @default(0)
+  limits               Json            @default("{}")
+  features             Json            @default("[]")
+  metadata             Json            @default("{}")
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  @@index([active, interval, priceCents])
+}
+
+model TenantSubscription {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  planId               String
+  status               SubscriptionStatus @default(TRIAL)
+  provider             PaymentProvider    @default(MANUAL)
+  providerCustomerId   String?
+  providerSubscriptionId String?
+  startedAt            DateTime            @default(now())
+  trialEndsAt          DateTime?
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean             @default(false)
+  cancelledAt          DateTime?
+  suspendedAt          DateTime?
+  metadata             Json                @default("{}")
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  @@index([tenantId, status, currentPeriodEnd])
+  @@index([provider, providerSubscriptionId])
+}
+
+model BillingInvoice {
+  id                   String               @id @default(uuid())
+  tenantId             String
+  subscriptionId       String?
+  provider             PaymentProvider      @default(MANUAL)
+  providerInvoiceId    String?
+  status               BillingInvoiceStatus @default(DRAFT)
+  description          String
+  amountCents          Int
+  currency             String               @default("BRL")
+  dueAt                DateTime
+  paidAt               DateTime?
+  voidedAt             DateTime?
+  checkoutUrl          String?
+  pixPayload           String?
+  metadata             Json                 @default("{}")
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+  @@index([tenantId, status, dueAt])
+  @@index([provider, providerInvoiceId])
+}
+
+model BillingUsageRecord {
+  id                   String             @id @default(uuid())
+  tenantId             String
+  subscriptionId       String?
+  metric               BillingUsageMetric
+  quantity             BigInt
+  periodStart          DateTime
+  periodEnd            DateTime
+  source               String
+  sourceId             String?
+  metadata             Json               @default("{}")
+  createdAt            DateTime           @default(now())
+  @@unique([tenantId, metric, periodStart, periodEnd, source, sourceId])
+  @@index([subscriptionId, metric, periodStart])
+}
+
+model PaymentWebhookEvent {
+  id                   String             @id @default(uuid())
+  tenantId             String?
+  provider             PaymentProvider
+  externalId           String
+  eventType            String
+  status               PaymentEventStatus @default(RECEIVED)
+  signatureValid       Boolean            @default(false)
+  payload              Json
+  processedAt          DateTime?
+  error                String?
+  createdAt            DateTime           @default(now())
+  @@unique([provider, externalId])
+  @@index([tenantId, status, createdAt])
+}

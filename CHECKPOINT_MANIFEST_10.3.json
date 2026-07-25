@@ -1,0 +1,249 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.3",
+  "version": "1.2.0-checkpoint.10.3",
+  "created_on": "2026-07-22",
+  "scope": "main-experience-field-operations-multimodal-input",
+  "base_checkpoint": "10.2",
+  "file_count": 323,
+  "changed_file_count": 37,
+  "prisma_models": 80,
+  "prisma_enums": 43,
+  "tests_passed": 141,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed",
+    "unit_and_regression_tests": "141/141 passed",
+    "external_provider_device_and_official_build": "pending GitHub Actions/staging because dependencies, devices and API credentials are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1527,
+      "sha256": "8d8f888ad81b825a5a27fd39a05265562f91b42557cca925f6709f40817e8bec"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 23238,
+      "sha256": "cff87dd00356fcf6596ba3748bde379fc486cc63c07b2e369c5eadf46c09c945"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "INSTRUCOES.txt",
+      "bytes": 1009,
+      "sha256": "4244f2368fdcc4b238b41b603008c8beba3578c6850a8a673b34bdc35e63784a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 7026,
+      "sha256": "a716a288bddf41d181edc724935b85c649d990190e3b2192a649bc9c75b65348"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3052,
+      "sha256": "cc062df8b055b4617b9c53ac1452e196a91ec6728fe39bffec002c543339bf68"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 708,
+      "sha256": "61f5a7260b75adfc3becbd79e24c8dc48791b49f2f6e458cf4ef8996de3d1df5"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 4591,
+      "sha256": "edad25f5da4a195c4153ab7b6752b7cec3b638990aaeb9805fec504adb246760"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_3_DEPLOYMENT.md",
+      "bytes": 2245,
+      "sha256": "2326c81b008d8398c5fc075d683624e35b68e28483c03a0d727aee23aaf47e84"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_3_FIELD_MULTIMODAL.md",
+      "bytes": 3722,
+      "sha256": "63cec3cf5f925c1c1390adfd31bd97f7b1ebe6818db1aab8ac2c3feb4c51092c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/V10_DEPLOYMENT.md",
+      "bytes": 1740,
+      "sha256": "876d6e709e7ce5b65ab069eb51f8135e86c49151110775dc42ca673f5478cd16"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "3171864855124532d38c542492fff4cc63811f168b65adcc3605c1ed2c7ff8cd"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 63329,
+      "sha256": "b9a1d3351ce6118019f0c5ee49b4909c1ac24e5b3c517bb2c77ade32472bef1e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/copilot/[id]/page.tsx",
+      "bytes": 8519,
+      "sha256": "5f7c89bd8275d371bf98383f34d04b7df8804a1211471bb5ddfaefdce7bbeefa"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/dashboard/page.tsx",
+      "bytes": 9335,
+      "sha256": "093eb0f7f0b4217e4a03d6db84355ba56f1bd702595ae82d236dbbfd8271b7f4"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/field-visits/[id]/page.tsx",
+      "bytes": 12738,
+      "sha256": "7db3d87fd64dd4ce68da15b2bea5ddff0ff6c2409dc2684c3b550ea43f99796d"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/field-visits/page.tsx",
+      "bytes": 4372,
+      "sha256": "58aee25a21650c0f227ab074decddea66333b47363dac2cee9e728c9562e49f3"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 7546,
+      "sha256": "37da4ccd3cff075bef7d5654a45c749c68db5df0caa2b5707df211af40416992"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/copilot/threads/[id]/messages/route.ts",
+      "bytes": 1977,
+      "sha256": "a2ed2b3e91b62fa0cf7e4247bd916bb153e3008b8446b139e7d4a78a879ffe21"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-captures/[id]/retry/route.ts",
+      "bytes": 1219,
+      "sha256": "e013ba8e1fddd031b625079347a2d3c78bba62cb3ca8a25cddd3070e84d868d5"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-captures/[id]/review/route.ts",
+      "bytes": 2015,
+      "sha256": "e0c15596fde951f9b26507a8c837290471070bacd6c1ed75321afe7b71eddbee"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-visits/[id]/captures/route.ts",
+      "bytes": 6388,
+      "sha256": "246b0a081e21f3d77a1f58777819819f4cb74a55a1ded7759d20d23d946af9d1"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-visits/[id]/location/route.ts",
+      "bytes": 1711,
+      "sha256": "f0b5c6bb7b299618624d11d2337e3f41a8610d9b06b5b618a245bb7f1c05af4d"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-visits/[id]/status/route.ts",
+      "bytes": 1644,
+      "sha256": "1be487d4175501df4845b5e00503c14a233f70803d9eef508d79ed7ee126741a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/field-visits/route.ts",
+      "bytes": 1248,
+      "sha256": "389a4cc94208108b965dc1598133250a757c223b00834246db6680b8c38927e9"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/api/files/local/route.ts",
+      "bytes": 4500,
+      "sha256": "d835656b7fc1542eb4d3a324d47f6049ce81a8499990bd708d41dae92a330cd5"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/components/app-shell.tsx",
+      "bytes": 3340,
+      "sha256": "8de0308a57bb408e34f5faa2050746129c4ec69066594a63cfb0084cdeaa9a01"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/components/field-location-button.tsx",
+      "bytes": 1338,
+      "sha256": "e38f6bb2c080a5e6d9dccb990b6e0fe2f9cc867a10b317fe2584ed629bc9522e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/field/checklists.ts",
+      "bytes": 3562,
+      "sha256": "0b1b3a323e9da5f1697d5ff4e2d03d51bb69ea9b842671d8e193f2e26163d8f2"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/field/validation.ts",
+      "bytes": 2461,
+      "sha256": "3ec5bed6cad8bd27a63c940fb5e9953fda0657b76d7970cbb1e3983f40cfc86b"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-orchestrator.ts",
+      "bytes": 12921,
+      "sha256": "80b119cd1b8271c96c61c8a92eaaefa740086ab065726af184641550e3e0abd5"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 3562,
+      "sha256": "55759b4de880e46d0d44b719d86329e9daae3f437ce3ec3ef4c3aea416637061"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/field-operations.ts",
+      "bytes": 8857,
+      "sha256": "ace0791ad9b13d685424cdf481f53061424aa25102e5b724879bffbbde22611f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/worker/processors.ts",
+      "bytes": 4669,
+      "sha256": "9204932a2e355dc70208e780b98f84748706145fcbb2539c599cad484153a089"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-3-field-multimodal.test.ts",
+      "bytes": 4980,
+      "sha256": "d6bbc784367499f77a62e160076dff9a59f40b57957df62998b52cc22395688a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 22357,
+      "sha256": "ae43d3bd73fb0b42b1157c2b4ed16bb561189f6f8e40c5585a1dbf5d38cacf6c"
+    }
+  ],
+  "functional_changed_file_count": 35,
+  "generated_checkpoint_metadata": [
+    "CHANGED_FILES_10.3.txt",
+    "CHECKPOINT_MANIFEST_10.3.json"
+  ]
+}

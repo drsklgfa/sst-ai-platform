@@ -1,0 +1,406 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.9",
+  "version": "1.2.0-checkpoint.10.9",
+  "created_on": "2026-07-23",
+  "scope": "universidade-corporativa-treinamentos-avaliacoes-e-competencias",
+  "base_checkpoint": "10.8",
+  "file_count": 474,
+  "changed_file_count": 59,
+  "prisma_models": 148,
+  "prisma_enums": 116,
+  "tests_passed": 242,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO",
+    "FEATURE_PCMSO",
+    "FEATURE_MEDICAL_AREA",
+    "FEATURE_ESOCIAL_S2220",
+    "FEATURE_EXPOSURE_CORE",
+    "FEATURE_LTCAT_PPP",
+    "FEATURE_INSALUBRIDADE",
+    "FEATURE_PERICULOSIDADE",
+    "FEATURE_ESOCIAL_S2240",
+    "FEATURE_ERGONOMICS",
+    "FEATURE_OCCUPATIONAL_HYGIENE",
+    "FEATURE_INSTRUMENT_MANAGEMENT",
+    "FEATURE_CORPORATE_UNIVERSITY",
+    "FEATURE_TRAINING_ASSESSMENTS",
+    "FEATURE_COMPETENCY_MATRIX",
+    "FEATURE_TRAINING_CERTIFICATES"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed with safe test values",
+    "unit_and_regression_tests": "242/242 passed",
+    "security_scan": "passed: no .env, private keys, provider credentials, local databases, node_modules or .next artifacts found",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database, object storage, external communication providers and pedagogical validation are unavailable in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 2148,
+      "sha256": "df85f9f1de332e409449d6df0e03fb214b82e870739fe0e6e91f2e1e0a6b5602"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 32135,
+      "sha256": "ba8d7f7fe4a6287207889ba684c59ed4f6877096c9d8dcaa540e8e2143a4ba6f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "INSTRUCOES.txt",
+      "bytes": 1245,
+      "sha256": "627bdf07a791125ab9b22f19fcfc6a88ec30030358753cc59e65d190ef579f7a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 10016,
+      "sha256": "dafa3d3d32053f6f35f6fd5036a6ca9e37065afb145174d2f804426cd7401748"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3841,
+      "sha256": "5d0af309f50384a950402e5c3e6041e00c246bf2db1e890d4a3a1fb7443ab83a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 1368,
+      "sha256": "91d6b98a3e5a74706e168e59cf7d2ad290f249fe40a9a0be29fa86c3d5a0c43d"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 8597,
+      "sha256": "5063ce3589ec6760eba5879edcfce56f3ee6e7723e023147e5ffa119e755d1f2"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_9_DEPLOYMENT.md",
+      "bytes": 3574,
+      "sha256": "224e1566cf140e0051465c54c2e1b040fbe4ba3b2e82532b447b1a62c4a041d5"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_9_TRAINING_UNIVERSITY.md",
+      "bytes": 6058,
+      "sha256": "4db050cd1d544c04418db409a6cd316cb03cb8f83c1b7b9b250c009ae5de4dcb"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "7190b877b03927b4f68e61c1037f888f0ef206356e8102c2f316996f7190ad12"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 154792,
+      "sha256": "0e1ce88f105971c212c89e71cc7197de8f6509d183d22a275da222ec2d40532e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/dashboard/page.tsx",
+      "bytes": 9699,
+      "sha256": "1f35db73198e3e39b5ab5983f55a0165dfe849e9f2a2155febf58e7bd63ae887"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/training/[id]/page.tsx",
+      "bytes": 27781,
+      "sha256": "8b467b5cae5708509ccf07206d87727c4b95c13a0d21907295df956f8c55a905"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 9050,
+      "sha256": "df038aaf20c65ce6c63dd3f6daa6776f57dbe26cc95007d163fe5ad2e351c718"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/public/training-certificates/[code]/route.ts",
+      "bytes": 818,
+      "sha256": "a1a84512b93b5e7331c7695332b22f1bbc146931c271a5178e0a023e4016a076"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/public/training/[token]/assessments/[assessmentId]/route.ts",
+      "bytes": 1932,
+      "sha256": "932cdb5de05f2ad141dda2cacba6398d426690fe5be2401a38b4548ecefb4964"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/public/training/[token]/lessons/[lessonId]/route.ts",
+      "bytes": 1268,
+      "sha256": "d7c5b26b66a8a00100676326f2f0769d6f09a2d7b9715ef32b24ea23ca617fe5"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/public/training/[token]/materials/[lessonId]/route.ts",
+      "bytes": 1506,
+      "sha256": "205083323c325eefc72facb4e1351654cc9cbef8ba96959c9ceb8a601987a77e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/assessments/[assessmentId]/questions/route.ts",
+      "bytes": 1586,
+      "sha256": "2a09fba5fda328f32de7795e51c2d55e4c797bf1423c125b693cd7ab67c25e85"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/assign/route.ts",
+      "bytes": 1080,
+      "sha256": "eda50c767515d15ae64bb1a60dada464816b511aaccc75338840200d1f42ffa6"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/audit/route.ts",
+      "bytes": 999,
+      "sha256": "3f90353c8203ae9263caf57cd4ed62c0751c0af22dc4ee6ca04d808cad4f7b31"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/bootstrap/route.ts",
+      "bytes": 1009,
+      "sha256": "83ae791d87e18f49d8e5ae39881500d8682f003ea774a327e27f559aa6e81422"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/competencies/route.ts",
+      "bytes": 1759,
+      "sha256": "f8dcf5a16b4910687ab2b127ebc9c24041b399ae49c3e380d448b29dd184fb50"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/courses/[courseId]/assessments/route.ts",
+      "bytes": 1271,
+      "sha256": "2678775607da555a166958347b71c5035628b349db54c1f86248641943cc92ec"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/courses/[courseId]/content/route.ts",
+      "bytes": 1744,
+      "sha256": "e92ee024fa6b0ef3bb60f432e46b6b68240d4463a49c9453d4e0130b1d1070ed"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/courses/[courseId]/publish/route.ts",
+      "bytes": 1013,
+      "sha256": "c2843f9483e2c554897fac432564af88ff134affd0d0cc641162dce6b391b900"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/courses/route.ts",
+      "bytes": 1889,
+      "sha256": "4433fa8694ce6fc8755ce58eef61368f90b9b07b9109c5527d68306c79e9821f"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/access-link/route.ts",
+      "bytes": 1380,
+      "sha256": "7c5d7846fed8cd7b9f311d7779b50bbb192aea11b8034e1b0f33ca5489b2f797"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/assessments/[assessmentId]/attempts/[attemptId]/review/route.ts",
+      "bytes": 1412,
+      "sha256": "2f3a7e3484fc3b874ab810791522ffa0766ad1865747e9c8d3db18aa24e22511"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/assessments/[assessmentId]/attempts/route.ts",
+      "bytes": 1345,
+      "sha256": "f97bd4029dc935d28f8bdeaa369ff6f836b8bf900652b025bc6c115e618f1209"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/certificate/revoke/route.ts",
+      "bytes": 1544,
+      "sha256": "ef7cb9f5886c390f614ad40bad5ebb5a8328b19d60cbaf0723f1fa9962e21e1c"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/certificate/route.ts",
+      "bytes": 1253,
+      "sha256": "e43333f1f6d4d75cd09211a9d0523c541016f28b1479f9186d67d9f8831ab8a6"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/lessons/[lessonId]/route.ts",
+      "bytes": 1241,
+      "sha256": "1616cf4b43602d40dfd6a67d32a58bf8ed8e3137c71fb3ed1876a69f1e8d5395"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/[enrollmentId]/practical/route.ts",
+      "bytes": 1307,
+      "sha256": "1c74f05906131bc75b7f5682fa27fef035d6c8a6148ca12366921b538f3c8639"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/enrollments/route.ts",
+      "bytes": 1177,
+      "sha256": "b0f4ad4c13ec6447cfce1c3602275d6c4a7f3953125c4a4201794e834fb7bb0a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/paths/route.ts",
+      "bytes": 1215,
+      "sha256": "37b9b69d84fd50c74bae5e3ee30a4dd9db30655def01fa0e2833a07458f68b83"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/program/route.ts",
+      "bytes": 1844,
+      "sha256": "a83c09f6d69d06cf45f8794089e73b8e4204e6972af4517d3a668539eb1bf0fb"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/requirements/route.ts",
+      "bytes": 1677,
+      "sha256": "e2b8797a86f52771376636844864db237bfe645dd67f416837fdc8eab835ea5c"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/sessions/[sessionId]/attendance/route.ts",
+      "bytes": 1340,
+      "sha256": "8634cb0cef89dc050289dd9c3a19bd153af3279e6418dc205b761eb7e017137a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/training/[id]/sessions/route.ts",
+      "bytes": 1553,
+      "sha256": "d2d7668effdf3520adafbc0cdac09d3e11d097b0d879a1d530f466a58a570ef1"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/certificates/[code]/page.tsx",
+      "bytes": 1601,
+      "sha256": "156b347216a593d8b816599521e448df170f5f744231266181c82d481555b0b8"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/learn/[token]/lessons/[lessonId]/page.tsx",
+      "bytes": 2391,
+      "sha256": "ea67344e5f497e29e42b7dec941158ecd0fc29407ee4d55340c036cb929225ba"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/learn/[token]/page.tsx",
+      "bytes": 6600,
+      "sha256": "2386f30e0ac3fdb0b2d0815280d6d20e879802f9e16edae852033200ccea5d8a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/components/app-shell.tsx",
+      "bytes": 4063,
+      "sha256": "4dc3c73d789f6320eac99dfe2b10508069b141a6c984ed21f0900bb388044dce"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/components/training/learner-lesson-client.tsx",
+      "bytes": 1624,
+      "sha256": "9bc122c05104b4022ad3b45ee1855763e3d802bef2f9d5b71d5efd8719772781"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 14194,
+      "sha256": "679965ce2ea37904cd0442cb63ab3598cdbecf987dfdef7601b132b9464fc7c2"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 13697,
+      "sha256": "3db530fbd2705f86634de316a453978f740aeddaa9db72b9d606b40ec0d00951"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/training/assessment.ts",
+      "bytes": 3733,
+      "sha256": "5d38b20842d51ef22286d3a90795a9454aff7a1da45c6ec3b30624b01d7389e1"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/training/audit.ts",
+      "bytes": 3718,
+      "sha256": "36e4b0b8a5dd287fc971f896da62299fdef94782aa99059cb518a7002933ae16"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/training/catalog.ts",
+      "bytes": 7753,
+      "sha256": "c07b36f172bea35fc2c8b023c4d44bc0d268fb1ae7f5983d5e8addc2962d5c51"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/training/certificates.ts",
+      "bytes": 2242,
+      "sha256": "e02733ff1876a862344717e74c145128b3d1bc3e94c2030d4a99c363c7ed7e49"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/training/requirements.ts",
+      "bytes": 1737,
+      "sha256": "ad03958afa0adcbac4971e2b9194469a51b7d43026c52b4438efc4843385b1e7"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 25631,
+      "sha256": "8e92a506a88531c82345afd6bfd6bf76fe4f22522769d2af8246d16e72593075"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 42376,
+      "sha256": "29d8065ff82f6448dfb2f99b3dcd831b3f1e72d8f69ce79fdc66183461eb9e1d"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 4622,
+      "sha256": "3317d90cd289c17de4af3dd98fea5e2ce35f58652b081fc14c354ab60376935a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/rbac.ts",
+      "bytes": 7440,
+      "sha256": "ac7511de8dfff6cdf892bfc0d75869052906c360ee507389e036caff12d3ce34"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/training.ts",
+      "bytes": 51364,
+      "sha256": "3c5a35bfb4d5c4f2c1788bb6de1ddee0cecb9e7b0f1e2a89253bc3197c92a866"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-9-training.test.ts",
+      "bytes": 15687,
+      "sha256": "a33372f77ab1377afb3cd85c46303319f078d6ec74511e5c99af3e05514c557d"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 53625,
+      "sha256": "1d9ff9de2b8af148806d7e2156e545b44b1aaab872ec1b7199c83c908e95c3a7"
+    }
+  ]
+}

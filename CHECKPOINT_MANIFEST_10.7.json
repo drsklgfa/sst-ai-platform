@@ -1,0 +1,262 @@
+{
+  "project": "sst-saas-platform",
+  "checkpoint": "10.7",
+  "version": "1.2.0-checkpoint.10.7",
+  "created_on": "2026-07-22",
+  "scope": "aep-aet-ergonomia-completa",
+  "base_checkpoint": "10.6",
+  "file_count": 413,
+  "changed_file_count": 36,
+  "prisma_models": 119,
+  "prisma_enums": 88,
+  "tests_passed": 197,
+  "tests_failed": 0,
+  "feature_flags": [
+    "FEATURE_V10_WORKS",
+    "FEATURE_AI_SETTINGS",
+    "FEATURE_LEGACY_IMPORTS",
+    "FEATURE_AI_COPILOT",
+    "FEATURE_V10_HOME",
+    "FEATURE_FIELD_OPERATIONS",
+    "FEATURE_MULTIMODAL_INPUT",
+    "FEATURE_PGR_GRO",
+    "FEATURE_PSYCHOSOCIAL_GRO",
+    "FEATURE_PCMSO",
+    "FEATURE_MEDICAL_AREA",
+    "FEATURE_ESOCIAL_S2220",
+    "FEATURE_EXPOSURE_CORE",
+    "FEATURE_LTCAT_PPP",
+    "FEATURE_INSALUBRIDADE",
+    "FEATURE_PERICULOSIDADE",
+    "FEATURE_ESOCIAL_S2240",
+    "FEATURE_ERGONOMICS"
+  ],
+  "validation": {
+    "source_validation": "passed",
+    "schema_local_validation": "passed",
+    "offline_typecheck": "passed",
+    "application_preflight": "passed",
+    "seed_preflight": "passed with safe test values",
+    "unit_and_regression_tests": "197/197 passed",
+    "security_scan": "passed",
+    "official_build_database_provider_and_staging": "pending GitHub Actions/Railway staging because installed dependencies, real database, multimedia devices, external credentials and professional ergonomic validation are not available in this environment"
+  },
+  "changed_files": [
+    {
+      "status": "MODIFIED",
+      "path": ".env.example",
+      "bytes": 1938,
+      "sha256": "bb62aa27e2be3727dd632f477c81f995c815f4313bb22dd2d960171287f2370c"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "CHANGELOG.md",
+      "bytes": 29333,
+      "sha256": "95478f3425d1fc09387f59210b18c797bd19824b850e4ae186ea913cfd40095e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "INSTRUCOES.txt",
+      "bytes": 1136,
+      "sha256": "654cd32c0323b2c7f62316d36023eb3f2d8f96d42751e540698baee41ca9da0a"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "README.md",
+      "bytes": 8955,
+      "sha256": "f1fd9e96cae0802d03800c1b745a4e80d189a2a0c9cd128a3f0ef8fcc8d18b71"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "VALIDATION_REPORT.md",
+      "bytes": 3228,
+      "sha256": "bf4de05b5ceb9be3442a1be2b91ff552ce519cdc1a52708747ba2321cd085700"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "checkpoint.json",
+      "bytes": 1044,
+      "sha256": "8ce2542a686a0775fd141fa981b0788e5a57894dacb8f0196511e9307159134f"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "docs/MASTER_BLUEPRINT_V10.md",
+      "bytes": 6984,
+      "sha256": "59553dd52efa92099d9cf20eb61b2606245b1d9b04e5b9273c2afd37fbab558d"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_7_AEP_AET_ERGONOMICS.md",
+      "bytes": 5059,
+      "sha256": "b2d650f5542b5bedf1b4faba2854a524386ff9a8ce282f7258918346582d0c27"
+    },
+    {
+      "status": "ADDED",
+      "path": "docs/V10_7_DEPLOYMENT.md",
+      "bytes": 3054,
+      "sha256": "0078315f0eb3ae6acc662ce27a9bf99742ccc133854ba0a6fb200131930ae1a8"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "package.json",
+      "bytes": 2464,
+      "sha256": "8b698bbfc4321dc0b4259a6f19949c48d976f52cb8bf7e84c2455450870e0f2e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "prisma/schema.prisma",
+      "bytes": 113784,
+      "sha256": "14e2ecbde9b3f5611d9fd3961f46a8c23138fa1a6e1a648b661c2154c0f82071"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/(app)/ergonomics/[id]/page.tsx",
+      "bytes": 17374,
+      "sha256": "2a4eed503e9ca0bf63aa1a9516562ea1f50c95b22f77aa16c57d4e0bab688a40"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/app/(app)/work-projects/[id]/page.tsx",
+      "bytes": 8545,
+      "sha256": "a3da0a9ba53cfc51be1f067677aa2617e5afcd374df68035e4a3ad973d6b8020"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/action-plan/route.ts",
+      "bytes": 1022,
+      "sha256": "23aa2c657d716acfef40efdf0bf552172fd5569e02c226f0b722841bedd56956"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/aep-decision/route.ts",
+      "bytes": 1331,
+      "sha256": "d1a4de898568acf604849cba0bcef87a8a815c437d89092cda00da05065956b6"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/assessments/[assessmentId]/review/route.ts",
+      "bytes": 1139,
+      "sha256": "44fd7dbfbbb870fe3a520f66996c01a2506597093909fd852949e411dbe40b9a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/assessments/route.ts",
+      "bytes": 1457,
+      "sha256": "bd6f50406becf811aead2e8068f8253e4185712c330bcba058331e050e5d058a"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/audit/route.ts",
+      "bytes": 1003,
+      "sha256": "8966e0ad6c260fa5b743f45b7356926ebab71c01c8d99c47c0448cfd6a054ca3"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/bootstrap/route.ts",
+      "bytes": 1108,
+      "sha256": "d4e4ca0309946dfc9d5be7793c43415cff9b3f379281f06a3d09a2aba1cb09d3"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/demands/route.ts",
+      "bytes": 1333,
+      "sha256": "249589b1a79dbce7e861e96423e9c69f138bd15409bab24b4ab6ef35c0aa2142"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/findings/route.ts",
+      "bytes": 1541,
+      "sha256": "f0a6107e2758b3e3fd611dd02bb0141f21271ff1a09a65a06c91f911490aad7e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/participation/route.ts",
+      "bytes": 1586,
+      "sha256": "c5776ed2e3119fa249afb2d2ba887f4e0d66db73089f9dfcdd57a208d88b34cf"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/app/api/ergonomics/[id]/situations/route.ts",
+      "bytes": 2733,
+      "sha256": "86f61eca7fe50103da0744bf372c4ffe574a65b06af16c5c67589f0f4d0f032e"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/ai/operational-tools.ts",
+      "bytes": 12378,
+      "sha256": "afb313323a146ad626a344a71180ce9ea91a6502113f49633c9e1bc46b6d1a09"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/documents/default-sections.ts",
+      "bytes": 10724,
+      "sha256": "5d94bf00a08fbd3e209da19ba829e6ad46fd761a8f50f254b8480128dfa266f1"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/ergonomics/aep.ts",
+      "bytes": 1769,
+      "sha256": "e311ca33fdb2a74025c4039490877180cba6ff0b2eb113061282adc4dba3967e"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/ergonomics/assessment.ts",
+      "bytes": 2859,
+      "sha256": "8440411b33e966ae60e441bd7bd2677b9e1d2c20fd5fc17524e80b37d50034e7"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/ergonomics/audit.ts",
+      "bytes": 3618,
+      "sha256": "a6fc08c664820852d08285be71946a0cedbd29cf48b15a1d2c377b8ad5af4ac0"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/domain/ergonomics/catalog.ts",
+      "bytes": 3615,
+      "sha256": "346053e0c38b5104e8e078ad59655661cc039c8faded7ffc1801a3670f3cc85d"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/domain/workflows/templates.ts",
+      "bytes": 22208,
+      "sha256": "18b6e28edccd92d0ca69e1db30c90ac4641a0d29f7daa07885e4b345d1d61af6"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/ai-tools.ts",
+      "bytes": 39270,
+      "sha256": "961b76587754282c6c9a0be1a59e2b2bffac50ca4642121d5ec9971fc48600b1"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/env.ts",
+      "bytes": 4215,
+      "sha256": "cec31d229ee622099f0e8e04425fb9760d859fc69e39848815e1953950c6dc46"
+    },
+    {
+      "status": "ADDED",
+      "path": "src/lib/ergonomics.ts",
+      "bytes": 26891,
+      "sha256": "f470a3b3e9339e1980205712ff7441cf682e9b87ebdf5f430fd47f883bf65699"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "src/lib/rbac.ts",
+      "bytes": 6305,
+      "sha256": "627186678204f8452ff8c08b260ea1ff72e242db187b372034f0218887f19968"
+    },
+    {
+      "status": "ADDED",
+      "path": "tests/checkpoint10-7-ergonomics.test.ts",
+      "bytes": 9136,
+      "sha256": "c10380c432133b63f43c2d254cc2ce8ed607e2a228df704b2748ffebec5a1898"
+    },
+    {
+      "status": "MODIFIED",
+      "path": "types/offline-prisma.d.ts",
+      "bytes": 40648,
+      "sha256": "5381bf0321f153a7504b8bf3cfed4565eb7f82bb97d1656e09a78451023670f1"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.env.example -> .env.example
+Only in .: CHANGED_FILES_10.0.txt
+CHANGELOG.md -> CHANGELOG.md
+README.md -> README.md
+VALIDATION_REPORT.md -> VALIDATION_REPORT.md
+checkpoint.json -> checkpoint.json
+Only in ./docs: MASTER_BLUEPRINT_V10.md
+Only in ./docs: V10_DEPLOYMENT.md
+Only in ./docs: V10_FOUNDATION.md
+package.json -> package.json
+prisma/schema.prisma -> prisma/schema.prisma
+scripts/preflight.mjs -> scripts/preflight.mjs
+Only in ./src/app/(app)/settings: ai
+Only in ./src/app/(app): work-projects
+Only in ./src/app/api/settings: ai
+Only in ./src/app/api: work-projects
+src/components/app-shell.tsx -> src/components/app-shell.tsx
+Only in ./src/domain: ai
+Only in ./src/domain: workflows
+Only in ./src/lib: ai-config.ts
+src/lib/env.ts -> src/lib/env.ts
+src/lib/integrations/ai.ts -> src/lib/integrations/ai.ts
+src/lib/rbac.ts -> src/lib/rbac.ts
+Only in ./src/lib: secrets.ts
+Only in ./src/lib: work-projects.ts
+Only in ./tests: ai-foundation.test.ts
+tests/preflight.test.ts -> tests/preflight.test.ts
+Only in ./tests: v10-foundation.test.ts
+Only in ./tests: workflow-v10.test.ts
+types/offline-prisma.d.ts -> types/offline-prisma.d.ts

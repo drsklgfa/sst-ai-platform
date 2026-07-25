@@ -1,0 +1,50 @@
+export type TrainingAuditFinding = { code: string; severity: 'ERROR' | 'WARNING'; message: string };
+export type TrainingAuditInput = {
+  hasScope: boolean;
+  hasPedagogicalProject: boolean;
+  hasTargetAudience: boolean;
+  hasInstructor: boolean;
+  courseCount: number;
+  publishedCourseCount: number;
+  coursesWithoutContent: number;
+  coursesWithoutAssessment: number;
+  coursesWithoutPassingCriteria: number;
+  enrollmentCount: number;
+  enrollmentsWithoutAccessEvidence: number;
+  overdueEnrollments: number;
+  practicalPending: number;
+  completedEnrollments: number;
+  completedWithoutCertificate: number;
+  certificatesExpiring: number;
+  requirementRuleCount: number;
+  competencyDefinitionCount: number;
+  workflowProgress: number;
+};
+
+export function auditTrainingCompleteness(input: TrainingAuditInput) {
+  const findings: TrainingAuditFinding[] = [];
+  const error = (code: string, message: string) => findings.push({ code, severity: 'ERROR' as const, message });
+  const warning = (code: string, message: string) => findings.push({ code, severity: 'WARNING' as const, message });
+  if (!input.hasScope) error('TR_SCOPE', 'Escopo e objetivo do programa de treinamento não foram definidos.');
+  if (!input.hasPedagogicalProject) error('TR_PEDAGOGICAL_PROJECT', 'Projeto pedagógico incompleto.');
+  if (!input.hasTargetAudience) error('TR_AUDIENCE', 'Público-alvo e pré-requisitos não foram registrados.');
+  if (!input.hasInstructor) error('TR_INSTRUCTOR', 'Instrutor ou responsável técnico não foi definido.');
+  if (input.courseCount < 1) error('TR_COURSE', 'Nenhum curso foi vinculado ao programa.');
+  if (input.publishedCourseCount < input.courseCount) warning('TR_PUBLICATION', 'Existem cursos ainda não publicados.');
+  if (input.coursesWithoutContent > 0) error('TR_CONTENT', `${input.coursesWithoutContent} curso(s) não possuem conteúdo obrigatório.`);
+  if (input.coursesWithoutAssessment > 0) error('TR_ASSESSMENT', `${input.coursesWithoutAssessment} curso(s) não possuem avaliação de aprendizagem.`);
+  if (input.coursesWithoutPassingCriteria > 0) error('TR_PASSING_CRITERIA', 'Há avaliação sem critério válido de aprovação.');
+  if (input.enrollmentCount < 1) warning('TR_ENROLLMENT', 'Nenhum trabalhador foi matriculado.');
+  if (input.enrollmentsWithoutAccessEvidence > 0) warning('TR_ACCESS_LOGS', `${input.enrollmentsWithoutAccessEvidence} matrícula(s) não possuem evidência de acesso ou presença.`);
+  if (input.overdueEnrollments > 0) warning('TR_OVERDUE', `${input.overdueEnrollments} matrícula(s) estão vencidas.`);
+  if (input.practicalPending > 0) error('TR_PRACTICAL', `${input.practicalPending} avaliação(ões) prática(s) estão pendentes.`);
+  if (input.completedWithoutCertificate > 0) error('TR_CERTIFICATE', `${input.completedWithoutCertificate} conclusão(ões) elegíveis ainda não possuem certificado.`);
+  if (input.certificatesExpiring > 0) warning('TR_EXPIRING', `${input.certificatesExpiring} certificado(s) vencem em breve.`);
+  if (input.requirementRuleCount < 1) warning('TR_REQUIREMENTS', 'Nenhuma regra de treinamento por função, GHE ou risco foi cadastrada.');
+  if (input.competencyDefinitionCount < 1) warning('TR_COMPETENCIES', 'A matriz de competências ainda não foi configurada.');
+  if (input.workflowProgress < 100) warning('TR_WORKFLOW', `Workflow está em ${input.workflowProgress}% de conclusão.`);
+  const errors = findings.filter((item) => item.severity === 'ERROR').length;
+  const warnings = findings.length - errors;
+  const score = Math.max(0, 100 - errors * 12 - warnings * 4);
+  return { status: errors ? 'FAILED' as const : warnings ? 'PASSED_WITH_WARNINGS' as const : 'PASSED' as const, score, findings };
+}
