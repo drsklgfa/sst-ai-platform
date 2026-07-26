@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -51,24 +51,24 @@ jobs:
       SERVICE_ROLE: web
 
     steps:
-      - name: 1. Baixar o cÃ³digo
-        uses: actions/checkout@v6
+      - name: 1. Baixar o código
+        uses: actions/checkout@v4
 
       - name: 2. Configurar Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: 3. Configurar npm e instalar dependÃªncias
+      - name: 3. Configurar npm e instalar dependências
         run: |
           npm config set fetch-retries 5
           npm config set fetch-retry-mintimeout 10000
           npm config set fetch-retry-maxtimeout 60000
-          npm ci --no-audit --no-fund
+          npm install --no-audit --no-fund
           npm audit --omit=dev --audit-level=critical
 
       - name: 4. Restaurar cache do Next.js
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: .next/cache
           key: ${{ runner.os }}-next-${{ hashFiles('package.json', 'prisma/schema.prisma', 'src/**/*.[jt]s', 'src/**/*.[jt]sx') }}
@@ -87,8 +87,8 @@ jobs:
 
       - name: 6. Formatar, validar e gerar Prisma
         run: |
-          # Usa o formatter oficial da mesma versÃ£o instalada no runner.
-          # O segundo comando confirma que o resultado ficou canÃ´nico.
+          # Usa o formatter oficial da mesma versão instalada no runner.
+          # O segundo comando confirma que o resultado ficou canônico.
           npx prisma format
           npx prisma format --check
           npx prisma validate
@@ -110,7 +110,7 @@ jobs:
       - name: 9. Executar testes
         run: npm test
 
-      - name: 10. Gerar build de produÃ§Ã£o
+      - name: 10. Gerar build de produção
         run: npm run build
 
       - name: 11. Construir imagem Docker
@@ -143,11 +143,11 @@ jobs:
 
           for attempt in $(seq 1 30); do
             if docker exec sst-postgres-ci pg_isready -U postgres -d sst_saas >/dev/null 2>&1; then
-              echo "PostgreSQL Docker disponÃ­vel."
+              echo "PostgreSQL Docker disponível."
               break
             fi
             if [ "$attempt" = 30 ]; then
-              echo "PostgreSQL Docker nÃ£o ficou disponÃ­vel."
+              echo "PostgreSQL Docker não ficou disponível."
               exit 1
             fi
             sleep 2
@@ -179,7 +179,7 @@ jobs:
 
           for attempt in $(seq 1 60); do
             if ! docker inspect -f '{{.State.Running}}' sst-web-ci 2>/dev/null | grep -q true; then
-              echo "ContÃªiner Web encerrou antes de ficar saudÃ¡vel."
+              echo "Contêiner Web encerrou antes de ficar saudável."
               docker inspect sst-web-ci || true
               exit 1
             fi
@@ -190,12 +190,12 @@ jobs:
             rm -f "$response_file"
 
             if [ "$http_code" = "200" ] && [ -n "$response" ] && HEALTH_JSON="$response" node -e "const h=JSON.parse(process.env.HEALTH_JSON); if(h.ok!==true||h.database!=='ok') process.exit(1)"; then
-              echo "AplicaÃ§Ã£o saudÃ¡vel: $response"
+              echo "Aplicação saudável: $response"
               break
             fi
 
             if [ "$attempt" = 60 ]; then
-              echo "AplicaÃ§Ã£o nÃ£o ficou saudÃ¡vel. Ãšltimo HTTP: $http_code; corpo: $response"
+              echo "Aplicação não ficou saudável. Último HTTP: $http_code; corpo: $response"
               exit 1
             fi
             sleep 2
@@ -209,7 +209,7 @@ jobs:
 
           for attempt in $(seq 1 45); do
             if ! docker inspect -f '{{.State.Running}}' sst-worker-ci 2>/dev/null | grep -q true; then
-              echo "ContÃªiner Worker encerrou antes de publicar heartbeat."
+              echo "Contêiner Worker encerrou antes de publicar heartbeat."
               docker inspect sst-worker-ci || true
               exit 1
             fi
@@ -223,12 +223,12 @@ jobs:
             sleep 2
           done
 
-          echo "Worker nÃ£o publicou heartbeat saudÃ¡vel."
+          echo "Worker não publicou heartbeat saudável."
           exit 1
 
-      - name: 13. Publicar evidÃªncias de homologaÃ§Ã£o
+      - name: 13. Publicar evidências de homologação
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: homologacao-${{ github.sha }}
           path: |
@@ -236,4 +236,3 @@ jobs:
             artifacts/sbom.cdx.json
           if-no-files-found: warn
           retention-days: 30
-
