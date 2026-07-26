@@ -201,6 +201,16 @@ jobs:
             sleep 2
           done
 
+          echo "Criando dados de homologação no PostgreSQL usado pelos contêineres..."
+          docker exec \
+            -e SEED_TENANT_NAME="$SEED_TENANT_NAME" \
+            -e SEED_TENANT_SLUG="$SEED_TENANT_SLUG" \
+            -e SEED_ADMIN_NAME="$SEED_ADMIN_NAME" \
+            -e SEED_ADMIN_EMAIL="$SEED_ADMIN_EMAIL" \
+            -e SEED_ADMIN_PASSWORD="$SEED_ADMIN_PASSWORD" \
+            -e SEED_DEMO_DATA="$SEED_DEMO_DATA" \
+            sst-web-ci npm run db:seed
+
           docker run -d --name sst-worker-ci --network "$network_name" \
             "${common_env[@]}" \
             -e DB_SCHEMA_MODE=none \
